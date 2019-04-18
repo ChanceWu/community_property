@@ -50,17 +50,16 @@ class App extends React.Component {
     };
     render() {
         const { title } = this.state;
-        /*const { auth = { data: {} }, responsive = { data: {} } } = this.props;
-        console.log(auth);*/
+        /*const { auth = { data: {} }, responsive = { data: {} } } = this.props;*/
         return (
             <DocumentTitle title={title}>
                 <Layout>
-                    {true && <SiderCustom collapsed={this.state.collapsed} />}
+                    {true && <SiderCustom auth={this.props.auth} collapsed={this.state.collapsed} />}
                     {/*<ThemePicker />*/}
                     <Layout style={{flexDirection: 'column'}}>
                         <HeaderCustom toggle={this.toggle} collapsed={this.state.collapsed} user={'auth.data' || {}} />
                         <Content style={{ margin: '0 16px', overflow: 'initial', flex: '1 1 0' }}>
-                            <Routes  />
+                            <Routes auth={this.props.auth} />
                         </Content>
                         <Footer style={{ textAlign: 'center' }}>
                         React-Admin ©{new Date().getFullYear()} Created by 865470087@qq.com

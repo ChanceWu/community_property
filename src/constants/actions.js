@@ -5,4 +5,6 @@ export default keyMirror({
 	AUTH_SUCCESS: null,
 	ERROR_MSG: null,
 	LOGOUT_SUCCESS: null,
+	
+	GET_OWNERINFO_SUCCESS: null,
 });

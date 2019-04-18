@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import browserCookie from 'browser-cookies'
 import { logout } from '../../actions/auth'
+import './layout.less'
 
 const { Header } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -33,7 +34,6 @@ class HeaderCustom extends Component {
 
     };*/
     menuClick = e => {
-        console.log(e);
         e.key === 'logout' && this.logout();
     };
     logout = () => {
@@ -52,7 +52,6 @@ class HeaderCustom extends Component {
     };
     render() {
         const { redirectTo } = this.props;
-        console.log(this.props)
         return (
             <Header className="custom-theme header" >
             	{redirectTo&&redirectTo==='/login'?<Redirect to={this.props.redirectTo}/>:null}

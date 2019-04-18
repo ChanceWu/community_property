@@ -10,7 +10,7 @@ const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 
 @connect(
-	state=>state.user,
+	state=>state.auth,
 	{register}
 )
 // @authForm

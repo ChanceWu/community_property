@@ -4,6 +4,7 @@ import { Layout } from 'antd';
 import { withRouter } from 'react-router-dom';
 import routes from '../../routes/config';
 import SiderMenu from './SiderMenu';
+import './layout.less'
 
 const { Sider } = Layout;
 
@@ -61,6 +62,7 @@ class SiderCustom extends Component {
     };
     render() {
         const { selectedKey, openKey, firstHide, collapsed } = this.state;
+        const { type } = this.props.auth
         return (
             <Sider
                 trigger={null}
@@ -70,7 +72,7 @@ class SiderCustom extends Component {
             >
                 <div className="logo" />
                 <SiderMenu
-                    menus={routes.menus}
+                    menus={routes[type]}
                     onClick={this.menuClick}
                     mode="inline"
                     selectedKeys={[selectedKey]}

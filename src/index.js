@@ -32,8 +32,10 @@ ReactDOM.render(
 		<BrowserRouter>
 			<AuthRoute />
 			<Switch>
-				<Route exact path="/" render={() => <Redirect to="/admin/adminHome/AdminHome" push />} />        
+				<Route exact path="/admin" render={() => <Redirect to="/admin/home" push />} />
+				<Route exact path="/user" render={() => <Redirect to="/user/home" push />} />        
 				<Route path='/admin' component={App} />
+				<Route path='/user' component={App} />
 				<Route path='/login' component={Login} />
 				<Route path='/register' component={Register} />
 				{/*<Route exact path='/admin/adminHome/AdminHome' component={AdminHome} />*/}
