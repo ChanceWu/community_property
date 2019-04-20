@@ -1,8 +1,10 @@
 import React from 'react'
+import { message } from 'antd'
 // import InfoList from '../../../components/table/InfoList'
 import { connect } from 'react-redux'
 import { getPersonInfo, updatePersonInfo } from '../../../actions/userinfo'
-import PersonInfoForm from '../../../components/form/PersonInfoForm'
+import { authSuccess } from '../../../actions/auth'
+import PersonInfoManage from '../../../components/form/PersonInfoManage'
 
 const initData = {
 	name: '',
@@ -16,7 +18,7 @@ const initData = {
 
 @connect(
 	state=>state,
-	{getPersonInfo, updatePersonInfo}
+	{getPersonInfo, updatePersonInfo, authSuccess}
 )
 class PersonInfo extends React.Component {
 	constructor(props) {
@@ -24,13 +26,15 @@ class PersonInfo extends React.Component {
 		this.state = {
 			data: initData
 		}
-		console.log(this.props, this.props.userinfo.data, this.state.data)
 	}
 	componentDidMount() {
-		console.log(this.props, this.props.userinfo.data, this.state.data)
-		this.props.getPersonInfo(this.props.auth._id)
+		this.props.getPersonInfo(this.props.auth._id).then(()=>{
+			this.setState({
+				data: this.props.userinfo.data
+			})
+		})
 	}
-	componentWillReceiveProps(nextProps) {
+	/*componentWillReceiveProps(nextProps) {
 		console.log(this.props, this.state.data, this.props.userinfo)
 		let hasProp = false;  
 	    for (let prop in this.props.userinfo) {
@@ -42,7 +46,7 @@ class PersonInfo extends React.Component {
 				data: this.props.userinfo.data
 			})
 	    }
-	}
+	}*/
 	/*shouldComponentUpdate(nextProps,nextState){
       	if(nextProps.userinfo.data === nextState.data){
 	        this.setState({
@@ -58,11 +62,21 @@ class PersonInfo extends React.Component {
 			data: {...data}
 		})
 	}
-	saveInfo = () => {
+	updateInfo = () => {
 		console.log(this.state.data)
 		// this.props.dispatch(updatePersonInfo(this.state.data))
-		this.props.updatePersonInfo(this.state.data)
-		this.props.getPersonInfo(this.props.auth._id)
+		this.props.updatePersonInfo(this.state.data).then(()=>{
+			message.success(this.props.userinfo.msg)
+			this.props.getPersonInfo(this.props.auth._id).then(()=>{
+				console.log(this.props.userinfo)
+				this.setState({
+					data: this.props.userinfo.data
+				}, ()=>{
+					this.props.authSuccess(this.props.userinfo.data)
+				})
+			})
+		})
+		
 	}
 	render() {
 		/*const { userinfo } = this.props*/
@@ -70,7 +84,7 @@ class PersonInfo extends React.Component {
 			<div style={{ marginTop: 24, padding: 24, background: '#fff', minHeight: 360 }}>
 				{/*<h2>Inf ormation {data&&data.name}</h2>*/}
 				{/*<InfoList data={this.props.data} />*/}
-				<PersonInfoForm data={this.state.data} handleChange={this.handleChange} saveInfo={this.saveInfo}/>
+				<PersonInfoManage data={this.state.data} handleChange={this.handleChange} updateInfo={this.updateInfo}/>
 			</div>
 			
 		)

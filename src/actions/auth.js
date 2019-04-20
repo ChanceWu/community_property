@@ -8,7 +8,7 @@ const {
 	LOGOUT_SUCCESS
 } = actions;
 
-function authSuccess(obj) {
+export function authSuccess(obj) {
 	const { pwd, ...data} = obj;
 	return {type: AUTH_SUCCESS, payload: data}
 }

@@ -3,16 +3,16 @@ import { Table } from 'antd';
 
 const columns = [
   {
-    title: '姓名', width: 100, dataIndex: 'name', key: '1', fixed: 'left',
+    title: '姓名', width: 100, dataIndex: 'name', key: 'name', fixed: 'left',
   },
   {
-    title: '性别', width: 100, dataIndex: 'gender', key: '2', fixed: 'left',
+    title: '性别', width: 100, dataIndex: 'gender', key: 'gender', fixed: 'left',
   },
-  { title: '姓名', dataIndex: 'name', key: 'name' },
-  { title: '性别', dataIndex: 'gender', key: 'gender' },
-  { title: 'Column 3', dataIndex: 'address', key: '3' },
-  { title: 'Column 4', dataIndex: 'address', key: '4' },
-  { title: 'Column 5', dataIndex: 'address', key: '5' },
+  { title: '联系电话', dataIndex: 'telephone', key: 'telephone' },
+  { title: '年龄', dataIndex: 'age', key: 'age' },
+  { title: '证件类型', dataIndex: 'idtype', key: 'idtype' },
+  { title: '身份证号码', dataIndex: 'idnumber', key: 'idnumber' },
+  { title: '籍贯', dataIndex: 'nativeplace', key: 'nativeplace' },
   { title: 'Column 6', dataIndex: 'address', key: '6' },
   { title: 'Column 7', dataIndex: 'address', key: '7' },
   { title: 'Column 8', dataIndex: 'address', key: '8' },
@@ -44,9 +44,14 @@ class InfoList extends React.Component {
     if (this.props.data) {
       this.props.data.forEach(v=>{
         data.push({
-          key: `${v.name}`,
-          name:  `${v.name}`,
-          gender: '男',
+          key: v._id,
+          name:  v.name,
+          gender: v.gender?'男':'女',
+          telephone: v.telephone||'',
+          age: v.age||'',
+          idtype: '身份证',
+          idnumber: v.idnumber||'',
+          nativeplace: v.nativeplace||'',
           address: 'New York Park',
         })
       })

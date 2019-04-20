@@ -41,7 +41,7 @@ class App extends React.Component {
                                 <Routes auth={this.props.auth} />
                             </Content>
                             <Footer style={{ textAlign: 'center' }}>
-                            React-Admin ©{new Date().getFullYear()} Created by 865470087@qq.com
+                            小区物业管理系统 ©{new Date().getFullYear()} Created by Chance
                             </Footer>
                         </Layout>
                     </Layout>

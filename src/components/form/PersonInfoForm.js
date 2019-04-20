@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Button, Radio  } from 'antd';
+import { Input, Button, Radio } from 'antd';
 import './form.less'
 
 const RadioGroup = Radio.Group;
@@ -7,10 +7,9 @@ const RadioGroup = Radio.Group;
 class PersonInfoForm extends React.Component {
 	render() {
 		const data = this.props.data
-		console.log(data)
 		return (
 			<div>
-				<Button type="primary" onClick={this.props.saveInfo}>保 存</Button>
+				<Button type="primary" onClick={this.props.updateInfo}>保 存</Button>
 				<div className="form">
 					<div className="form-row">
 						<div className="label">姓 名:</div>
@@ -45,7 +44,6 @@ class PersonInfoForm extends React.Component {
 					</div>
 				</div>
 			</div>
-			
 		)
 	}
 }

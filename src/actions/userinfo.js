@@ -12,8 +12,8 @@ function errorMsg(msg) {
 }
 
 export function getPersonInfo(id) {
-	return dispatch=>{
-		axios.get('/user/list', {params: {_id: id}}).then(res=>{
+	return async(dispatch)=>{
+		await axios.get('/user/list', {params: {_id: id}}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				console.log(res)
 				dispatch({
@@ -28,8 +28,8 @@ export function getPersonInfo(id) {
 }
 
 export function updatePersonInfo(values) {
-	return dispatch=>{
-		axios.post('/user/updatePersonInfo', {...values}).then(res=>{
+	return async(dispatch)=>{
+		await axios.post('/user/updatePersonInfo', {...values}).then(res=>{
 			if (res.status===200&&res.data.code===0) {
 				dispatch({
 					type: UPDATE_PERSONINFO_SUCCESS,
