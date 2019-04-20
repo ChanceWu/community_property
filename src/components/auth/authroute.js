@@ -3,11 +3,11 @@ import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loadData } from '../../actions/auth'
-
+import { getPersonInfo } from '../../actions/userinfo'
 @withRouter
 @connect(
 	null,
-	{loadData}
+	{loadData, getPersonInfo}
 )
 class AuthRoute extends React.Component {
 	componentDidMount() {
@@ -21,6 +21,7 @@ class AuthRoute extends React.Component {
 				console.log(res)
 				if (res.data.code == 0) {
 					this.props.loadData(res.data.data);
+					this.props.getPersonInfo(res.data.data._id)
 				} else {
 					this.props.history.push('/login');
 				}

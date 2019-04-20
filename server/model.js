@@ -8,12 +8,22 @@ mongoose.connection.on('connected', function() {
 
 const models = {
 	user: {
-		// 账号
+		// 姓名
 		'name': {'type': String, 'require': true},
 		// 密码
 		'pwd': {'type': String, 'require': true},
 		// 身份
 		'type': {'type': String, 'require': true},
+		// 电话号码
+		'telephone': {'type': String, 'require': true},
+		// 身份证号码
+		'idnumber': {'type': String, 'require': true},
+		// 性别
+		'gender': {'type': Boolean, 'default': true},
+		// 年龄
+		'age': {'type': String},
+		// 籍贯
+		'nativeplace': {'type': String},
 	}
 	/* 2019.4.17 暂时隐藏
 	,

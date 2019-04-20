@@ -40,21 +40,15 @@ class HeaderCustom extends Component {
         /* localStorage.removeItem('user');
         this.props.history.push('/login') */
         browserCookie.erase('userid')
+        localStorage.removeItem('user')
 		this.props.logout()
-    };
-    popoverHide = () => {
-        this.setState({
-            visible: false,
-        });
-    };
-    handleVisibleChange = (visible) => {
-        this.setState({ visible });
     };
     render() {
         const { redirectTo } = this.props;
+        console.log(this.props)
         return (
             <Header className="custom-theme header" >
-            	{redirectTo&&redirectTo==='/login'?<Redirect to={this.props.redirectTo}/>:null}
+            	{redirectTo&&redirectTo==='/login'?<Redirect to={redirectTo}/>:null}
                 <Icon
                     className="header__trigger custom-trigger"
                     type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}

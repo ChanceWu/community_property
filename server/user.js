@@ -22,15 +22,25 @@ const _filter = {'pwd': 0, '__v': 0}
 // })
 
 Router.get('/list', function(req, res) {
-	const {type = {}} = req.query
+
+	const {type, _id} = req.query
+	if (type) {
+		User.find({type}, function(err, doc) {
+			return res.json({code: 0, data: doc})
+		})
+	}else if (_id) {
+		User.findOne({_id}, function(err, doc) {
+			return res.json({code: 0, data: doc})
+		})
+	} else {
+		User.find({}, function(err, doc) {
+			return res.json({code: 0, data: doc})
+		})
+	}
 	
-	User.find({type}, function(err, doc) {
-		return res.json({code: 0, data: doc})
-	})
 })
 Router.post('/login', function(req, res) {
 	const {user, pwd} = req.body;
-	console.log(req)
 	User.findOne({name: user, pwd: md5Pwd(pwd)}, _filter, function(err, doc) {
 		if (!doc) {
 			return res.json({code: 1, msg: '用户名或密码错误'})
@@ -40,13 +50,12 @@ Router.post('/login', function(req, res) {
 	})
 })
 Router.post('/register', function(req, res) {
-	console.log(req.body);
-	const {user, pwd, type} = req.body;
+	const {user, pwd, ...data} = req.body;
 	User.findOne({name: user}, function(err, doc) {
 		if (doc) {
 			return res.json({code: 1, msg: '用户名重复'})
 		}
-		const userModel = new User({type, name: user, pwd: md5Pwd(pwd)});
+		const userModel = new User({name: user, pwd: md5Pwd(pwd), ...data});
 		userModel.save(function(e, d) {
 			if (e) {
 				return res.json({code: 1, msg: '后端出错了'})
@@ -78,6 +87,20 @@ Router.get('/info', function(req, res) {
 		}
 	})
 })
+
+Router.post('/updatePersonInfo', function(req, res) {
+	console.log(req);
+	const userid = req.body._id
+	const body = req.body;
+	User.findByIdAndUpdate(userid, body, function(err, doc) {
+		const data = Object.assign({}, {
+			user: doc.user,
+			type: doc.type
+		}, body)
+		return res.json({code: 0, msg: '修改成功'})
+	})
+})
+
 /* 2019.4.17 暂时隐藏
 Router.get('/getmsglist', function(req, res) {
 	const user = req.cookies.userid
@@ -96,20 +119,7 @@ Router.get('/getmsglist', function(req, res) {
 	
 })
 
-Router.post('/update', function(req, res) {
-	const userid = req.cookies.userid;
-	if (!userid) {
-		return json.dumps({code: 1})
-	}
-	const body = req.body;
-	User.findByIdAndUpdate(userid, body, function(err, doc) {
-		const data = Object.assign({}, {
-			user: doc.user,
-			type: doc.type
-		}, body)
-		return res.json({code: 0, data})
-	})
-})
+
 
 Router.post('/readmsg', function(req, res) {
 	const userid = req.cookies.userid

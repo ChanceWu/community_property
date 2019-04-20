@@ -69,10 +69,10 @@ class Register extends React.Component {
                             )}
                         </FormItem>
                         <FormItem>
-                            {getFieldDecorator('address', {
-                                rules: [{ required: true, message: '请输入地址!' }],
+                            {getFieldDecorator('idnumber', {
+                                rules: [{ required: true, message: '请输入身份证号码!' }],
                             })(
-                                <Input prefix={<Icon type="home" style={{ fontSize: 13 }} />} type="text" placeholder="需要输入详细地址" />
+                                <Input prefix={<Icon type="home" style={{ fontSize: 18 }} />} type="text" placeholder="请正确输入身份证号码" />
                             )}
                         </FormItem>
                         <FormItem>
@@ -86,13 +86,13 @@ class Register extends React.Component {
 				          )}
 				        </FormItem>
                         <FormItem>
-                            {getFieldDecorator('remember', {
+                            {/*{getFieldDecorator('remember', {
                                     valuePropName: 'checked',
                                     initialValue: false,
                                 })(
                                     <Checkbox>同意协议</Checkbox>
                             )}
-                            <a className="login-form-forgot" href="" style={{float: 'right'}}>查看协议</a>
+                            <a className="login-form-forgot" href="" style={{float: 'right'}}>查看协议</a>*/}
                             <Button type="primary" htmlType="submit" className="login-form-button" style={{width: '100%'}}>
                                 注册
                             </Button>

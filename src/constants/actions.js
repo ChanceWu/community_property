@@ -7,4 +7,7 @@ export default keyMirror({
 	LOGOUT_SUCCESS: null,
 	
 	GET_OWNERINFO_SUCCESS: null,
+
+	GET_PERSONINFO_SUCCESS: null,
+	UPDATE_PERSONINFO_SUCCESS: null,
 });

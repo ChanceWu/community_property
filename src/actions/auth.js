@@ -31,6 +31,7 @@ export function login({user, pwd}) {
 	return dispatch=>{
 		axios.post('/user/login', {user, pwd}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
+				localStorage.setItem('user', JSON.stringify(res.data.data));
 				dispatch(authSuccess(res.data.data));
 			} else {
 				dispatch(errorMsg(res.data.msg))
@@ -39,19 +40,15 @@ export function login({user, pwd}) {
 	}
 }
 
-export function register({user, pwd, repeatpwd, type}) {
-	console.log('register')
-	if (!user||!pwd||!type) {
-		return errorMsg('用户名和密码不能为空！')
-	}
-	if (pwd !== repeatpwd) {
+export function register(values) {
+	const {repeatpwd, ...data} = values
+	if (data.pwd !== repeatpwd) {
 		return errorMsg('密码和确认密码不同！')
 	}
-	console.log('register')
 	return dispatch=>{
-		axios.post('/user/register', {user, pwd, type}).then(res=>{
+		axios.post('/user/register', {...data}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
-				dispatch(authSuccess({user, pwd, type}))
+				dispatch(authSuccess(res.data.data))
 			} else {
 				dispatch(errorMsg(res.data.msg))
 			}

@@ -1,18 +1,24 @@
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
+import { connect } from 'react-redux'
 import AllComponents from '../containers';
 import routesConfig from './config';
 
-export default class Routes extends React.Component {
+@connect(
+    state=>state
+)
+class Routes extends React.Component {
     render() {
         const { type } = this.props.auth
-        console.log(type)
         return (
             <Switch>
                 {
                     Object.keys(routesConfig).map(key =>
-                        routesConfig[key].map(r => {
+                        routesConfig[type].map(r => {
+                            if (type !== key) {
+                                return false
+                            }
                             const route = r => {
                                 const Component = AllComponents[r.component];
                                 return (
@@ -40,3 +46,4 @@ export default class Routes extends React.Component {
         )
     }
 }
+export default Routes
