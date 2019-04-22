@@ -3,6 +3,10 @@ import actions from '../constants/actions'
 const {
 	GET_PERSONINFO_SUCCESS,
 	UPDATE_PERSONINFO_SUCCESS,
+	GET_FAMILYMEMBER_SUCCESS,
+	ADD_FAMILYMEMBER_SUCCESS,
+	DEL_FAMILYMEMBER_SUCCESS,
+	UPDATE_FAMILYMEMBER_SUCCESS,
 } = actions;
 
 const initState = {
@@ -22,6 +26,30 @@ export default (state={}, action) => {
 		case UPDATE_PERSONINFO_SUCCESS:
 			return {
 				...state,
+				msg: action.msg
+			}
+		case GET_FAMILYMEMBER_SUCCESS:
+			return {
+				...state,
+				members: action.data,
+				msg: action.msg
+			}
+		case ADD_FAMILYMEMBER_SUCCESS:
+			console.log(action)
+			return {
+				...state,
+				members: action.data,
+				msg: action.msg
+			}
+		case DEL_FAMILYMEMBER_SUCCESS:
+			return {
+				...state,
+				msg: action.msg
+			}
+		case UPDATE_FAMILYMEMBER_SUCCESS:
+			return {
+				...state,
+				members: action.data,
 				msg: action.msg
 			}
 		default:

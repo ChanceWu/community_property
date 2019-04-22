@@ -24,6 +24,21 @@ const models = {
 		'age': {'type': String},
 		// 籍贯
 		'nativeplace': {'type': String},
+	},
+	// 户主家属信息
+	user_familymenber: {
+		// 户主id
+		user_id: {'type': String, 'require': true},
+		// 姓名
+		'name': {'type': String, 'require': true},
+		// 与户主关系
+		'relationship': {'type': String},
+		// 电话号码
+		'telephone': {'type': String},
+		// 性别
+		'gender': {'type': Boolean, 'require': true},
+		// 年龄
+		'age': {'type': String},
 	}
 	/* 2019.4.17 暂时隐藏
 	,

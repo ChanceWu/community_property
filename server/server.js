@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const UserRouter = require('./user')
+const UserFamilyMemberRouter = require('./user_familymenber')
 const model = require('./model')
 // const Chat = model.getModel('chat')
 
@@ -28,6 +29,7 @@ io.on('connection', function(socket) {
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use('/user', UserRouter)
+app.use('/user_familymember', UserFamilyMemberRouter)
 
 /* 2019.4.17 暂时隐藏
 server.listen(9090, function() {
