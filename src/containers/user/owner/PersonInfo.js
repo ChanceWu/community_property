@@ -3,7 +3,7 @@ import { message, Collapse, Input, Button, Radio, Icon } from 'antd'
 // import InfoList from '../../../components/table/InfoList'
 import { connect } from 'react-redux'
 import { authSuccess } from '../../../actions/auth'
-import FamilyMemberTable from '../../../components/form/FamilyMemberTable'
+import FamilyMemberTable from '../../../components/table/FamilyMemberTable'
 import PersonInfoForm from '../../../components/form/PersonInfoForm'
 import {
 	getPersonInfo,

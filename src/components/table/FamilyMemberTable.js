@@ -1,6 +1,6 @@
 import React from 'react'
 import { Table, Divider, Tag, Button, Modal, Form, Input, Checkbox, Radio } from 'antd';
-import FamilyMemberModal from './FamilyMemberModal'
+import FamilyMemberModal from '../modal/FamilyMemberModal'
 
 class FamilyMemberTable extends React.Component {
 	constructor(props) {

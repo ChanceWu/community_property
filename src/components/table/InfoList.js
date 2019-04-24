@@ -13,9 +13,6 @@ const columns = [
   { title: '证件类型', dataIndex: 'idtype', key: 'idtype' },
   { title: '身份证号码', dataIndex: 'idnumber', key: 'idnumber' },
   { title: '籍贯', dataIndex: 'nativeplace', key: 'nativeplace' },
-  { title: 'Column 6', dataIndex: 'address', key: '6' },
-  { title: 'Column 7', dataIndex: 'address', key: '7' },
-  { title: 'Column 8', dataIndex: 'address', key: '8' },
   {
     title: '操作',
     key: 'operation',

@@ -4,6 +4,8 @@ import DocumentTitle from 'react-document-title';
 import { connect } from 'react-redux'
 import AllComponents from '../containers';
 import routesConfig from './config';
+import BuildingTable from '../components/table/BuildingTable';
+
 
 @connect(
     state=>state
@@ -40,7 +42,7 @@ class Routes extends React.Component {
                         })
                     )
                 }
-
+                <Route exact path='/admin/house/building/:id' component={BuildingTable} />
                 <Route render={() => <Redirect to="/404" />} />
             </Switch>
         )

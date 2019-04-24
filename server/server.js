@@ -3,6 +3,9 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const UserRouter = require('./user')
 const UserFamilyMemberRouter = require('./user_familymenber')
+const HouseRouter = require('./house')
+const CommunityRouter = require('./community')
+const Building = require('./building')
 const model = require('./model')
 // const Chat = model.getModel('chat')
 
@@ -30,6 +33,9 @@ app.use(cookieParser())
 app.use(bodyParser.json())
 app.use('/user', UserRouter)
 app.use('/user_familymember', UserFamilyMemberRouter)
+app.use('/house', HouseRouter)
+app.use('/community', CommunityRouter)
+app.use('/building', Building)
 
 /* 2019.4.17 暂时隐藏
 server.listen(9090, function() {

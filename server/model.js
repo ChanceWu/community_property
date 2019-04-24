@@ -7,6 +7,7 @@ mongoose.connection.on('connected', function() {
 })
 
 const models = {
+	// 用户信息 管理员和住户
 	user: {
 		// 姓名
 		'name': {'type': String, 'require': true},
@@ -39,6 +40,84 @@ const models = {
 		'gender': {'type': Boolean, 'require': true},
 		// 年龄
 		'age': {'type': String},
+	},
+	// 房屋信息
+	house: {
+		// 户主id
+		user_id: {'type': String, 'require': true},
+		// 房产（门牌号）
+		'address': {'type': String, 'require': true},
+		// 使用状态 true自住 false空置
+		'status': {'type': Boolean, 'default': false},
+		// 入住时间
+		'Check_in_time': {'type': Boolean, 'require': true},
+		// 认购证号
+		'Subscription_card_number': {'type': String, 'require': true},
+		// 认购证号
+		'Subscription_card_number': {'type': String, 'require': true},
+	},
+	// 小区
+	community: {
+		// 小区名称
+		community_name: {'type': String, 'require': true},
+		// 所属公司
+		company: {'type': String, 'require': true},
+		// 占地面积
+		cover_area: {'type': String, 'require': true},
+		// 绿地面积
+		green_area: {'type': String, 'require': true},
+		// 建筑面积
+		construction_area: {'type': String, 'require': true},
+		// 道路面积
+		road_area: {'type': String, 'require': true},
+		// 负责人
+		admin_id: {'type': String, 'require': true},
+		// 地址
+		community_address: {'type': String, 'require': true},
+	},
+	// 楼栋
+	building: {
+		// 小区id
+		community_id: {'type': String, 'require': true},
+		// 楼号
+		building_name: {'type': String, 'require': true},
+		// 楼宇功能
+		building_function: {'type': String, 'require': true},
+		// 结构类别
+		structure_category: {'type': String, 'require': true},
+		// 装修标准
+		decorate_standard: {'type': String, 'require': true},
+		// 使用面积
+		using_area: {'type': String, 'require': true},
+		// 建筑面积
+		construction_area: {'type': String, 'require': true},
+		// 建筑许可证
+		building_permit: {'type': String, 'require': true},
+		// 预售许可证
+		presale_permit: {'type': String, 'require': true},
+		// 竣工日期
+		completion_date: {'type': String, 'require': true},
+		// 封顶日期
+		cap_date: {'type': String, 'require': true},
+		// 备注
+		note: {'type': String, 'require': true},
+	},
+	// 单元
+	unit: {
+		// 楼栋id
+		building_id: {'type': String, 'require': true},
+		// 单元号
+		building_id: {'type': String, 'require': true},
+		// 开始楼层
+		building_id: {'type': String, 'require': true},
+		// 结束楼层
+		building_id: {'type': String, 'require': true},
+		// 开始房号
+		building_id: {'type': String, 'require': true},
+		// 结束房号
+		building_id: {'type': String, 'require': true},
+		// 备注
+		building_id: {'type': String, 'require': true},
 	}
 	/* 2019.4.17 暂时隐藏
 	,

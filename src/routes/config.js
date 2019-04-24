@@ -11,7 +11,7 @@ export default {
         {
         	key: '/admin/house', title: '楼盘管理', icon: 'mobile',
         	subs: [
-                { key: '/admin/house/infomation', title: '楼盘信息', component: 'AdminHome'}
+                { key: '/admin/house/infomation', title: '楼盘信息', component: 'HouseManage'}
             ],
     	},
         { key: '/admin/expense', title: '费用管理', icon: 'mobile', component: 'AdminHome' },

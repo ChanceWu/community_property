@@ -10,6 +10,7 @@ import PersonInfo from './user/owner/PersonInfo'
 import HouseInfo from './user/owner/HouseInfo'
 
 import Information from './admin/owner/Information'
+import HouseManage from './admin/house/HouseManage'
 
 /*const WysiwygBundle = Loadable({ // 按需加载富文本配置
     loader: () => import('./ui/Wysiwyg'),
@@ -18,6 +19,8 @@ import Information from './admin/owner/Information'
 
 export default {
     AdminHome,
+    HouseManage,
+
     UserHome,
     PersonInfo,
     HouseInfo,
