@@ -2,10 +2,10 @@ import axios from 'axios';
 import actions from '../constants/actions';
 
 const {
-	GET_BUILDINGLIST_SUCCESS,
-	ADD_BUILDING_SUCCESS,
-	DEL_BUILDING_SUCCESS,
-	UPDATE_BUILDING_SUCCESS,
+	GET_UNITLIST_SUCCESS,
+	ADD_UNIT_SUCCESS,
+	DEL_UNIT_SUCCESS,
+	UPDATE_UNIT_SUCCESS,
 
 	ERROR_MSG,
 } = actions;
@@ -15,13 +15,13 @@ function errorMsg(msg) {
 	return {msg, type: ERROR_MSG}
 }
 
-// 楼栋信息
-export function getBuildingList(id) {
+// 单元信息
+export function getUnitList(id) {
 	return async(dispatch)=>{
-		await axios.get('/building/getBuildingList', {params: {community_id: id}}).then(res=>{
+		await axios.get('/unit/getUnitList', {params: {building_id: id}}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
-					type: GET_BUILDINGLIST_SUCCESS,
+					type: GET_UNITLIST_SUCCESS,
 					data: res.data.data,
 					msg: res.data.msg
 				});
@@ -32,12 +32,12 @@ export function getBuildingList(id) {
 	}
 }
 
-export function addBuilding(values) {
+export function addUnit(values) {
 	return async(dispatch)=>{
-		await axios.post('/building/addBuilding', {...values}).then(res=>{
+		await axios.post('/unit/addUnit', {...values}).then(res=>{
 			if (res.status===200&&res.data.code===0) {
 				dispatch({
-					type: ADD_BUILDING_SUCCESS,
+					type: ADD_UNIT_SUCCESS,
 					msg: res.data.msg
 				})
 			} else {
@@ -47,12 +47,12 @@ export function addBuilding(values) {
 	}
 }
 
-export function updateBuilding(values) {
+export function updateUnit(values) {
 	return async(dispatch)=>{
-		await axios.post('/building/updateBuilding', {...values}).then(res=>{
+		await axios.post('/unit/updateUnit', {...values}).then(res=>{
 			if (res.status===200&&res.data.code===0) {
 				dispatch({
-					type: UPDATE_BUILDING_SUCCESS,
+					type: UPDATE_UNIT_SUCCESS,
 					msg: res.data.msg,
 				})
 			} else {
@@ -62,12 +62,12 @@ export function updateBuilding(values) {
 	}
 }
 
-export function deleteBuilding(id) {
+export function deleteUnit(id) {
 	return async(dispatch)=>{
-		await axios.post('/building/deleteBuilding', {_id: id}).then(res=>{
+		await axios.post('/unit/deleteUnit', {_id: id}).then(res=>{
 			if (res.status===200&&res.data.code===0) {
 				dispatch({
-					type: DEL_BUILDING_SUCCESS,
+					type: DEL_UNIT_SUCCESS,
 					msg: res.data.msg,
 				})
 			} else {

@@ -4,6 +4,9 @@ import admininfo from './admininfo'
 import userinfo from './userinfo'
 import house from './house'
 import community from './community'
+import building from './building'
+import unit from './unit'
+import room from './room'
 
 export default combineReducers({
 	auth,
@@ -11,4 +14,7 @@ export default combineReducers({
 	userinfo,
 	house,
 	community,
+	building,
+	unit,
+	room,
 })

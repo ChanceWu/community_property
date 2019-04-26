@@ -107,17 +107,58 @@ const models = {
 		// 楼栋id
 		building_id: {'type': String, 'require': true},
 		// 单元号
-		building_id: {'type': String, 'require': true},
+		unit_name: {'type': String, 'require': true},
 		// 开始楼层
-		building_id: {'type': String, 'require': true},
+		begin_floor: {'type': String, 'require': true},
 		// 结束楼层
-		building_id: {'type': String, 'require': true},
+		end_floor: {'type': String, 'require': true},
 		// 开始房号
-		building_id: {'type': String, 'require': true},
+		start_num: {'type': String, 'require': true},
 		// 结束房号
-		building_id: {'type': String, 'require': true},
+		end_num: {'type': String, 'require': true},
 		// 备注
-		building_id: {'type': String, 'require': true},
+		note: {'type': String, 'require': true},
+	},
+	// 房间
+	room: {
+		// 单元id
+		unit_id: {'type': String, 'require': true},
+		// 房间名称
+		room_name: {'type': String, 'require': true},
+		// 户型
+		door_model: {'type': String, 'require': true},
+		// 朝向
+		room_toward: {'type': String, 'require': true},
+		// 装修
+		room_decorate: {'type': String, 'require': true},
+		// 楼层
+		room_floor: {'type': String, 'require': true},
+		// 建筑面积
+		constructor_area: {'type': String, 'require': true},
+		// 使用面积
+		using_area: {'type': String, 'require': true},
+		// 车牌号
+		license_plate_num: {'type': String, 'require': true},
+		// 车库面积
+		garage_area: {'type': String, 'require': true},
+		// 车位号
+		parking_num: {'type': String, 'require': true},
+		// 车位面积
+		parking_area: {'type': String, 'require': true},
+		// 储藏室
+		store_room: {'type': String, 'require': true},
+		// 储藏室面积
+		storage_area: {'type': String, 'require': true},
+		// 阁楼面积
+		attic_area: {'type': String, 'require': true},
+		// 房间状态
+		room_status: {'type': String, 'require': true},
+		// 物业类型
+		property_type: {'type': String, 'require': true},
+		// 房间性质
+		room_nature: {'type': String, 'require': true},
+		// 备注
+		note: {'type': String, 'require': true},
 	}
 	/* 2019.4.17 暂时隐藏
 	,

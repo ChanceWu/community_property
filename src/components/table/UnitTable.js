@@ -1,24 +1,23 @@
 import React from 'react'
 import { Table, Button, Form, Tag, Divider, message } from 'antd';
 import { connect } from 'react-redux'
-import { getBuildingList, addBuilding, updateBuilding, deleteBuilding } from '../../actions/building'
-import BuildingModal from '../modal/BuildingModal'
+import { getUnitList, addUnit, updateUnit, deleteUnit } from '../../actions/unit'
+import UnitModal from '../modal/UnitModal'
 
 @connect(
-	state=>state.building,
+	state=>state.unit,
 	{
-		getBuildingList,
-		addBuilding,
-		updateBuilding,
-		deleteBuilding,
+		getUnitList,
+		addUnit,
+		updateUnit,
+		deleteUnit,
 	}
 )
-class BuildingTable extends React.Component {
+class UnitTable extends React.Component {
 	constructor(props) {
 		super(props)
-		console.log(this.props)
 		this.state = {
-			community_id: this.props.match.params.id,
+			building_id: this.props.match.params.id,
 			visible: false,
 			isAdd: true,
 			data: '',
@@ -26,35 +25,35 @@ class BuildingTable extends React.Component {
 		}
 	}
 	componentDidMount() {
-		this.getBuildingList()
+		this.getUnitList()
 	}
 
-	getBuildingList = () => {
-		this.props.getBuildingList(this.state.community_id).then(()=>{
+	getUnitList = () => {
+		this.props.getUnitList(this.state.building_id).then(()=>{
 			this.setState({
-				data: this.props.building
+				data: this.props.unit
 			})
 		})
 	}
 
-	addBuilding = (values) => {
-		this.props.addBuilding({community_id: this.state.community_id, ...values}).then(()=>{
+	addUnit = (values) => {
+		this.props.addUnit({building_id: this.state.building_id, ...values}).then(()=>{
 			message.success(this.props.msg)
-			this.getBuildingList()
+			this.getUnitList()
 		})
 	}
 
-	updateBuilding = (values) => {
-		this.props.updateBuilding(values).then(()=>{
+	updateUnit = (values) => {
+		this.props.updateUnit(values).then(()=>{
 			message.success(this.props.msg)
-			this.getBuildingList()
+			this.getUnitList()
 		})
 	}
 
-	deleteBuilding = (_id) => {
-		this.props.deleteBuilding(_id).then(()=>{
+	deleteUnit = (_id) => {
+		this.props.deleteUnit(_id).then(()=>{
 			message.success(this.props.msg)
-			this.getBuildingList()
+			this.getUnitList()
 		})
 	}
 
@@ -77,8 +76,7 @@ class BuildingTable extends React.Component {
   	handleAddOk = (e) => {
 	    this.props.form.validateFields((err, values) => {
         	if (!err) {
-          		console.info('success', values);
-          		this.addBuilding(values)
+          		this.addUnit(values)
           		this.setState({
 			      	visible: false,
 			    });
@@ -90,7 +88,7 @@ class BuildingTable extends React.Component {
   			// values中并没有_id值，因此需要在参数中添加参数
   			const data = Object.assign({},values,{_id: this.state.defaultData.key})
   			if (!err) {
-  				this.updateBuilding(data)
+  				this.updateUnit(data)
   				this.setState({
   					visible: false,
   				})
@@ -107,26 +105,19 @@ class BuildingTable extends React.Component {
   	render() {
   		const columns = [
 		  	{
-		    	title: '楼号',
+		    	title: '单元号',
 		    	width: 100,
-		    	dataIndex: 'building_name',
-		    	key: 'building_name',
+		    	dataIndex: 'unit_name',
+		    	key: 'unit_name',
 		    	fixed: 'left',
 		    	render: (text, record) => (
-		    		<a onClick={()=>{this.props.history.push(`/admin/house/unit/${record.key}`)}}>{text}</a>
+		    		<a onClick={()=>{this.props.history.push(`/admin/house/room/${record.key}`)}}>{text}</a>
 		    	)
 		  	},
-		  	{
-		    	title: '楼宇功能', width: 100, dataIndex: 'building_function', key: 'building_function', fixed: 'left',
-		  	},
-		  	{ title: '结构类别', dataIndex: 'structure_category', key: 'structure_category' },
-		  	{ title: '装修标准', dataIndex: 'decorate_standard', key: 'decorate_standard' },
-		  	{ title: '使用面积', dataIndex: 'using_area', key: 'using_area' },
-		  	{ title: '建筑面积', dataIndex: 'construction_area', key: 'construction_area' },
-		  	{ title: '建筑许可证', dataIndex: 'building_permit', key: 'building_permit' },
-		  	{ title: '预售许可证', dataIndex: 'presale_permit', key: 'presale_permit' },
-		  	{ title: '竣工日期', dataIndex: 'completion_date', key: 'completion_date' },
-		  	{ title: '封顶日期', dataIndex: 'cap_date', key: 'cap_date' },
+		  	{ title: '开始楼层', width: 100, dataIndex: 'begin_floor', key: 'begin_floor' },
+		  	{ title: '结束楼层', dataIndex: 'end_floor', key: 'end_floor' },
+		  	{ title: '开始房号', dataIndex: 'start_num', key: 'start_num' },
+		  	{ title: '结束房号', dataIndex: 'end_num', key: 'end_num' },
 		  	{ title: '备注', dataIndex: 'note', key: 'note' },
 		  	{
 			    title: '操作',
@@ -137,7 +128,7 @@ class BuildingTable extends React.Component {
 			    	<span>
 				    	<Tag color="blue" onClick={()=>{this.showUpdateModal(record)}}>修改</Tag>
 				      	<Divider type="vertical" />
-				      	<Tag color="red" onClick={()=>{this.deleteBuilding(record.key)}}>删除</Tag>
+				      	<Tag color="red" onClick={()=>{this.deleteUnit(record.key)}}>删除</Tag>
 				    </span>
 			    ),
 		  	},
@@ -147,16 +138,11 @@ class BuildingTable extends React.Component {
 	      this.state.data.forEach(v=>{
 	        data.push({
 	          key: v._id,
-	          building_name:  v.building_name,
-	          building_function: v.building_function,
-	          structure_category: v.structure_category||'',
-	          decorate_standard: v.decorate_standard||'',
-	          using_area: v.using_area||'',
-	          construction_area: v.construction_area||'',
-	          building_permit: v.building_permit||'',
-	          presale_permit: v.presale_permit||'',
-	          completion_date: v.completion_date||'',
-	          cap_date: v.cap_date||'',
+	          unit_name:  v.unit_name,
+	          begin_floor: v.begin_floor,
+	          end_floor: v.end_floor||'',
+	          start_num: v.start_num||'',
+	          end_num: v.end_num||'',
 	          note: v.note||'',
 	        })
 	      })
@@ -173,7 +159,7 @@ class BuildingTable extends React.Component {
 	    		<Button type="primary" onClick={this.showAddModal}>新增</Button>
 	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 1300 }} />
 
-	    		<BuildingModal
+	    		<UnitModal
 					title={this.state.isAdd?'新增':'修改'}
 					visible={this.state.visible}
 					defaultData={this.state.defaultData}
@@ -186,4 +172,4 @@ class BuildingTable extends React.Component {
   	}
 }
 
-export default Form.create()(BuildingTable)
+export default Form.create()(UnitTable)

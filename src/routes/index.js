@@ -5,7 +5,8 @@ import { connect } from 'react-redux'
 import AllComponents from '../containers';
 import routesConfig from './config';
 import BuildingTable from '../components/table/BuildingTable';
-
+import UnitTable from '../components/table/UnitTable';
+import RoomTable from '../components/table/RoomTable';
 
 @connect(
     state=>state
@@ -43,6 +44,8 @@ class Routes extends React.Component {
                     )
                 }
                 <Route exact path='/admin/house/building/:id' component={BuildingTable} />
+                <Route exact path='/admin/house/unit/:id' component={UnitTable} />
+                <Route exact path='/admin/house/room/:id' component={RoomTable} />
                 <Route render={() => <Redirect to="/404" />} />
             </Switch>
         )

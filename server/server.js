@@ -6,6 +6,8 @@ const UserFamilyMemberRouter = require('./user_familymenber')
 const HouseRouter = require('./house')
 const CommunityRouter = require('./community')
 const Building = require('./building')
+const Unit = require('./unit')
+const Room = require('./room')
 const model = require('./model')
 // const Chat = model.getModel('chat')
 
@@ -36,6 +38,8 @@ app.use('/user_familymember', UserFamilyMemberRouter)
 app.use('/house', HouseRouter)
 app.use('/community', CommunityRouter)
 app.use('/building', Building)
+app.use('/unit', Unit)
+app.use('/room', Room)
 
 /* 2019.4.17 暂时隐藏
 server.listen(9090, function() {
