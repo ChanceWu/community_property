@@ -5,6 +5,7 @@ const {
 	ADD_ROOM_SUCCESS,
 	DEL_ROOM_SUCCESS,
 	UPDATE_ROOM_SUCCESS,
+	GET_ONEROOM_SUCCESS,
 } = actions;
 
 export default (state={}, action) => {
@@ -13,6 +14,12 @@ export default (state={}, action) => {
 			return {
 				...state,
 				room: action.data,
+				msg: action.msg
+			}
+		case GET_ONEROOM_SUCCESS:
+			return {
+				...state,
+				oneroom: action.data,
 				msg: action.msg
 			}
 		case ADD_ROOM_SUCCESS:

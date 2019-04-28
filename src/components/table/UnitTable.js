@@ -155,8 +155,9 @@ class UnitTable extends React.Component {
 	    };
 	    const { getFieldDecorator } = this.props.form;
 	    return (
-	    	<div style={{ marginTop: 24, padding: 24, background: '#fff', minHeight: 360 }}>
-	    		<Button type="primary" onClick={this.showAddModal}>新增</Button>
+	    	<div className="management">
+	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
+	    		<Button className="management_button" onClick={()=>{this.props.history.goBack()}}>返回</Button>
 	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 1300 }} />
 
 	    		<UnitModal

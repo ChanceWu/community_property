@@ -56,8 +56,7 @@ class HouseManage extends React.Component {
 	}
 	render() {
 		return (
-			<div style={{ marginTop: 24, padding: 24, background: '#fff', minHeight: 360 }}>
-				<h2>HouseManage</h2>
+			<div className="management">
 				<CommunityTable
 					community={this.state.data}
 					addCommunity={this.addCommunity}

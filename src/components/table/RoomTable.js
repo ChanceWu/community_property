@@ -111,7 +111,7 @@ class RoomTable extends React.Component {
 		    	key: 'room_name',
 		    	fixed: 'left',
 		    	render: (text, record) => (
-		    		<a onClick={()=>{this.props.history.push(`/admin/house/room/${record.key}`)}}>{text}</a>
+		    		<a onClick={()=>{this.props.history.push(`/admin/house/roominfoform/${record.key}`)}}>{text}</a>
 		    	)
 		  	},
 		  	{ title: '户型', width: 100, dataIndex: 'door_model', key: 'door_model' },
@@ -126,7 +126,7 @@ class RoomTable extends React.Component {
 			    width: 100,
 			    render: (text, record) => (
 			    	<span>
-				    	<Tag color="blue" onClick={()=>{this.showUpdateModal(record)}}>修改</Tag>
+				    	<Tag color="blue" onClick={()=>{this.props.history.push(`/admin/house/roominfoform/${record.key}`)}}>修改</Tag>
 				      	<Divider type="vertical" />
 				      	<Tag color="red" onClick={()=>{this.deleteRoom(record.key)}}>删除</Tag>
 				    </span>
@@ -155,8 +155,9 @@ class RoomTable extends React.Component {
 	    };
 	    const { getFieldDecorator } = this.props.form;
 	    return (
-	    	<div style={{ marginTop: 24, padding: 24, background: '#fff', minHeight: 360 }}>
-	    		<Button type="primary" onClick={this.showAddModal}>新增</Button>
+	    	<div className="management">
+	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
+	    		<Button className="management_button" onClick={()=>{this.props.history.goBack()}}>返回</Button>
 	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 1300 }} />
 
 	    		<RoomModal

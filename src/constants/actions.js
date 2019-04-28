@@ -7,6 +7,7 @@ export default keyMirror({
 	LOGOUT_SUCCESS: null,
 	
 	GET_OWNERINFO_SUCCESS: null,
+	DEL_OWNER_SUCCESS: null,
 
 	GET_PERSONINFO_SUCCESS: null,
 	UPDATE_PERSONINFO_SUCCESS: null,
@@ -36,4 +37,5 @@ export default keyMirror({
 	ADD_ROOM_SUCCESS: null,
 	DEL_ROOM_SUCCESS: null,
 	UPDATE_ROOM_SUCCESS: null,
+	GET_ONEROOM_SUCCESS: null,
 });

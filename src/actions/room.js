@@ -6,6 +6,7 @@ const {
 	ADD_ROOM_SUCCESS,
 	DEL_ROOM_SUCCESS,
 	UPDATE_ROOM_SUCCESS,
+	GET_ONEROOM_SUCCESS,
 
 	ERROR_MSG,
 } = actions;
@@ -22,6 +23,22 @@ export function getRoomList(id) {
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_ROOMLIST_SUCCESS,
+					data: res.data.data,
+					msg: res.data.msg
+				});
+			} else {
+				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
+
+export function getOneRoom(id) {
+	return async(dispatch)=>{
+		await axios.get('/room/getOneRoom', {params: {_id: id}}).then(res=>{
+			if (res.status==200&&res.data.code===0) {
+				dispatch({
+					type: GET_ONEROOM_SUCCESS,
 					data: res.data.data,
 					msg: res.data.msg
 				});

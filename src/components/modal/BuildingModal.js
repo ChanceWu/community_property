@@ -1,5 +1,7 @@
 import React from 'react'
-import { Form, Input, Button, Checkbox, Modal, Radio } from 'antd';
+import moment from 'moment'
+import { Form, Input, Button, Checkbox, Modal, Radio, Select, DatePicker } from 'antd';
+const Option = Select.Option;
 
 class BuildingModal extends React.Component {
 	render() {
@@ -35,7 +37,20 @@ class BuildingModal extends React.Component {
 		              		message: '楼宇功能不能为空',
 		            	}],
 		          	})(
-		            	<Input placeholder="请输入楼宇功能" />
+		            	<Select
+						    showSearch
+						    style={{ width: 236 }}
+						    // defaultValue={{key: ''}}
+						    placeholder="请选择楼宇功能"
+						    optionFilterProp="children"
+						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+					  	>
+						    <Option value="居住">居住</Option>
+						    <Option value="商铺">商铺</Option>
+						    <Option value="店面">店面</Option>
+						    <Option value="库房">库房</Option>
+						    <Option value="商住综合">商住综合</Option>
+				  		</Select>
 		          	)}
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="结构类别">
@@ -45,7 +60,19 @@ class BuildingModal extends React.Component {
 		              		required: false,
 		            	}],
 		          	})(
-		            	<Input placeholder="请输入结构类别" />
+		            	<Select
+						    showSearch
+						    style={{ width: 236 }}
+						    // defaultValue={{key: ''}}
+						    placeholder="请选择结构类别"
+						    optionFilterProp="children"
+						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+					  	>
+						    <Option value="水泥结构">水泥结构</Option>
+						    <Option value="钢筋结构">钢筋结构</Option>
+						    <Option value="木结构">木结构</Option>
+						    <Option value="砖结构">砖结构</Option>
+				  		</Select>
 		          	)}
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="装修标准">
@@ -56,7 +83,18 @@ class BuildingModal extends React.Component {
 		              		message: 'Please input your nickname',
 		            	}],
 		          	})(
-		            	<Input placeholder="请输入装修标准" />
+		            	<Select
+						    showSearch
+						    style={{ width: 236 }}
+						    // defaultValue={{key: ''}}
+						    placeholder="请选择装修标准"
+						    optionFilterProp="children"
+						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+					  	>
+						    <Option value="简装">简装</Option>
+						    <Option value="精装">精装</Option>
+						    <Option value="豪华">豪华</Option>
+				  		</Select>
 		          	)}
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="使用面积">
@@ -105,24 +143,24 @@ class BuildingModal extends React.Component {
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="竣工日期">
 		          	{getFieldDecorator('completion_date', {
-		          		initialValue: defaultData?defaultData.completion_date:'',
+		          		initialValue: defaultData?moment(defaultData.completion_date, 'YYYY-MM-DD'):'',
 		            	rules: [{
 		              		required: false,
 		              		message: 'Please input your nickname',
 		            	}],
 		          	})(
-		            	<Input placeholder="请输入竣工日期" />
+			          	<DatePicker style={{ width: 236 }} />
 		          	)}
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="封顶日期">
 		          	{getFieldDecorator('cap_date', {
-		          		initialValue: defaultData?defaultData.cap_date:'',
+		          		initialValue: defaultData?moment(defaultData.cap_date, 'YYYY-MM-DD'):'',
 		            	rules: [{
 		              		required: false,
 		              		message: 'Please input your nickname',
 		            	}],
 		          	})(
-		            	<Input placeholder="请输入封顶日期" />
+		            	<DatePicker style={{ width: 236 }} />
 		          	)}
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="备注">

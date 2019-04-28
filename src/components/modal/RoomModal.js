@@ -1,5 +1,6 @@
 import React from 'react'
-import { Form, Input, Button, Checkbox, Modal, Radio } from 'antd';
+import { Form, Input, Button, Checkbox, Modal, Radio, Select } from 'antd';
+const Option = Select.Option;
 
 class RoomModal extends React.Component {
 	render() {
@@ -31,11 +32,26 @@ class RoomModal extends React.Component {
 		          	{getFieldDecorator('door_model', {
 		          		initialValue: defaultData?defaultData.door_model:'',
 		            	rules: [{
-		              		required: true,
+		              		required: false,
 		              		message: '户型不能为空',
 		            	}],
 		          	})(
-		            	<Input placeholder="请输入户型" />
+		            	<Select
+						    showSearch
+						    style={{ width: 236 }}
+						    // defaultValue={{key: ''}}
+						    placeholder="请选择户型"
+						    optionFilterProp="children"
+						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+					  	>
+						    <Option value="二室一厅">二室一厅</Option>
+						    <Option value="三室一厅">三室一厅</Option>
+						    <Option value="二室二厅">二室二厅</Option>
+						    <Option value="三室二厅">三室二厅</Option>
+						    <Option value="一室一厅">一室一厅</Option>
+						    <Option value="一室一卫">一室一卫</Option>
+						    <Option value="独立开间">独立开间</Option>
+				  		</Select>
 		          	)}
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="朝向">
@@ -45,7 +61,19 @@ class RoomModal extends React.Component {
 		              		required: false,
 		            	}],
 		          	})(
-		            	<Input placeholder="请输入朝向" />
+		            	<Select
+						    showSearch
+						    style={{ width: 236 }}
+						    // defaultValue={{key: ''}}
+						    placeholder="请选择朝向"
+						    optionFilterProp="children"
+						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+					  	>
+						    <Option value="坐西朝东">坐西朝东</Option>
+						    <Option value="坐东朝西">坐东朝西</Option>
+						    <Option value="坐南朝北">坐南朝北</Option>
+						    <Option value="坐北朝南">坐北朝南</Option>
+				  		</Select>
 		          	)}
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="装修">
@@ -56,7 +84,18 @@ class RoomModal extends React.Component {
 		              		message: 'Please input your nickname',
 		            	}],
 		          	})(
-		            	<Input placeholder="请输入装修" />
+		            	<Select
+						    showSearch
+						    style={{ width: 236 }}
+						    // defaultValue={{key: ''}}
+						    placeholder="请选择装修类型"
+						    optionFilterProp="children"
+						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+					  	>
+						    <Option value="简装">简装</Option>
+						    <Option value="精装">精装</Option>
+						    <Option value="豪华">豪华</Option>
+				  		</Select>
 		          	)}
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="楼层">
@@ -187,7 +226,20 @@ class RoomModal extends React.Component {
 		              		message: 'Please input your nickname',
 		            	}],
 		          	})(
-		            	<Input placeholder="请输入物业类型" />
+		            	<Select
+						    showSearch
+						    style={{ width: 236 }}
+						    // defaultValue={{key: ''}}
+						    placeholder="请选择物业类型"
+						    optionFilterProp="children"
+						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+					  	>
+						    <Option value="A类-标准">A类-标准</Option>
+						    <Option value="B类-贵宾">B类-贵宾</Option>
+						    <Option value="C类-免缴费">C类-免缴费</Option>
+						    <Option value="D类-自用">D类-自用</Option>
+						    <Option value="E类-其他">E类-其他</Option>
+				  		</Select>
 		          	)}
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="房间性质">
@@ -198,7 +250,18 @@ class RoomModal extends React.Component {
 		              		message: 'Please input your nickname',
 		            	}],
 		          	})(
-		            	<Input placeholder="请输入房间性质" />
+		            	<Select
+						    showSearch
+						    style={{ width: 236 }}
+						    // defaultValue={{key: ''}}
+						    placeholder="请选择房间性质"
+						    optionFilterProp="children"
+						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+					  	>
+						    <Option value="公产">公产</Option>
+						    <Option value="私产">私产</Option>
+						    <Option value="半公产半私产">半公产半私产</Option>
+				  		</Select>
 		          	)}
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="备注">

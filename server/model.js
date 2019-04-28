@@ -100,7 +100,7 @@ const models = {
 		// 封顶日期
 		cap_date: {'type': String, 'require': true},
 		// 备注
-		note: {'type': String, 'require': true},
+		note: {'type': String},
 	},
 	// 单元
 	unit: {
@@ -117,7 +117,7 @@ const models = {
 		// 结束房号
 		end_num: {'type': String, 'require': true},
 		// 备注
-		note: {'type': String, 'require': true},
+		note: {'type': String},
 	},
 	// 房间
 	room: {
@@ -126,39 +126,39 @@ const models = {
 		// 房间名称
 		room_name: {'type': String, 'require': true},
 		// 户型
-		door_model: {'type': String, 'require': true},
+		door_model: {'type': String},
 		// 朝向
-		room_toward: {'type': String, 'require': true},
+		room_toward: {'type': String},
 		// 装修
-		room_decorate: {'type': String, 'require': true},
+		room_decorate: {'type': String},
 		// 楼层
-		room_floor: {'type': String, 'require': true},
+		room_floor: {'type': String},
 		// 建筑面积
-		constructor_area: {'type': String, 'require': true},
+		constructor_area: {'type': String},
 		// 使用面积
-		using_area: {'type': String, 'require': true},
+		using_area: {'type': String},
 		// 车牌号
-		license_plate_num: {'type': String, 'require': true},
+		license_plate_num: {'type': String},
 		// 车库面积
-		garage_area: {'type': String, 'require': true},
+		garage_area: {'type': String},
 		// 车位号
-		parking_num: {'type': String, 'require': true},
+		parking_num: {'type': String},
 		// 车位面积
-		parking_area: {'type': String, 'require': true},
+		parking_area: {'type': String},
 		// 储藏室
-		store_room: {'type': String, 'require': true},
+		store_room: {'type': String},
 		// 储藏室面积
-		storage_area: {'type': String, 'require': true},
+		storage_area: {'type': String},
 		// 阁楼面积
-		attic_area: {'type': String, 'require': true},
+		attic_area: {'type': String},
 		// 房间状态
-		room_status: {'type': String, 'require': true},
+		room_status: {'type': String},
 		// 物业类型
-		property_type: {'type': String, 'require': true},
+		property_type: {'type': String},
 		// 房间性质
-		room_nature: {'type': String, 'require': true},
+		room_nature: {'type': String},
 		// 备注
-		note: {'type': String, 'require': true},
+		note: {'type': String},
 	}
 	/* 2019.4.17 暂时隐藏
 	,

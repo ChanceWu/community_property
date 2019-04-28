@@ -4,6 +4,7 @@ const utils = require('utility')
 const Router = express.Router()
 const model = require('./model')
 const User = model.getModel('user')
+const UserFamilyMember = model.getModel('user_familymenber')
 // const Chat = model.getModel('chat') 2019.4.17 暂时隐藏
 const _filter = {'pwd': 0, '__v': 0}
 // Chat.remove({}, function(e,d){})
@@ -98,6 +99,21 @@ Router.post('/updatePersonInfo', function(req, res) {
 			type: doc.type
 		}, body)
 		return res.json({code: 0, msg: '修改成功'})
+	})
+})
+
+Router.post('/deleteOwner', function(req, res) {
+	const {_id} = req.body
+	UserFamilyMember.remove({user_id:_id}, function(err, doc) {
+		if (err) {
+			return res.json({code: 1, msg: '删除家属信息失败'})
+		}
+		User.remove({_id}, function(e, d) {
+			if (e) {
+				return res.json({code: 1, msg: '删除业主信息失败'})
+			}
+			return res.json({code: 0, msg: '删除业主信息成功'})
+		})
 	})
 })
 

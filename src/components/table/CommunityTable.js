@@ -11,6 +11,7 @@ class CommunityTable extends React.Component {
 			visible: false,
 			isAdd: true,
 			defaultData: '',
+			breadcrumb: '',
 		}
 	}
 
@@ -121,7 +122,7 @@ class CommunityTable extends React.Component {
 	    const { getFieldDecorator } = this.props.form;
 	    return (
 	    	<div>
-	    		<Button type="primary" onClick={this.showAddModal}>新增</Button>
+	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
 	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 1300 }} />
 
 	    		<CommunityModal

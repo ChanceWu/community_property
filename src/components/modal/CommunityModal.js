@@ -1,5 +1,6 @@
 import React from 'react'
-import { Form, Input, Button, Checkbox, Modal, Radio } from 'antd';
+import { Form, Input, Button, Checkbox, Modal, Radio, Select  } from 'antd';
+const Option = Select.Option;
 
 class CommunityModal extends React.Component {
 	render() {
@@ -35,7 +36,18 @@ class CommunityModal extends React.Component {
 		              		message: '所属公司不能为空',
 		            	}],
 		          	})(
-		            	<Input placeholder="请输入所属公司" />
+		          		<Select
+						    showSearch
+						    style={{ width: 236 }}
+						    // defaultValue={{key: ''}}
+						    placeholder="选择物业公司"
+						    optionFilterProp="children"
+						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+					  	>
+						    <Option value="兴福物业">兴福物业</Option>
+						    <Option value="东风物业">东风物业</Option>
+						    <Option value="平安物业">平安物业</Option>
+				  		</Select>
 		          	)}
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="占地面积">
@@ -89,7 +101,18 @@ class CommunityModal extends React.Component {
 		              		message: 'Please input your nickname',
 		            	}],
 		          	})(
-		            	<Input placeholder="请输入负责人" />
+		            	<Select
+						    showSearch
+						    style={{ width: 236 }}
+						    // defaultValue={{key: ''}}
+						    placeholder="选择负责人"
+						    optionFilterProp="children"
+						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+					  	>
+						    <Option value="chance">chance</Option>
+						    <Option value="张三">张三</Option>
+						    <Option value="李四">李四</Option>
+				  		</Select>
 		          	)}
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="小区地址">

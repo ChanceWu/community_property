@@ -15,6 +15,16 @@ Router.get('/getRoomList', function(req, res) {
 	})
 })
 
+Router.get('/getOneRoom', function(req, res) {
+	const { _id } = req.query
+	Room.findOne({_id}, function(err, doc) {
+		if (err) {
+			return res.json({code: 1, msg: '获取房屋信息失败'})
+		}
+		return res.json({code: 0, data: doc, msg: '获取房屋信息成功'})
+	})
+})
+
 Router.post('/addRoom', function(req, res) {
 	const userModel = new Room({...req.body});
 	userModel.save(function(err, doc) {

@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 import { Table, Button, Form, Tag, Divider, message } from 'antd';
 import { connect } from 'react-redux'
 import { getBuildingList, addBuilding, updateBuilding, deleteBuilding } from '../../actions/building'
@@ -116,9 +117,7 @@ class BuildingTable extends React.Component {
 		    		<a onClick={()=>{this.props.history.push(`/admin/house/unit/${record.key}`)}}>{text}</a>
 		    	)
 		  	},
-		  	{
-		    	title: '楼宇功能', width: 100, dataIndex: 'building_function', key: 'building_function', fixed: 'left',
-		  	},
+		  	{ title: '楼宇功能', width: 100, dataIndex: 'building_function', key: 'building_function' },
 		  	{ title: '结构类别', dataIndex: 'structure_category', key: 'structure_category' },
 		  	{ title: '装修标准', dataIndex: 'decorate_standard', key: 'decorate_standard' },
 		  	{ title: '使用面积', dataIndex: 'using_area', key: 'using_area' },
@@ -155,8 +154,8 @@ class BuildingTable extends React.Component {
 	          construction_area: v.construction_area||'',
 	          building_permit: v.building_permit||'',
 	          presale_permit: v.presale_permit||'',
-	          completion_date: v.completion_date||'',
-	          cap_date: v.cap_date||'',
+	          completion_date: moment(v.completion_date).format('YYYY-MM-DD')||'',
+	          cap_date: moment(v.cap_date).format('YYYY-MM-DD')||'',
 	          note: v.note||'',
 	        })
 	      })
@@ -169,8 +168,9 @@ class BuildingTable extends React.Component {
 	    };
 	    const { getFieldDecorator } = this.props.form;
 	    return (
-	    	<div style={{ marginTop: 24, padding: 24, background: '#fff', minHeight: 360 }}>
-	    		<Button type="primary" onClick={this.showAddModal}>新增</Button>
+	    	<div className="management">
+	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
+	    		<Button className="management_button" onClick={()=>{this.props.history.goBack()}}>返回</Button>
 	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 1300 }} />
 
 	    		<BuildingModal

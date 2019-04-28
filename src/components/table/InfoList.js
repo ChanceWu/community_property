@@ -1,42 +1,32 @@
 import React from 'react'
-import { Table } from 'antd';
-
-const columns = [
-  {
-    title: '姓名', width: 100, dataIndex: 'name', key: 'name', fixed: 'left',
-  },
-  {
-    title: '性别', width: 100, dataIndex: 'gender', key: 'gender', fixed: 'left',
-  },
-  { title: '联系电话', dataIndex: 'telephone', key: 'telephone' },
-  { title: '年龄', dataIndex: 'age', key: 'age' },
-  { title: '证件类型', dataIndex: 'idtype', key: 'idtype' },
-  { title: '身份证号码', dataIndex: 'idnumber', key: 'idnumber' },
-  { title: '籍贯', dataIndex: 'nativeplace', key: 'nativeplace' },
-  {
-    title: '操作',
-    key: 'operation',
-    fixed: 'right',
-    width: 100,
-    render: () => <a href="javascript:;">action</a>,
-  },
-];
-
-// const data = [{
-//   key: '1',
-//   name: 'John Brown',
-//   gender: '男',
-//   address: 'New York Park',
-// }, {
-//   key: '2',
-//   name: 'Jim Green',
-//   gender: '女',
-//   address: 'London Park',
-// }];
+import { Table, Tag } from 'antd';
 
 class InfoList extends React.Component {
   render() {
-    console.log(this.props)
+    const columns = [
+      {
+        title: '姓名', width: 100, dataIndex: 'name', key: 'name', fixed: 'left',
+      },
+      { title: '性别', width: 100, dataIndex: 'gender', key: 'gender' },
+      { title: '联系电话', dataIndex: 'telephone', key: 'telephone' },
+      { title: '年龄', dataIndex: 'age', key: 'age' },
+      { title: '证件类型', dataIndex: 'idtype', key: 'idtype' },
+      { title: '身份证号码', dataIndex: 'idnumber', key: 'idnumber' },
+      { title: '籍贯', dataIndex: 'nativeplace', key: 'nativeplace' },
+      {
+        title: '操作',
+        key: 'operation',
+        fixed: 'right',
+        width: 100,
+        render: (text, record) => (
+          <span>
+            {/*<Tag color="blue" onClick={()=>{this.showUpdateModal(record)}}>修改</Tag>
+            <Divider type="vertical" />*/}
+            <Tag color="red" onClick={()=>{this.props.deleteOwner(record.key)}}>删除</Tag>
+          </span>
+        ),
+      },
+    ];
     const data = [];
     if (this.props.data) {
       this.props.data.forEach(v=>{
@@ -49,7 +39,6 @@ class InfoList extends React.Component {
           idtype: '身份证',
           idnumber: v.idnumber||'',
           nativeplace: v.nativeplace||'',
-          address: 'New York Park',
         })
       })
     }
