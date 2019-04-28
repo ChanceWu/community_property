@@ -11,6 +11,8 @@ import HouseInfo from './user/owner/HouseInfo'
 
 import Information from './admin/owner/Information'
 import HouseManage from './admin/house/HouseManage'
+import ConventionalCost from './admin/cost/ConventionalCost'
+import EquallySharedCost from './admin/cost/EquallySharedCost'
 
 /*const WysiwygBundle = Loadable({ // 按需加载富文本配置
     loader: () => import('./ui/Wysiwyg'),
@@ -19,10 +21,13 @@ import HouseManage from './admin/house/HouseManage'
 
 export default {
     AdminHome,
-    HouseManage,
-
     UserHome,
+
     PersonInfo,
     HouseInfo,
+    
     Information,
+    HouseManage,
+    ConventionalCost,
+    EquallySharedCost,
 }

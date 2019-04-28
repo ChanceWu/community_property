@@ -7,6 +7,7 @@ import community from './community'
 import building from './building'
 import unit from './unit'
 import room from './room'
+import cost from './cost'
 
 export default combineReducers({
 	auth,
@@ -17,4 +18,5 @@ export default combineReducers({
 	building,
 	unit,
 	room,
+	cost,
 })

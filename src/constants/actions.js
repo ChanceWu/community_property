@@ -38,4 +38,9 @@ export default keyMirror({
 	DEL_ROOM_SUCCESS: null,
 	UPDATE_ROOM_SUCCESS: null,
 	GET_ONEROOM_SUCCESS: null,
+
+	GET_COSTLIST_SUCCESS: null,
+	ADD_COST_SUCCESS: null,
+	DEL_COST_SUCCESS: null,
+	UPDATE_COST_SUCCESS: null,
 });

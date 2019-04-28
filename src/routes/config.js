@@ -14,7 +14,13 @@ export default {
                 { key: '/admin/house/infomation', title: '楼盘信息', component: 'HouseManage'}
             ],
     	},
-        { key: '/admin/expense', title: '费用管理', icon: 'mobile', component: 'AdminHome' },
+        {
+            key: '/admin/expense', title: '费用管理', icon: 'mobile',
+            subs: [
+                { key: '/admin/expense/conventional', title: '常规费用', component: 'ConventionalCost'},
+                { key: '/admin/expense/equallyshared', title: '公摊费用', component: 'EquallySharedCost'},
+            ]
+        },
         { key: '/admin/parking', title: '车位管理', icon: 'mobile', component: 'AdminHome' }
     ],
     user: [ // 菜单相关路由

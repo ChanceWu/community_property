@@ -159,6 +159,25 @@ const models = {
 		room_nature: {'type': String},
 		// 备注
 		note: {'type': String},
+	},
+	// 费用
+	cost: {
+		// 物业公司
+		company: {'type': String, 'require': true},
+		// 费用编号
+		charge_num: {'type': String, 'require': true},
+		// 费用名称
+		charge_name: {'type': String, 'require': true},
+		// 收费方式
+		charge_way: {'type': String, 'require': true},
+		// 单位价格
+		unit_price: {'type': String, 'require': true},
+		// 收费周期
+		charge_cycle: {'type': String, 'require': true},
+		// 滞纳金比率‰
+		charge_late: {'type': String, 'require': true},
+		// 超过天数
+		over_day: {'type': String, 'require': true},
 	}
 	/* 2019.4.17 暂时隐藏
 	,

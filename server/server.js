@@ -8,6 +8,7 @@ const CommunityRouter = require('./community')
 const Building = require('./building')
 const Unit = require('./unit')
 const Room = require('./room')
+const Cost = require('./cost')
 const model = require('./model')
 // const Chat = model.getModel('chat')
 
@@ -40,6 +41,7 @@ app.use('/community', CommunityRouter)
 app.use('/building', Building)
 app.use('/unit', Unit)
 app.use('/room', Room)
+app.use('/cost', Cost)
 
 /* 2019.4.17 暂时隐藏
 server.listen(9090, function() {
