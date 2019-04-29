@@ -5,6 +5,7 @@ const {
 	ADD_COMMUNITY_SUCCESS,
 	DEL_COMMUNITY_SUCCESS,
 	UPDATE_COMMUNITY_SUCCESS,
+	GET_COMMUNITYNAME_SUCCESS,
 } = actions;
 
 export default (state={}, action) => {
@@ -28,6 +29,12 @@ export default (state={}, action) => {
 		case DEL_COMMUNITY_SUCCESS:
 			return {
 				...state,
+				msg: action.msg
+			}
+		case GET_COMMUNITYNAME_SUCCESS:
+			return {
+				...state,
+				communityName: action.data,
 				msg: action.msg
 			}
 		default:

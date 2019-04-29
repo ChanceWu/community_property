@@ -6,6 +6,7 @@ const {
 	ADD_COMMUNITY_SUCCESS,
 	DEL_COMMUNITY_SUCCESS,
 	UPDATE_COMMUNITY_SUCCESS,
+	GET_COMMUNITYNAME_SUCCESS,
 
 	ERROR_MSG,
 } = actions;
@@ -72,6 +73,20 @@ export function deleteCommunity(id) {
 				})
 			} else {
 				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
+
+export function getCommunityName() {
+	return async(dispatch)=>{
+		await axios.get('/community/getCommunityName').then(res=>{
+			if (res.status===200&&res.data.code===0) {
+				dispatch({
+					type: GET_COMMUNITYNAME_SUCCESS,
+					data: res.data.data,
+					msg: res.data.msg,
+				})
 			}
 		})
 	}

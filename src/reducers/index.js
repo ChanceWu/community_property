@@ -8,6 +8,7 @@ import building from './building'
 import unit from './unit'
 import room from './room'
 import cost from './cost'
+import garage from './garage'
 
 export default combineReducers({
 	auth,
@@ -19,4 +20,5 @@ export default combineReducers({
 	unit,
 	room,
 	cost,
+	garage,
 })

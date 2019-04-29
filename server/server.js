@@ -9,6 +9,7 @@ const Building = require('./building')
 const Unit = require('./unit')
 const Room = require('./room')
 const Cost = require('./cost')
+const Garage = require('./garage')
 const model = require('./model')
 // const Chat = model.getModel('chat')
 
@@ -42,6 +43,7 @@ app.use('/building', Building)
 app.use('/unit', Unit)
 app.use('/room', Room)
 app.use('/cost', Cost)
+app.use('/garage', Garage)
 
 /* 2019.4.17 暂时隐藏
 server.listen(9090, function() {

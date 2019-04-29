@@ -21,7 +21,7 @@ export default {
                 { key: '/admin/expense/equallyshared', title: '公摊费用', component: 'EquallySharedCost'},
             ]
         },
-        { key: '/admin/garage', title: '车位管理', icon: 'mobile', component: 'AdminHome' }
+        { key: '/admin/garage', title: '车位管理', icon: 'mobile', component: 'GarageManage' }
     ],
     user: [ // 菜单相关路由
         { key: '/user/home', title: '首页', icon: 'mobile', component: 'UserHome' },

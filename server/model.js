@@ -180,17 +180,32 @@ const models = {
 		over_day: {'type': String, 'require': true},
 		// 类型 常规费用 公摊费用
 		charge_type: {'type': String, 'require': true},
+	},
+	// 车位管理
+	garage: {
+		// 所属房产
+		community_name: {'type': String, 'require': true},
+		// 车位编号
+		garage_num: {'type': String, 'require': true},
+		// 车位类别
+		garage_category: {'type': String, 'require': true},
+		// 管理类别
+		manage_category: {'type': String, 'require': true},
+		// 车位类型
+		garage_type: {'type': String, 'require': true},
+		// 预售价格
+		booking_price: {'type': String, 'require': true},
+		// 预租价格
+		rent_price: {'type': String, 'require': true},
+		// 车位位置
+		garage_location: {'type': String, 'require': true},
+		// 车位面积
+		garage_area: {'type': String, 'require': true},
+		// 当前状态
+		garage_state: {'type': String, 'require': true},
+		// 备注
+		note: {'type': String, 'require': true},
 	}
-	/* 2019.4.17 暂时隐藏
-	,
-	chat: {
-		'chatid':{'type': String, 'require': true},
-		'from':{'type': String, 'require': true},
-		'to':{'type': String, 'require': true},
-		'read':{'type': Boolean, 'default': false},
-		'content':{'type': String, 'require': true, 'default': ''},
-		'create_time':{'type': Number, 'default': new Date().getTime()},
-	}*/
 }
 
 for (let m in models) {

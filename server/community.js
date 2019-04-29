@@ -44,5 +44,14 @@ Router.post('/deleteCommunity', function(req, res) {
 	})
 })
 
+Router.get('/getCommunityName', function(req, res) {
+	Community.find({}, '_id community_name', function(err, doc) {
+		if (err) {
+			return res.json({code: 1, msg: '获取小区名称失败'})
+		}
+		return res.json({code: 0, data: doc, msg: '获取小区名称成功'})
+	})
+})
+
 
 module.exports = Router
