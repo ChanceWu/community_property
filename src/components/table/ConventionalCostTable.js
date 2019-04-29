@@ -33,7 +33,6 @@ class ConventionalCostTable extends React.Component {
   	handleAddOk = (e) => {
 	    this.props.form.validateFields((err, values) => {
         	if (!err) {
-          		console.info('success', values);
           		this.props.addCost(values)
           		this.setState({
 			      	visible: false,
@@ -44,7 +43,7 @@ class ConventionalCostTable extends React.Component {
   	handleUpdateOk = (e) => {
   		this.props.form.validateFields((err, values) => {
   			// values中并没有_id值，因此需要在参数中添加参数
-  			const data = Object.assign({},values,{_id: this.state.defaultData.key})
+  			const data = Object.assign({},values,{_id: this.state.defaultData.key, charge_type: this.state.defaultData.charge_type})
   			if (!err) {
   				this.props.updateCost(data)
   				this.setState({
@@ -107,6 +106,7 @@ class ConventionalCostTable extends React.Component {
 	          charge_cycle: v.charge_cycle||'',
 	          charge_late: v.charge_late||'',
 	          over_day: v.over_day||'',
+	          charge_type: v.charge_type||'',
 	        })
 	      })
 	    }

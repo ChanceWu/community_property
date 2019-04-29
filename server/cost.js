@@ -4,10 +4,11 @@ const utils = require('utility')
 const Router = express.Router()
 const model = require('./model')
 const Cost = model.getModel('cost')
+// Cost.remove({}, function(e,d){})
 
 Router.get('/getCostList', function(req, res) {
-	// const { user_id } = req.query
-	Cost.find({}, function(err, doc) {
+	const { charge_type } = req.query
+	Cost.find({charge_type}, function(err, doc) {
 		if (err) {
 			return res.json({code: 1, msg: '获取费用信息失败'})
 		}

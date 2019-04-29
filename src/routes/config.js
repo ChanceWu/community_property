@@ -21,7 +21,7 @@ export default {
                 { key: '/admin/expense/equallyshared', title: '公摊费用', component: 'EquallySharedCost'},
             ]
         },
-        { key: '/admin/parking', title: '车位管理', icon: 'mobile', component: 'AdminHome' }
+        { key: '/admin/garage', title: '车位管理', icon: 'mobile', component: 'AdminHome' }
     ],
     user: [ // 菜单相关路由
         { key: '/user/home', title: '首页', icon: 'mobile', component: 'UserHome' },
@@ -34,7 +34,7 @@ export default {
     	},
     	{ key: '/user/repair', title: '维修', icon: 'mobile', component: 'UserHome' },
     	{ key: '/user/expense', title: '费用', icon: 'mobile', component: 'UserHome' },
-    	{ key: '/user/park', title: '车位', icon: 'mobile', component: 'UserHome' },
+    	{ key: '/user/garage', title: '车位', icon: 'mobile', component: 'UserHome' },
     	{ key: '/user/complaint', title: '投诉反馈', icon: 'mobile', component: 'UserHome' },
     ]
 }

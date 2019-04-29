@@ -160,7 +160,7 @@ const models = {
 		// 备注
 		note: {'type': String},
 	},
-	// 费用
+	// 费用种类
 	cost: {
 		// 物业公司
 		company: {'type': String, 'require': true},
@@ -178,6 +178,8 @@ const models = {
 		charge_late: {'type': String, 'require': true},
 		// 超过天数
 		over_day: {'type': String, 'require': true},
+		// 类型 常规费用 公摊费用
+		charge_type: {'type': String, 'require': true},
 	}
 	/* 2019.4.17 暂时隐藏
 	,

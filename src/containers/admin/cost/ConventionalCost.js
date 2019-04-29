@@ -24,14 +24,15 @@ class ConventionalCost extends React.Component {
 		this.getCostList()
 	}
 	getCostList = () => {
-		this.props.getCostList().then(()=>{
+		this.props.getCostList('conventional').then(()=>{
 			this.setState({
 				costList: this.props.cost
 			})
 		})
 	}
 	addCost = (values) => {
-		this.props.addCost(values).then(()=>{
+		const data = Object.assign({}, values, {charge_type: 'conventional'})
+		this.props.addCost(data).then(()=>{
 			message.success(this.props.msg)
 			this.getCostList()
 		})
