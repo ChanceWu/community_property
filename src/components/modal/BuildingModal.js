@@ -40,10 +40,7 @@ class BuildingModal extends React.Component {
 		            	<Select
 						    showSearch
 						    style={{ width: 236 }}
-						    // defaultValue={{key: ''}}
 						    placeholder="请选择楼宇功能"
-						    optionFilterProp="children"
-						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 					  	>
 						    <Option value="居住">居住</Option>
 						    <Option value="商铺">商铺</Option>
@@ -63,10 +60,7 @@ class BuildingModal extends React.Component {
 		            	<Select
 						    showSearch
 						    style={{ width: 236 }}
-						    // defaultValue={{key: ''}}
 						    placeholder="请选择结构类别"
-						    optionFilterProp="children"
-						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 					  	>
 						    <Option value="水泥结构">水泥结构</Option>
 						    <Option value="钢筋结构">钢筋结构</Option>
@@ -86,10 +80,7 @@ class BuildingModal extends React.Component {
 		            	<Select
 						    showSearch
 						    style={{ width: 236 }}
-						    // defaultValue={{key: ''}}
 						    placeholder="请选择装修标准"
-						    optionFilterProp="children"
-						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 					  	>
 						    <Option value="简装">简装</Option>
 						    <Option value="精装">精装</Option>

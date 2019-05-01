@@ -25,6 +25,14 @@ const models = {
 		'age': {'type': String},
 		// 籍贯
 		'nativeplace': {'type': String},
+		/*// 小区
+		community_id: {'type': String},
+		// 楼栋
+		building_id: {'type': String},
+		// 单元
+		unit_id: {'type': String},
+		// 房间
+		room_id: {'type': String},*/
 	},
 	// 户主家属信息
 	user_familymenber: {
@@ -159,6 +167,8 @@ const models = {
 		room_nature: {'type': String},
 		// 备注
 		note: {'type': String},
+		// 用户id
+		user_name: {'type': String},
 	},
 	// 费用种类
 	cost: {

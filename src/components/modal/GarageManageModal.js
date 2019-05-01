@@ -39,7 +39,6 @@ class GarageManageModal extends React.Component {
 		          		<Select
 						    showSearch
 						    style={{ width: 236 }}
-						    // initialValue={{key: defaultData?defaultData.community_name:''}}
 						    placeholder="选择所属房产"
 					  	>
 						    {
@@ -59,10 +58,7 @@ class GarageManageModal extends React.Component {
 		            	<Select
 						    showSearch
 						    style={{ width: 236 }}
-						    // defaultValue={{key: ''}}
 						    placeholder="选择车位类别"
-						    optionFilterProp="children"
-						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 					  	>
 						    <Option value="地上">地上</Option>
 						    <Option value="地下">地下</Option>
@@ -80,10 +76,7 @@ class GarageManageModal extends React.Component {
 		            	<Select
 						    showSearch
 						    style={{ width: 236 }}
-						    // defaultValue={{key: ''}}
 						    placeholder="选择管理类别"
-						    optionFilterProp="children"
-						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 					  	>
 						    <Option value="业主自用">业主自用</Option>
 						    <Option value="物业自用">物业自用</Option>
@@ -104,10 +97,7 @@ class GarageManageModal extends React.Component {
 		            	<Select
 						    showSearch
 						    style={{ width: 236 }}
-						    // defaultValue={{key: ''}}
 						    placeholder="选择车位类型"
-						    optionFilterProp="children"
-						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 					  	>
 						    <Option value="标准车位">标准车位</Option>
 						    <Option value="大型车位">大型车位</Option>
@@ -162,7 +152,7 @@ class GarageManageModal extends React.Component {
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="当前状态">
 		          	{getFieldDecorator('garage_state', {
-		          		initialValue: defaultData?defaultData.garage_state:'',
+		          		initialValue: defaultData?defaultData.garage_state:'空闲',
 		            	rules: [{
 		              		required: false,
 		              		message: 'Please input your nickname',
@@ -171,10 +161,7 @@ class GarageManageModal extends React.Component {
 		            	<Select
 						    showSearch
 						    style={{ width: 236 }}
-						    // defaultValue={{key: ''}}
 						    placeholder="选择当前状态"
-						    optionFilterProp="children"
-						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 					  	>
 						    <Option value="空闲">空闲</Option>
 						    <Option value="已售">已售</Option>

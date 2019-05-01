@@ -39,10 +39,7 @@ class CommunityModal extends React.Component {
 		          		<Select
 						    showSearch
 						    style={{ width: 236 }}
-						    // defaultValue={{key: ''}}
 						    placeholder="选择物业公司"
-						    optionFilterProp="children"
-						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 					  	>
 						    <Option value="兴福物业">兴福物业</Option>
 						    <Option value="东风物业">东风物业</Option>
@@ -104,10 +101,7 @@ class CommunityModal extends React.Component {
 		            	<Select
 						    showSearch
 						    style={{ width: 236 }}
-						    // defaultValue={{key: ''}}
 						    placeholder="选择负责人"
-						    optionFilterProp="children"
-						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 					  	>
 						    <Option value="chance">chance</Option>
 						    <Option value="张三">张三</Option>

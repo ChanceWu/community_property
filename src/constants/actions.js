@@ -8,6 +8,7 @@ export default keyMirror({
 	
 	GET_OWNERINFO_SUCCESS: null,
 	DEL_OWNER_SUCCESS: null,
+	GET_OWNERNAME_SUCCESS: null,
 
 	GET_PERSONINFO_SUCCESS: null,
 	UPDATE_PERSONINFO_SUCCESS: null,

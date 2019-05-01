@@ -49,10 +49,7 @@ class ConventionalCostModal extends React.Component {
 		            	<Select
 						    showSearch
 						    style={{ width: 236 }}
-						    // defaultValue={{key: ''}}
 						    placeholder="选择物业公司"
-						    optionFilterProp="children"
-						    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 					  	>
 						    <Option value="兴福物业">兴福物业</Option>
 						    <Option value="东风物业">东风物业</Option>

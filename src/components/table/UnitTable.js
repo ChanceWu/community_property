@@ -109,7 +109,6 @@ class UnitTable extends React.Component {
 		    	width: 100,
 		    	dataIndex: 'unit_name',
 		    	key: 'unit_name',
-		    	fixed: 'left',
 		    	render: (text, record) => (
 		    		<a onClick={()=>{this.props.history.push(`/admin/house/room/${record.key}`)}}>{text}</a>
 		    	)
@@ -122,7 +121,6 @@ class UnitTable extends React.Component {
 		  	{
 			    title: '操作',
 			    key: 'operation',
-			    fixed: 'right',
 			    width: 100,
 			    render: (text, record) => (
 			    	<span>
@@ -158,7 +156,7 @@ class UnitTable extends React.Component {
 	    	<div className="management">
 	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
 	    		<Button className="management_button" onClick={()=>{this.props.history.goBack()}}>返回</Button>
-	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 1300 }} />
+	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 800 }} />
 
 	    		<UnitModal
 					title={this.state.isAdd?'新增':'修改'}

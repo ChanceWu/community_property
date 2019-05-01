@@ -14,6 +14,18 @@ class InfoList extends React.Component {
       { title: '身份证号码', dataIndex: 'idnumber', key: 'idnumber' },
       { title: '籍贯', dataIndex: 'nativeplace', key: 'nativeplace' },
       {
+        title: '家属人数',
+        dataIndex: 'familyNum',
+        key: 'familyNum',
+        fixed: 'right',
+      },
+      {
+        title: '住宅数量',
+        dataIndex: 'roomNum',
+        key: 'roomNum',
+        fixed: 'right',
+      },
+      {
         title: '操作',
         key: 'operation',
         fixed: 'right',
@@ -39,6 +51,8 @@ class InfoList extends React.Component {
           idtype: '身份证',
           idnumber: v.idnumber||'',
           nativeplace: v.nativeplace||'',
+          familyNum: v.familyNum||0,
+          roomNum: v.roomNum||0,
         })
       })
     }
@@ -49,7 +63,7 @@ class InfoList extends React.Component {
       }
     };
     return (
-      <Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 1300 }} />
+      <Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 800 }} />
     )
   }
 }

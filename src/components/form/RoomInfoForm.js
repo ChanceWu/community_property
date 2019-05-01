@@ -3,14 +3,21 @@ import { Input, Button, Radio, message, Breadcrumb, Select } from 'antd';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getOneRoom, updateRoom } from '../../actions/room'
+import { getOwnerName } from '../../actions/admininfo'
 import './form.less'
 
 const RadioGroup = Radio.Group;
 const Option = Select.Option;
 
 @connect(
-	state=>state.room,
-	{ getOneRoom, updateRoom }
+	state=>({
+		room: state.room,
+		admininfo: state.admininfo,
+	}), {
+		getOneRoom,
+		updateRoom,
+		getOwnerName,
+	}
 )
 class RoomInfoForm extends React.Component {
 	constructor(props) {
@@ -36,6 +43,7 @@ class RoomInfoForm extends React.Component {
 				property_type: '',
 				room_nature: '',
 				note: '',
+				user_name: '',
 			},
 			// members: []
 		}
@@ -43,6 +51,7 @@ class RoomInfoForm extends React.Component {
 	componentDidMount() {
 		console.log(this.props)
 		this.getOneRoom()
+		this.getOwnerName()
 	}
 	roomInfoFormChange = (key, val) => {
 		const { data } = this.state
@@ -54,15 +63,18 @@ class RoomInfoForm extends React.Component {
 	getOneRoom = () => {
 		this.props.getOneRoom(this.state.currentRoomrId).then(()=>{
 			this.setState({
-				data: {...this.props.oneroom}
+				data: {...this.props.room.oneroom}
 			})
 		})
 	}
 	updateRoomInfo = () => {
 		this.props.updateRoom(this.state.data).then(()=>{
-			message.success(this.props.msg)
+			message.success(this.props.room.msg)
 			this.getOneRoom()
 		})
+	}
+	getOwnerName = () => {
+		this.props.getOwnerName()
 	}
 	render() {
 		const data = this.state.data
@@ -87,6 +99,24 @@ class RoomInfoForm extends React.Component {
 					<Button className="management_button" type="primary" onClick={this.updateRoomInfo}>保存</Button>
 					<Button className="management_button" onClick={()=>{this.props.history.goBack()}}>返回</Button>
 					<div className="form">
+						<div className="form-row">
+							<div className="label">户主人:</div>
+							<Select
+							    showSearch
+							    // style={{ width: 236 }}
+							    value={data.user_name}
+							    onChange={v=>this.roomInfoFormChange('user_name', v)}
+							    // defaultValue={{key: ''}}
+							    placeholder="请选择户型"
+							    optionFilterProp="children"
+							    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+						  	>
+							    {
+							    	this.props.admininfo.ownername&&
+							    	this.props.admininfo.ownername.map(v=><Option key={v._id} value={v.name}>{v.name}</Option>)
+							    }
+					  		</Select>
+						</div>
 						<div className="form-row">
 							<div className="label">房间名称:</div>
 							<Input value={data.room_name} onChange={v=>this.roomInfoFormChange('room_name', v.target.value)}/>
@@ -185,7 +215,16 @@ class RoomInfoForm extends React.Component {
 						</div>
 						<div className="form-row">
 							<div className="label">房间状态:</div>
-							<Input value={data.room_status} onChange={v=>this.roomInfoFormChange('room_status', v.target.value)}/>
+							<Select
+							    showSearch
+							    value={data.room_status}
+							    onChange={v=>this.roomInfoFormChange('room_status', v)}
+							    placeholder="请选择房间状态"
+						  	>
+						  		<Option value="待售">待售</Option>
+							    <Option value="已售">已售</Option>
+							    <Option value="已租">已租</Option>
+					  		</Select>
 						</div>
 						<div className="form-row">
 							<div className="label">物业类型:</div>

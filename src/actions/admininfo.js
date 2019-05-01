@@ -4,6 +4,7 @@ import actions from '../constants/actions';
 const {
 	GET_OWNERINFO_SUCCESS,
 	DEL_OWNER_SUCCESS,
+	GET_OWNERNAME_SUCCESS,
 	ERROR_MSG,
 } = actions;
 
@@ -36,6 +37,20 @@ export function deleteOwner(_id) {
 				})
 			} else {
 				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
+
+export function getOwnerName() {
+	return async(dispatch)=>{
+		await axios.get('/user/getOwnerName?type=user').then(res=>{
+			if (res.status===200&&res.data.code===0) {
+				dispatch({
+					type: GET_OWNERNAME_SUCCESS,
+					data: res.data.data,
+					msg: res.data.msg,
+				})
 			}
 		})
 	}

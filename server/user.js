@@ -5,6 +5,7 @@ const Router = express.Router()
 const model = require('./model')
 const User = model.getModel('user')
 const UserFamilyMember = model.getModel('user_familymenber')
+const Room = model.getModel('room')
 // const Chat = model.getModel('chat') 2019.4.17 暂时隐藏
 const _filter = {'pwd': 0, '__v': 0}
 // Chat.remove({}, function(e,d){})
@@ -26,9 +27,64 @@ Router.get('/list', function(req, res) {
 
 	const {type, _id} = req.query
 	if (type) {
-		User.find({type}, function(err, doc) {
-			return res.json({code: 0, data: doc})
+		let data1 = [], data2 = [], result = []
+		User.find({type}).then((doc) => {
+			data1 = doc
+			let promises = doc.map((v, i)=>{
+				return Room.find({user_name: v.name})
+			})
+			return Promise.all(promises)
 		})
+		.then((info)=>{
+			// console.log(info)
+			// console.log(data)
+			for (let i=0; i<data1.length; i++) {
+				let obj = {}
+				Object.assign(obj, JSON.parse(JSON.stringify(data1[i])), JSON.parse(JSON.stringify({roomNum: info[i].length})))
+				data2.push(obj)
+			}
+			return new Promise((resolve, reject)=>{
+				resolve(data2)
+			})
+		})
+		.then((data2)=>{
+			let promises = data2.map(v=>{
+				return UserFamilyMember.find({user_id: v._id})
+			})
+			return Promise.all(promises)
+		})
+		.then((info2)=>{
+			for (let i=0; i<data2.length; i++) {
+				let obj = {}
+				Object.assign(obj, JSON.parse(JSON.stringify(data2[i])), JSON.parse(JSON.stringify({familyNum: info2[i].length})))
+				result.push(obj)
+			}
+			return new Promise((resolve, reject)=>{
+				resolve(result)
+			})
+		})
+		.then((result)=>{
+			return new Promise(()=>{
+				return res.json({code: 0, msg: '获取数据成功', data: result})
+			})
+		})
+		.catch((err)=>{
+			return res.json({code: 1, msg: '获取数据失败'})
+		})
+		/*User.find({type}, function(err, doc) {
+			if (err) {
+				return res.json({code: 1, msg: '获取数据失败'})
+			}
+			let dataList = await doc.map((v, i)=>{
+				Room.find({user_name: v.name}, function(e, d) {
+					data[i] =  Object.assign({}, v._doc, {roomNum: d.length})
+				})
+				console.log(data[i])
+				return data[i]
+			})
+			console.log(dataList)
+			return res.json({code: 0, data: doc})
+		})*/
 	}else if (_id) {
 		User.findOne({_id}, function(err, doc) {
 			return res.json({code: 0, data: doc})
@@ -114,6 +170,16 @@ Router.post('/deleteOwner', function(req, res) {
 			}
 			return res.json({code: 0, msg: '删除业主信息成功'})
 		})
+	})
+})
+
+Router.get('/getOwnerName', function(req, res) {
+	const { type } = req.query
+	User.find({type}, '_id name', function(err, doc) {
+		if (err) {
+			return res.json({code: 1, msg: '获取业主名称失败'})
+		}
+		return res.json({code: 0, data: doc, msg: '获取业主名称成功'})
 	})
 })
 

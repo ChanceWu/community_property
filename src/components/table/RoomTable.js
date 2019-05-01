@@ -76,7 +76,8 @@ class RoomTable extends React.Component {
   	handleAddOk = (e) => {
 	    this.props.form.validateFields((err, values) => {
         	if (!err) {
-          		this.addRoom(values)
+        		const data = Object.assign({}, values, {user_name: ''})
+          		this.addRoom(data)
           		this.setState({
 			      	visible: false,
 			    });
@@ -86,7 +87,7 @@ class RoomTable extends React.Component {
   	handleUpdateOk = (e) => {
   		this.props.form.validateFields((err, values) => {
   			// values中并没有_id值，因此需要在参数中添加参数
-  			const data = Object.assign({},values,{_id: this.state.defaultData.key})
+  			const data = Object.assign({},values,{_id: this.state.defaultData.key, user_name: ''})
   			if (!err) {
   				this.updateRoom(data)
   				this.setState({
@@ -109,20 +110,23 @@ class RoomTable extends React.Component {
 		    	width: 100,
 		    	dataIndex: 'room_name',
 		    	key: 'room_name',
-		    	fixed: 'left',
 		    	render: (text, record) => (
 		    		<a onClick={()=>{this.props.history.push(`/admin/house/roominfoform/${record.key}`)}}>{text}</a>
 		    	)
 		  	},
-		  	{ title: '户型', width: 100, dataIndex: 'door_model', key: 'door_model' },
+		  	{
+		  		title: '业主', width: 100, dataIndex: 'user_name', key: 'user_name'
+		  	},
+		  	{ title: '户型', dataIndex: 'door_model', key: 'door_model' },
 		  	{ title: '楼层', dataIndex: 'room_floor', key: 'room_floor' },
 		  	{ title: '建筑面积', dataIndex: 'constructor_area', key: 'constructor_area' },
 		  	{ title: '使用面积', dataIndex: 'using_area', key: 'using_area' },
-		  	{ title: '房间状态', dataIndex: 'note', key: 'note' },
+		  	{
+		  		title: '房间状态', dataIndex: 'room_status', key: 'room_status'
+		  	},
 		  	{
 			    title: '操作',
 			    key: 'operation',
-			    fixed: 'right',
 			    width: 100,
 			    render: (text, record) => (
 			    	<span>
@@ -139,11 +143,12 @@ class RoomTable extends React.Component {
 	        data.push({
 	          key: v._id,
 	          room_name:  v.room_name,
+	          user_name: v.user_name||'-',
 	          door_model: v.door_model,
 	          room_floor: v.room_floor||'',
 	          constructor_area: v.constructor_area||'',
 	          using_area: v.using_area||'',
-	          note: v.note||'',
+	          room_status: v.room_status==='待售'?<Tag color="yellow">待售</Tag>:<Tag color="green">{v.room_status}</Tag>,
 	        })
 	      })
 	    }
@@ -158,7 +163,7 @@ class RoomTable extends React.Component {
 	    	<div className="management">
 	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
 	    		<Button className="management_button" onClick={()=>{this.props.history.goBack()}}>返回</Button>
-	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 1300 }} />
+	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 800 }} />
 
 	    		<RoomModal
 					title={this.state.isAdd?'新增':'修改'}
