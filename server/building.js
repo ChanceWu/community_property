@@ -4,6 +4,7 @@ const utils = require('utility')
 const Router = express.Router()
 const model = require('./model')
 const Building = model.getModel('building')
+// Building.remove({}, function(e,d){})
 
 Router.get('/getBuildingList', function(req, res) {
 	const { community_id } = req.query
@@ -45,6 +46,15 @@ Router.post('/deleteBuilding', function(req, res) {
 	})
 })
 
+Router.get('/getBuildingName', function(req, res) {
+	const {community_id} = req.query
+	Building.find({community_id}, '_id building_name', function(err, doc) {
+		if (err) {
+			return res.json({code: 1, msg: '获取楼栋名称失败'})
+		}
+		return res.json({code: 0, data: doc, msg: '获取楼栋名称成功'})
+	})
+})
 
 
 module.exports = Router

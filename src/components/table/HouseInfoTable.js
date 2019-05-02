@@ -13,53 +13,51 @@ class HouseInfoTable extends React.Component {
 		  key: 'address',
 		}, {
 		  title: '户主',
-		  dataIndex: 'owner',
-		  key: 'owner',
+		  dataIndex: 'user_name',
+		  key: 'user_name',
+		}, {
+		  title: '户型',
+		  dataIndex: 'door_model',
+		  key: 'door_model',
 		}, {
 		  title: '使用状态',
-		  dataIndex: 'status',
-		  key: 'age',
+		  dataIndex: 'room_status',
+		  key: 'room_status',
 		}, {
-		  title: '入住时间',
-		  dataIndex: 'Check_in_time',
-		  key: 'Check_in_time',
+		  title: '物业类型',
+		  dataIndex: 'property_type',
+		  key: 'property_type',
 		}, {
-		  title: '认购证号',
-		  dataIndex: 'Subscription_card_number',
-		  key: 'Subscription_card_number',
+		  title: '装修',
+		  dataIndex: 'room_decorate',
+		  key: 'room_decorate',
 		}, {
-		  title: '房产证号',
-		  dataIndex: 'House_property_card_number',
-		  key: 'House_property_card_number',
+		  title: '房间性质',
+		  dataIndex: 'room_nature',
+		  key: 'room_nature',
+		}, {
+		  title: '朝向',
+		  dataIndex: 'room_toward',
+		  key: 'room_toward',
 		}];
 
-		const data = [{
-			key: '1',
-			address: '东六322',
-			owner: '男',
-			status: '自住',
-			Check_in_time: '2018-01-11',
-			Subscription_card_number: '222222',
-			House_property_card_number: '1111111'
-		}, {
-			key: '2',
-			address: '东六312',
-			owner: '男',
-			status: '自住',
-			Check_in_time: '2018-01-21',
-			Subscription_card_number: '5555555',
-			House_property_card_number: '1111111'
-		}];
-		/*this.props.members.forEach((v, i) => {
-			data.push({
-				key: v._id,
-			  	name: v.name,
-			  	gender: v.gender?'男':'女',
-			  	age: v.age || '',
-			  	relationship: v.relationship || '',
-			  	telephone: v.telephone || '',
+		const data = [];
+		if (this.props.roomList) {
+			this.props.roomList.forEach((v, i) => {
+				data.push({
+					key: v._id,
+				  	address: v.unit_id?`${v.unit_id.building_id.community_id.community_name}/${v.unit_id.building_id.building_name}/${v.unit_id.unit_name}/${v.room_name}`:'',
+				  	user_name: v.user_name||'',
+				  	door_model: v.door_model || '',
+				  	room_status: v.room_status==='已售'?'自住':'出租',
+				  	property_type: v.property_type || '',
+				  	room_decorate: v.room_decorate || '',
+				  	room_nature: v.room_nature || '',
+				  	room_toward: v.room_toward || '',
+				})
 			})
-		})*/
+		}
+		
 		return (
 			<div>
 				<Table columns={columns} dataSource={data} />

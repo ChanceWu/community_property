@@ -5,7 +5,7 @@ class InfoList extends React.Component {
   render() {
     const columns = [
       {
-        title: '姓名', width: 100, dataIndex: 'name', key: 'name', fixed: 'left',
+        title: '姓名', width: 100, dataIndex: 'name', key: 'name'
       },
       { title: '性别', width: 100, dataIndex: 'gender', key: 'gender' },
       { title: '联系电话', dataIndex: 'telephone', key: 'telephone' },
@@ -17,18 +17,15 @@ class InfoList extends React.Component {
         title: '家属人数',
         dataIndex: 'familyNum',
         key: 'familyNum',
-        fixed: 'right',
       },
       {
         title: '住宅数量',
         dataIndex: 'roomNum',
         key: 'roomNum',
-        fixed: 'right',
       },
       {
         title: '操作',
         key: 'operation',
-        fixed: 'right',
         width: 100,
         render: (text, record) => (
           <span>

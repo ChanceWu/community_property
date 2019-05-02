@@ -1,29 +1,28 @@
 import React from 'react'
 import { message, Collapse, Input, Button, Radio, Icon } from 'antd'
 import { connect } from 'react-redux'
-import { getHouseInfo } from '../../../actions/house'
+import { getRoomByUser } from '../../../actions/room'
 import HouseInfoTable from '../../../components/table/HouseInfoTable'
 
 const Panel = Collapse.Panel;
 
 @connect(
-	state=>state,
-	{getHouseInfo}
+	state=>state.room,
+	{getRoomByUser}
 )
 class HouseInfo extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			currentUserId: JSON.parse(localStorage.getItem('user'))._id,
 			name: JSON.parse(localStorage.getItem('user')).name,
-			houseList: []
+			roomList: '',
 		}
 	}
 	componentDidMount() {
-		const {currentUserId, name} = this.state
-		this.props.getHouseInfo(currentUserId).then(()=>{
+		const {name} = this.state
+		this.props.getRoomByUser(name).then(()=>{
 			this.setState({
-				houseList: {name, ...this.props.house.house}
+				roomList: this.props.room
 			})
 		})
 	}
@@ -33,7 +32,7 @@ class HouseInfo extends React.Component {
 				<Collapse defaultActiveKey={['1']}>
 				    <Panel header="房屋信息列表" key="1">
 				      	<HouseInfoTable
-				      		houseList={this.state.houseList}
+				      		roomList={this.state.roomList}
 				      	/>
 				    </Panel>
 			  	</Collapse>

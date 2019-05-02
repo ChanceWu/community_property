@@ -7,6 +7,8 @@ const {
 	DEL_ROOM_SUCCESS,
 	UPDATE_ROOM_SUCCESS,
 	GET_ONEROOM_SUCCESS,
+	GET_ROOMBYUSESR_SUCCESS,
+	GET_ROOMNAME_SUCCESS,
 
 	ERROR_MSG,
 } = actions;
@@ -89,6 +91,35 @@ export function deleteRoom(id) {
 				})
 			} else {
 				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
+
+export function getRoomByUser(user_name) {
+	return async(dispatch)=>{
+		await axios.get(`/room/getRoomByUser?user_name=${user_name}`).then(res=>{
+			if (res.status===200&&res.data.code===0) {
+				dispatch({
+					type: GET_ROOMBYUSESR_SUCCESS,
+					data: res.data.data,
+				})
+			} else {
+				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
+
+export function getRoomName(unit_id) {
+	return async(dispatch)=>{
+		await axios.get(`/room/getRoomName?unit_id=${unit_id}`).then(res=>{
+			if (res.status===200&&res.data.code===0) {
+				dispatch({
+					type: GET_ROOMNAME_SUCCESS,
+					data: res.data.data,
+					msg: res.data.msg,
+				})
 			}
 		})
 	}

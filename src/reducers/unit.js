@@ -5,6 +5,7 @@ const {
 	ADD_UNIT_SUCCESS,
 	DEL_UNIT_SUCCESS,
 	UPDATE_UNIT_SUCCESS,
+	GET_UNITNAME_SUCCESS,
 } = actions;
 
 export default (state={}, action) => {
@@ -28,6 +29,12 @@ export default (state={}, action) => {
 		case DEL_UNIT_SUCCESS:
 			return {
 				...state,
+				msg: action.msg
+			}
+		case GET_UNITNAME_SUCCESS:
+			return {
+				...state,
+				unitName: action.data,
 				msg: action.msg
 			}
 		default:

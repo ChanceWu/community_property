@@ -2,11 +2,10 @@ import axios from 'axios';
 import actions from '../constants/actions';
 
 const {
-	GET_COSTLIST_SUCCESS,
-	ADD_COST_SUCCESS,
-	DEL_COST_SUCCESS,
-	UPDATE_COST_SUCCESS,
-	GET_COSTNAME_SUCCESS,
+	GET_CHARGELIST_SUCCESS,
+	ADD_CHARGE_SUCCESS,
+	DEL_CHARGE_SUCCESS,
+	UPDATE_CHARGE_SUCCESS,
 
 	ERROR_MSG,
 } = actions;
@@ -17,12 +16,12 @@ function errorMsg(msg) {
 }
 
 // 费用信息
-export function getCostList(charge_type) {
+export function getChargeList() {
 	return async(dispatch)=>{
-		await axios.get('/cost/getCostList', { params: {charge_type} }).then(res=>{
+		await axios.get('/charge/getChargeList').then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
-					type: GET_COSTLIST_SUCCESS,
+					type: GET_CHARGELIST_SUCCESS,
 					data: res.data.data,
 					msg: res.data.msg
 				});
@@ -33,12 +32,12 @@ export function getCostList(charge_type) {
 	}
 }
 
-export function addCost(values) {
+export function addCharge(values) {
 	return async(dispatch)=>{
-		await axios.post('/cost/addCost', {...values}).then(res=>{
+		await axios.post('/charge/addCharge', {...values}).then(res=>{
 			if (res.status===200&&res.data.code===0) {
 				dispatch({
-					type: ADD_COST_SUCCESS,
+					type: ADD_CHARGE_SUCCESS,
 					msg: res.data.msg
 				})
 			} else {
@@ -48,12 +47,12 @@ export function addCost(values) {
 	}
 }
 
-export function updateCost(values) {
+export function updateCharge(values) {
 	return async(dispatch)=>{
-		await axios.post('/cost/updateCost', {...values}).then(res=>{
+		await axios.post('/charge/updateCharge', {...values}).then(res=>{
 			if (res.status===200&&res.data.code===0) {
 				dispatch({
-					type: UPDATE_COST_SUCCESS,
+					type: UPDATE_CHARGE_SUCCESS,
 					msg: res.data.msg,
 				})
 			} else {
@@ -63,30 +62,16 @@ export function updateCost(values) {
 	}
 }
 
-export function deleteCost(id) {
+export function deleteCharge(id) {
 	return async(dispatch)=>{
-		await axios.post('/cost/deleteCost', {_id: id}).then(res=>{
+		await axios.post('/charge/deleteCharge', {_id: id}).then(res=>{
 			if (res.status===200&&res.data.code===0) {
 				dispatch({
-					type: DEL_COST_SUCCESS,
+					type: DEL_CHARGE_SUCCESS,
 					msg: res.data.msg,
 				})
 			} else {
 				dispatch(errorMsg(res.data.msg))
-			}
-		})
-	}
-}
-
-export function getCostName() {
-	return async(dispatch)=>{
-		await axios.get('/cost/getCostName').then(res=>{
-			if (res.status===200&&res.data.code===0) {
-				dispatch({
-					type: GET_COSTNAME_SUCCESS,
-					data: res.data.data,
-					msg: res.data.msg,
-				})
 			}
 		})
 	}

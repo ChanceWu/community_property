@@ -6,6 +6,7 @@ const {
 	ADD_BUILDING_SUCCESS,
 	DEL_BUILDING_SUCCESS,
 	UPDATE_BUILDING_SUCCESS,
+	GET_BUILDINGNAME_SUCCESS,
 
 	ERROR_MSG,
 } = actions;
@@ -72,6 +73,20 @@ export function deleteBuilding(id) {
 				})
 			} else {
 				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
+
+export function getBuildingName(community_id) {
+	return async(dispatch)=>{
+		await axios.get(`/building/getBuildingName?community_id=${community_id}`).then(res=>{
+			if (res.status===200&&res.data.code===0) {
+				dispatch({
+					type: GET_BUILDINGNAME_SUCCESS,
+					data: res.data.data,
+					msg: res.data.msg,
+				})
 			}
 		})
 	}

@@ -8,6 +8,7 @@ import building from './building'
 import unit from './unit'
 import room from './room'
 import cost from './cost'
+import charge from './charge'
 import garage from './garage'
 
 export default combineReducers({
@@ -20,5 +21,6 @@ export default combineReducers({
 	unit,
 	room,
 	cost,
+	charge,
 	garage,
 })

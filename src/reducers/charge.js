@@ -1,40 +1,33 @@
 import actions from '../constants/actions'
 
 const {
-	GET_COSTLIST_SUCCESS,
-	ADD_COST_SUCCESS,
-	DEL_COST_SUCCESS,
-	UPDATE_COST_SUCCESS,
-	GET_COSTNAME_SUCCESS,
+	GET_CHARGELIST_SUCCESS,
+	ADD_CHARGE_SUCCESS,
+	DEL_CHARGE_SUCCESS,
+	UPDATE_CHARGE_SUCCESS,
 } = actions;
 
 export default (state={}, action) => {
 	switch(action.type) {
-		case GET_COSTLIST_SUCCESS:
+		case GET_CHARGELIST_SUCCESS:
 			return {
 				...state,
-				cost: action.data,
+				charge: action.data,
 				msg: action.msg
 			}
-		case ADD_COST_SUCCESS:
-			return {
-				...state,
-				msg: action.msg
-			}
-		case UPDATE_COST_SUCCESS:
+		case ADD_CHARGE_SUCCESS:
 			return {
 				...state,
 				msg: action.msg
 			}
-		case DEL_COST_SUCCESS:
+		case UPDATE_CHARGE_SUCCESS:
 			return {
 				...state,
 				msg: action.msg
 			}
-		case GET_COSTNAME_SUCCESS:
+		case DEL_CHARGE_SUCCESS:
 			return {
 				...state,
-				costName: action.data,
 				msg: action.msg
 			}
 		default:

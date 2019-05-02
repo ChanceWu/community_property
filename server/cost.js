@@ -52,4 +52,14 @@ Router.post('/updateCost', function(req, res) {
 	})
 })
 
+Router.get('/getCostName', function(req, res) {
+	Cost.find({}, '_id charge_name', function(err, doc) {
+		if (err) {
+			return res.json({code: 1, msg: '获取费用名称失败'})
+		}
+		return res.json({code: 0, data: doc, msg: '获取费用名称成功'})
+	})
+})
+
+
 module.exports = Router

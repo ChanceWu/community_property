@@ -13,6 +13,7 @@ import Information from './admin/owner/Information'
 import HouseManage from './admin/house/HouseManage'
 import ConventionalCost from './admin/cost/ConventionalCost'
 import EquallySharedCost from './admin/cost/EquallySharedCost'
+import ChargeManage from './admin/charge/ChargeManage'
 import GarageManage from './admin/garage/GarageManage'
 
 /*const WysiwygBundle = Loadable({ // 按需加载富文本配置
@@ -31,5 +32,6 @@ export default {
     HouseManage,
     ConventionalCost,
     EquallySharedCost,
+    ChargeManage,
     GarageManage,
 }

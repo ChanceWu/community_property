@@ -86,7 +86,11 @@ const models = {
 	// 楼栋
 	building: {
 		// 小区id
-		community_id: {'type': String, 'require': true},
+		// community_id: {'type': String, 'require': true},
+		community_id: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'community'
+		},
 		// 楼号
 		building_name: {'type': String, 'require': true},
 		// 楼宇功能
@@ -113,7 +117,11 @@ const models = {
 	// 单元
 	unit: {
 		// 楼栋id
-		building_id: {'type': String, 'require': true},
+		// building_id: {'type': String, 'require': true},
+		building_id: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'building'
+		},
 		// 单元号
 		unit_name: {'type': String, 'require': true},
 		// 开始楼层
@@ -130,7 +138,11 @@ const models = {
 	// 房间
 	room: {
 		// 单元id
-		unit_id: {'type': String, 'require': true},
+		// unit_id: {'type': String, 'require': true},
+		unit_id: {
+	        type: mongoose.Schema.Types.ObjectId,
+	        ref: 'unit'
+	    },
 		// 房间名称
 		room_name: {'type': String, 'require': true},
 		// 户型
@@ -167,7 +179,7 @@ const models = {
 		room_nature: {'type': String},
 		// 备注
 		note: {'type': String},
-		// 用户id
+		// 用户姓名
 		user_name: {'type': String},
 	},
 	// 费用种类
@@ -190,6 +202,42 @@ const models = {
 		over_day: {'type': String, 'require': true},
 		// 类型 常规费用 公摊费用
 		charge_type: {'type': String, 'require': true},
+	},
+	// 收费
+	charge: {
+		// 费用id
+		cost_id: {
+			type: mongoose.Schema.Types.ObjectId,
+	        ref: 'cost'
+		},
+		// 小区id
+		community_id: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'community'
+		},
+		// 楼栋id
+		building_id: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'building'
+		},
+		// 单元id
+		unit_id: {
+	        type: mongoose.Schema.Types.ObjectId,
+	        ref: 'unit'
+	    },
+		// 房间id
+		room_id: {
+			type: mongoose.Schema.Types.ObjectId,
+	        ref: 'room'
+		},
+		// 起始时间
+		start_time: {'type': String, 'require': true},
+		// 截止时间
+		end_time: {'type': String, 'require': true},
+		// 计费单位
+		charge_unit: {'type': String, 'require': true},
+		// 应缴费用
+		receive_charge: {'type': String, 'require': true},
 	},
 	// 车位管理
 	garage: {

@@ -6,6 +6,7 @@ const {
 	ADD_UNIT_SUCCESS,
 	DEL_UNIT_SUCCESS,
 	UPDATE_UNIT_SUCCESS,
+	GET_UNITNAME_SUCCESS,
 
 	ERROR_MSG,
 } = actions;
@@ -72,6 +73,20 @@ export function deleteUnit(id) {
 				})
 			} else {
 				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
+
+export function getUnitName(building_id) {
+	return async(dispatch)=>{
+		await axios.get(`/unit/getUnitName?building_id=${building_id}`).then(res=>{
+			if (res.status===200&&res.data.code===0) {
+				dispatch({
+					type: GET_UNITNAME_SUCCESS,
+					data: res.data.data,
+					msg: res.data.msg,
+				})
 			}
 		})
 	}

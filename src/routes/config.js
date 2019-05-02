@@ -21,6 +21,12 @@ export default {
                 { key: '/admin/expense/equallyshared', title: '公摊费用', component: 'EquallySharedCost'},
             ]
         },
+        {
+            key: '/admin/charge', title: '收费管理', icon: 'mobile',
+            subs: [
+                { key: '/admin/charge/chargemanage', title: '收费信息', component: 'ChargeManage'},
+            ]
+        },
         { key: '/admin/garage', title: '车位管理', icon: 'mobile', component: 'GarageManage' }
     ],
     user: [ // 菜单相关路由

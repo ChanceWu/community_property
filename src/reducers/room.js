@@ -6,6 +6,8 @@ const {
 	DEL_ROOM_SUCCESS,
 	UPDATE_ROOM_SUCCESS,
 	GET_ONEROOM_SUCCESS,
+	GET_ROOMBYUSESR_SUCCESS,
+	GET_ROOMNAME_SUCCESS,
 } = actions;
 
 export default (state={}, action) => {
@@ -35,6 +37,17 @@ export default (state={}, action) => {
 		case DEL_ROOM_SUCCESS:
 			return {
 				...state,
+				msg: action.msg
+			}
+		case GET_ROOMBYUSESR_SUCCESS:
+			return {
+				...state,
+				room: action.data
+			}
+		case GET_ROOMNAME_SUCCESS:
+			return {
+				...state,
+				roomName: action.data,
 				msg: action.msg
 			}
 		default:

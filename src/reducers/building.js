@@ -5,6 +5,7 @@ const {
 	ADD_BUILDING_SUCCESS,
 	DEL_BUILDING_SUCCESS,
 	UPDATE_BUILDING_SUCCESS,
+	GET_BUILDINGNAME_SUCCESS,
 } = actions;
 
 export default (state={}, action) => {
@@ -28,6 +29,12 @@ export default (state={}, action) => {
 		case DEL_BUILDING_SUCCESS:
 			return {
 				...state,
+				msg: action.msg
+			}
+		case GET_BUILDINGNAME_SUCCESS:
+			return {
+				...state,
+				buildingName: action.data,
 				msg: action.msg
 			}
 		default:
