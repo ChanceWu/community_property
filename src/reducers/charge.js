@@ -5,6 +5,7 @@ const {
 	ADD_CHARGE_SUCCESS,
 	DEL_CHARGE_SUCCESS,
 	UPDATE_CHARGE_SUCCESS,
+	GET_CHARGEBYUSER_SUCCESS,
 } = actions;
 
 export default (state={}, action) => {
@@ -28,6 +29,12 @@ export default (state={}, action) => {
 		case DEL_CHARGE_SUCCESS:
 			return {
 				...state,
+				msg: action.msg
+			}
+		case GET_CHARGEBYUSER_SUCCESS:
+			return {
+				...state,
+				charge: action.data,
 				msg: action.msg
 			}
 		default:

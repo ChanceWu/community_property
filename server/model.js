@@ -236,11 +236,13 @@ const models = {
 		end_time: {'type': String, 'require': true},
 		// 计费单位
 		charge_unit: {'type': String, 'require': true},
-		// 应缴费用
-		receive_charge: {'type': String, 'require': true},
+		// 是否支付
+		is_pay: {'type': Boolean, 'require': true},
 	},
 	// 车位管理
 	garage: {
+		// 业主
+		user_name: {'type': String, 'require': true},
 		// 所属房产
 		community_name: {'type': String, 'require': true},
 		// 车位编号

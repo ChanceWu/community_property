@@ -8,6 +8,7 @@ import UserHome from '../components/userHome/UserHome';
 
 import PersonInfo from './user/owner/PersonInfo'
 import HouseInfo from './user/owner/HouseInfo'
+import ChargeInfo from './user/charge/ChargeInfo'
 
 import Information from './admin/owner/Information'
 import HouseManage from './admin/house/HouseManage'
@@ -27,6 +28,7 @@ export default {
 
     PersonInfo,
     HouseInfo,
+    ChargeInfo,
     
     Information,
     HouseManage,

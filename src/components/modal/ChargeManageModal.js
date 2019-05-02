@@ -59,7 +59,7 @@ class ChargeManageModal extends React.Component {
 						    showSearch
 						    style={{ width: 236 }}
 						    placeholder="选择小区"
-						    onChange={this.communitySelect}
+						    onSelect={this.communitySelect}
 					  	>
 						    {
 						    	this.props.communityName&&
@@ -79,11 +79,12 @@ class ChargeManageModal extends React.Component {
 						    showSearch
 						    style={{ width: 236 }}
 						    placeholder="选择楼栋"
-						    onChange={this.buildingSelect}
+						    onSelect={this.buildingSelect}
 					  	>
 						    {
-						    	this.props.buildingName&&
+						    	this.props.buildingName?
 						    	this.props.buildingName.map(v=><Option key={v._id} value={v._id}>{v.building_name}</Option>)
+						    	:<Option key={defaultData.building_id} value={defaultData.building_id}>{defaultData.building_name}</Option>
 						    }
 				  		</Select>
 		          	)}
@@ -99,11 +100,12 @@ class ChargeManageModal extends React.Component {
 						    showSearch
 						    style={{ width: 236 }}
 						    placeholder="选择单元"
-						    onChange={this.unitSelect}
+						    onSelect={this.unitSelect}
 					  	>
 						    {
-						    	this.props.unitName&&
+						    	this.props.unitName?
 						    	this.props.unitName.map(v=><Option key={v._id} value={v._id}>{v.unit_name}</Option>)
+						    	:<Option key={defaultData.unit_id} value={defaultData.unit_id}>{defaultData.unit_name}</Option>
 						    }
 				  		</Select>
 		          	)}
@@ -121,15 +123,16 @@ class ChargeManageModal extends React.Component {
 						    placeholder="选择房间"
 					  	>
 						    {
-						    	this.props.roomName&&
+						    	this.props.roomName?
 						    	this.props.roomName.map(v=><Option key={v._id} value={v._id}>{v.room_name}</Option>)
+						    	:<Option key={defaultData.room_id} value={defaultData.room_id}>{defaultData.room_name}</Option>
 						    }
 				  		</Select>
 		          	)}
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="起始时间">
 		          	{getFieldDecorator('start_time', {
-		          		initialValue: defaultData?moment(defaultData.start_time, 'YYYY-MM-DD'):'',
+		          		initialValue: defaultData?moment(defaultData.start_time, 'YYYY-MM-DD'):moment('2015-09-13', 'YYYY-MM-DD'),
 		            	rules: [{
 		              		required: false,
 		              		message: 'Please input your nickname',
@@ -140,7 +143,7 @@ class ChargeManageModal extends React.Component {
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="截止时间">
 		          	{getFieldDecorator('end_time', {
-		          		initialValue: defaultData?moment(defaultData.end_time, 'YYYY-MM-DD'):'',
+		          		initialValue: defaultData?moment(defaultData.end_time, 'YYYY-MM-DD'):moment('2015-09-13', 'YYYY-MM-DD'),
 		            	rules: [{
 		              		required: false,
 		              		message: 'Please input your nickname',
@@ -157,6 +160,23 @@ class ChargeManageModal extends React.Component {
 		            	}],
 		          	})(
 		            	<Input placeholder="请输入计费单位" />
+		          	)}
+		        </Form.Item>
+		        <Form.Item {...formItemLayout} label="是否缴费">
+		          	{getFieldDecorator('is_pay', {
+		          		initialValue: defaultData?defaultData.is_pay:false,
+		            	rules: [{
+		              		required: false,
+		            	}],
+		          	})(
+		            	<Select
+						    showSearch
+						    style={{ width: 236 }}
+						    placeholder="选择是否缴费"
+					  	>
+						    <Option value={false}>未缴</Option>
+						    <Option value={true}>已缴</Option>
+				  		</Select>
 		          	)}
 		        </Form.Item>
 	        </Modal>

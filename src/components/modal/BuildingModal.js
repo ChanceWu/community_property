@@ -134,7 +134,7 @@ class BuildingModal extends React.Component {
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="竣工日期">
 		          	{getFieldDecorator('completion_date', {
-		          		initialValue: defaultData?moment(defaultData.completion_date, 'YYYY-MM-DD'):'',
+		          		initialValue: defaultData?moment(defaultData.completion_date, 'YYYY-MM-DD'):moment('2015-09-13', 'YYYY-MM-DD'),
 		            	rules: [{
 		              		required: false,
 		              		message: 'Please input your nickname',
@@ -145,7 +145,7 @@ class BuildingModal extends React.Component {
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="封顶日期">
 		          	{getFieldDecorator('cap_date', {
-		          		initialValue: defaultData?moment(defaultData.cap_date, 'YYYY-MM-DD'):'',
+		          		initialValue: defaultData?moment(defaultData.cap_date, 'YYYY-MM-DD'):moment('2015-09-13', 'YYYY-MM-DD'),
 		            	rules: [{
 		              		required: false,
 		              		message: 'Please input your nickname',

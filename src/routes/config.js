@@ -39,7 +39,7 @@ export default {
             ],
     	},
     	{ key: '/user/repair', title: '维修', icon: 'mobile', component: 'UserHome' },
-    	{ key: '/user/expense', title: '费用', icon: 'mobile', component: 'UserHome' },
+    	{ key: '/user/charge', title: '费用管理', icon: 'mobile', component: 'ChargeInfo' },
     	{ key: '/user/garage', title: '车位', icon: 'mobile', component: 'UserHome' },
     	{ key: '/user/complaint', title: '投诉反馈', icon: 'mobile', component: 'UserHome' },
     ]
