@@ -11,6 +11,7 @@ const Room = require('./room')
 const Cost = require('./cost')
 const Charge = require('./charge')
 const Garage = require('./garage')
+const Repair = require('./repair')
 const model = require('./model')
 // const Chat = model.getModel('chat')
 
@@ -46,6 +47,7 @@ app.use('/room', Room)
 app.use('/cost', Cost)
 app.use('/charge', Charge)
 app.use('/garage', Garage)
+app.use('/repair', Repair)
 
 /* 2019.4.17 暂时隐藏
 server.listen(9090, function() {

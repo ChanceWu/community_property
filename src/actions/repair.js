@@ -2,11 +2,11 @@ import axios from 'axios';
 import actions from '../constants/actions';
 
 const {
-	GET_GARAGELIST_SUCCESS,
-	ADD_GARAGE_SUCCESS,
-	DEL_GARAGE_SUCCESS,
-	UPDATE_GARAGE_SUCCESS,
-	GET_GARAGEBYUSER_SUCCESS,
+	GET_REPAIRLIST_SUCCESS,
+	ADD_REPAIR_SUCCESS,
+	DEL_REPAIR_SUCCESS,
+	UPDATE_REPAIR_SUCCESS,
+	GET_REPAIRBYUSER_SUCCESS,
 
 	ERROR_MSG,
 } = actions;
@@ -16,13 +16,13 @@ function errorMsg(msg) {
 	return {msg, type: ERROR_MSG}
 }
 
-// 楼栋信息
-export function getGarageList() {
+// 维修信息
+export function getRepairList() {
 	return async(dispatch)=>{
-		await axios.get('/garage/getGarageList').then(res=>{
+		await axios.get('/repair/getRepairList').then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
-					type: GET_GARAGELIST_SUCCESS,
+					type: GET_REPAIRLIST_SUCCESS,
 					data: res.data.data,
 					msg: res.data.msg
 				});
@@ -33,12 +33,12 @@ export function getGarageList() {
 	}
 }
 
-export function addGarage(values) {
+export function addRepair(values) {
 	return async(dispatch)=>{
-		await axios.post('/garage/addGarage', {...values}).then(res=>{
+		await axios.post('/repair/addRepair', {...values}).then(res=>{
 			if (res.status===200&&res.data.code===0) {
 				dispatch({
-					type: ADD_GARAGE_SUCCESS,
+					type: ADD_REPAIR_SUCCESS,
 					msg: res.data.msg
 				})
 			} else {
@@ -48,12 +48,12 @@ export function addGarage(values) {
 	}
 }
 
-export function updateGarage(values) {
+export function updateRepair(values) {
 	return async(dispatch)=>{
-		await axios.post('/garage/updateGarage', {...values}).then(res=>{
+		await axios.post('/repair/updateRepair', {...values}).then(res=>{
 			if (res.status===200&&res.data.code===0) {
 				dispatch({
-					type: UPDATE_GARAGE_SUCCESS,
+					type: UPDATE_REPAIR_SUCCESS,
 					msg: res.data.msg,
 				})
 			} else {
@@ -63,12 +63,12 @@ export function updateGarage(values) {
 	}
 }
 
-export function deleteGarage(id) {
+export function deleteRepair(id) {
 	return async(dispatch)=>{
-		await axios.post('/garage/deleteGarage', {_id: id}).then(res=>{
+		await axios.post('/repair/deleteRepair', {_id: id}).then(res=>{
 			if (res.status===200&&res.data.code===0) {
 				dispatch({
-					type: DEL_GARAGE_SUCCESS,
+					type: DEL_REPAIR_SUCCESS,
 					msg: res.data.msg,
 				})
 			} else {
@@ -78,12 +78,12 @@ export function deleteGarage(id) {
 	}
 }
 
-export function getGarageByUser(user_name) {
+export function getRepairByUser(user_id) {
 	return async(dispatch)=>{
-		await axios.get(`/garage/getGarageByUser?user_name=${user_name}`).then(res=>{
+		await axios.get('/repair/getRepairByUser', {params: {user_id}}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
-					type: GET_GARAGEBYUSER_SUCCESS,
+					type: GET_REPAIRBYUSER_SUCCESS,
 					data: res.data.data,
 					msg: res.data.msg
 				});

@@ -4,11 +4,13 @@ import { connect } from 'react-redux'
 import GarageManageTable from '../../../components/table/GarageManageTable'
 import { getGarageList, addGarage, updateGarage, deleteGarage } from '../../../actions/garage'
 import { getCommunityName } from '../../../actions/community'
+import { getOwnerName } from '../../../actions/admininfo'
 
 @connect(
 	state=>({
 		garage: state.garage,
 		community: state.community,
+		admininfo: state.admininfo,
 	}), {
 		getGarageList,
 		addGarage,
@@ -16,6 +18,7 @@ import { getCommunityName } from '../../../actions/community'
 		deleteGarage,
 
 		getCommunityName,
+		getOwnerName,
 	}
 )
 class GarageManage extends React.Component {
@@ -24,11 +27,13 @@ class GarageManage extends React.Component {
 		this.state = {
 			garageList: '',
 			communityName: '',
+			ownerName: '',
 		}
 	}
 	componentDidMount() {
 		this.getGarageList()
 		this.getCommunityName()
+		this.getOwnerName()
 	}
 	getGarageList = () => {
 		this.props.getGarageList().then(()=>{
@@ -62,12 +67,20 @@ class GarageManage extends React.Component {
 			})
 		})
 	}
+	getOwnerName = () => {
+		this.props.getOwnerName().then(()=>{
+			this.setState({
+				ownerName: this.props.admininfo.ownername
+			})
+		})
+	}
 	render() {
 		return (
 			<div className="management">
 				<GarageManageTable
 					garageList={this.state.garageList}
 					communityName={this.state.communityName}
+					ownerName={this.state.ownerName}
 					addGarage={this.addGarage}
 					updateGarage={this.updateGarage}
 					deleteGarage={this.deleteGarage}

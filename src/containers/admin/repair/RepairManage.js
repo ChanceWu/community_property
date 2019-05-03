@@ -1,9 +1,9 @@
 import React from 'react'
 import { message } from 'antd'
 import { connect } from 'react-redux'
-import ChargeManageTable from '../../../components/table/ChargeManageTable'
-import { getChargeList, addCharge, updateCharge, deleteCharge } from '../../../actions/charge'
-import { getCostName } from '../../../actions/cost'
+import RepairManageTable from '../../../components/table/RepairManageTable'
+import { getRepairList, addRepair, updateRepair, deleteRepair } from '../../../actions/repair'
+import { getOwnerName } from '../../../actions/admininfo'
 import { getCommunityName } from '../../../actions/community'
 import { getBuildingName } from '../../../actions/building'
 import { getUnitName } from '../../../actions/unit'
@@ -11,65 +11,65 @@ import { getRoomName } from '../../../actions/room'
 
 @connect(
 	state=>({
-		charge: state.charge,
-		cost: state.cost,
+		repair: state.repair,
+		admininfo: state.admininfo,
 		community: state.community,
 		building: state.building,
 		unit: state.unit,
 		room: state.room,
 	}), {
-		getChargeList,
-		addCharge,
-		updateCharge,
-		deleteCharge,
+		getRepairList,
+		addRepair,
+		updateRepair,
+		deleteRepair,
 
-		getCostName,
+		getOwnerName,
 		getCommunityName,
 		getBuildingName,
 		getUnitName,
 		getRoomName,
 	}
 )
-class ChargeManage extends React.Component {
+class RepairManage extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			chargeList: ''
+			repairList: ''
 		}
 	}
 	componentDidMount() {
-		this.getChargeList()
-		this.getCostName()
+		this.getRepairList()
+		this.getOwnerName()
 		this.getCommunityName()
 	}
-	getChargeList = () => {
-		this.props.getChargeList().then(()=>{
+	getRepairList = () => {
+		this.props.getRepairList().then(()=>{
 			this.setState({
-				chargeList: this.props.charge.charge
+				repairList: this.props.repair.repair
 			})
 		})
 	}
-	addCharge = (values) => {
+	addRepair = (values) => {
 		// const data = Object.assign({}, values, {charge_type: 'conventional'})
-		this.props.addCharge(values).then(()=>{
-			message.success(this.props.charge.msg)
-			this.getChargeList()
+		this.props.addRepair(values).then(()=>{
+			message.success(this.props.repair.msg)
+			this.getRepairList()
 		})
 	}
-	updateCharge = (values) => {
-		this.props.updateCharge(values).then(()=>{
-			message.success(this.props.charge.msg)
-			this.getChargeList()
+	updateRepair = (values) => {
+		this.props.updateRepair(values).then(()=>{
+			message.success(this.props.repair.msg)
+			this.getRepairList()
 		})
 	}
-	deleteCharge = (id) => {
-		this.props.deleteCharge(id).then(()=>{
-			message.success(this.props.charge.msg)
-			this.getChargeList()
+	deleteRepair = (id) => {
+		this.props.deleteRepair(id).then(()=>{
+			message.success(this.props.repair.msg)
+			this.getRepairList()
 		})
 	}
-	getCostName = () => {
-		this.props.getCostName()
+	getOwnerName = () => {
+		this.props.getOwnerName()
 	}
 	getCommunityName = () => {
 		this.props.getCommunityName()
@@ -86,13 +86,13 @@ class ChargeManage extends React.Component {
 	render() {
 		return (
 			<div className="management">
-				<ChargeManageTable
-					chargeList={this.state.chargeList}
-					addCharge={this.addCharge}
-					updateCharge={this.updateCharge}
-					deleteCharge={this.deleteCharge}
+				<RepairManageTable
+					repairList={this.state.repairList}
+					addRepair={this.addRepair}
+					updateRepair={this.updateRepair}
+					deleteRepair={this.deleteRepair}
 
-					costName={this.props.cost.costName||''}
+					ownerName={this.props.admininfo.ownername||''}
 					communityName={this.props.community.communityName||''}
 					buildingName={this.props.building.buildingName||''}
 					unitName={this.props.unit.unitName||''}
@@ -106,4 +106,4 @@ class ChargeManage extends React.Component {
 	}
 }
 
-export default ChargeManage
+export default RepairManage

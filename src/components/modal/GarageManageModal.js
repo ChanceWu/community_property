@@ -28,6 +28,26 @@ class GarageManageModal extends React.Component {
 		            	<Input placeholder="请输入车位编号" />
 		          	)}
 		        </Form.Item>
+		        <Form.Item {...formItemLayout} label="所属业主">
+		          	{getFieldDecorator('user_name', {
+		          		initialValue: defaultData?defaultData.user_name:'',
+		            	rules: [{
+		              		required: false,
+		              		message: '所属房产不能为空',
+		            	}],
+		          	})(
+		          		<Select
+						    showSearch
+						    style={{ width: 236 }}
+						    placeholder="选择所属业主"
+					  	>
+						    {
+						    	this.props.ownerName&&
+						    	this.props.ownerName.map(v=><Option key={v._id} value={v.name}>{v.name}</Option>)
+						    }
+				  		</Select>
+		          	)}
+		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="所属房产">
 		          	{getFieldDecorator('community_name', {
 		          		initialValue: defaultData?defaultData.community_name:'',

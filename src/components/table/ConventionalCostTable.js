@@ -67,9 +67,6 @@ class ConventionalCostTable extends React.Component {
 		    	dataIndex: 'charge_num',
 		    	key: 'charge_num',
 		    	fixed: 'left',
-		    	render: (text, record) => (
-		    		<a onClick={()=>{this.props.history.push(`/admin/house/building/${record.key}`)}}>{text}</a>
-		    	)
 		  	},
 		  	{ title: '费用名称', width: 100, dataIndex: 'charge_name', key: 'charge_name' },
 		  	{ title: '物业公司', dataIndex: 'company', key: 'company' },

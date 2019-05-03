@@ -1,40 +1,40 @@
 import actions from '../constants/actions'
 
 const {
-	GET_GARAGELIST_SUCCESS,
-	ADD_GARAGE_SUCCESS,
-	DEL_GARAGE_SUCCESS,
-	UPDATE_GARAGE_SUCCESS,
-	GET_GARAGEBYUSER_SUCCESS,
+	GET_REPAIRLIST_SUCCESS,
+	ADD_REPAIR_SUCCESS,
+	DEL_REPAIR_SUCCESS,
+	UPDATE_REPAIR_SUCCESS,
+	GET_REPAIRBYUSER_SUCCESS,
 } = actions;
 
 export default (state={}, action) => {
 	switch(action.type) {
-		case GET_GARAGELIST_SUCCESS:
+		case GET_REPAIRLIST_SUCCESS:
 			return {
 				...state,
-				garage: action.data,
+				repair: action.data,
 				msg: action.msg
 			}
-		case ADD_GARAGE_SUCCESS:
-			return {
-				...state,
-				msg: action.msg
-			}
-		case UPDATE_GARAGE_SUCCESS:
+		case ADD_REPAIR_SUCCESS:
 			return {
 				...state,
 				msg: action.msg
 			}
-		case DEL_GARAGE_SUCCESS:
+		case UPDATE_REPAIR_SUCCESS:
 			return {
 				...state,
 				msg: action.msg
 			}
-		case GET_GARAGEBYUSER_SUCCESS:
+		case DEL_REPAIR_SUCCESS:
 			return {
 				...state,
-				garage: action.data,
+				msg: action.msg
+			}
+		case GET_REPAIRBYUSER_SUCCESS:
+			return {
+				...state,
+				repair: action.data,
 				msg: action.msg
 			}
 		default:

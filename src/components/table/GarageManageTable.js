@@ -67,13 +67,11 @@ class GarageManageTable extends React.Component {
 		    	dataIndex: 'garage_num',
 		    	key: 'garage_num',
 		    	fixed: 'left',
-		    	render: (text, record) => (
-		    		<a onClick={()=>{this.props.history.push(`/admin/house/building/${record.key}`)}}>{text}</a>
-		    	)
 		  	},
 		  	{
-		  		title: '所属房产', width: 100, dataIndex: 'community_name', key: 'community_name', fixed: 'left',
+		  		title: '所属业主', width: 100, dataIndex: 'user_name', key: 'user_name', fixed: 'left',
 		  	},
+		  	{ title: '所属房产', width: 100, dataIndex: 'community_name', key: 'community_name' },
 		  	{ title: '车位类别', dataIndex: 'garage_category', key: 'garage_category' },
 		  	{ title: '管理类别', dataIndex: 'manage_category', key: 'manage_category' },
 		  	{ title: '车位类型', dataIndex: 'garage_type', key: 'garage_type' },
@@ -102,6 +100,7 @@ class GarageManageTable extends React.Component {
 	      this.props.garageList.forEach(v=>{
 	        data.push({
 	          key: v._id,
+	          user_name: v.user_name||'',
 	          garage_num:  v.garage_num,
 	          community_name: v.community_name,
 	          garage_category: v.garage_category||'',
@@ -136,6 +135,7 @@ class GarageManageTable extends React.Component {
 					handleCancel={this.handleCancel}
 					getFieldDecorator={getFieldDecorator}
 					communityName={this.props.communityName}
+					ownerName={this.props.ownerName}
 				/>
 	    	</div>
 	    )

@@ -45,4 +45,14 @@ Router.post('/deleteGarage', function(req, res) {
 	})
 })
 
+Router.get('/getGarageByUser', function(req, res) {
+	const { user_name } = req.query
+	Garage.find({user_name}, function(err, doc) {
+		if (err) {
+			return res.json({code: 1, msg: '获取车位信息失败'})
+		}
+		return res.json({code: 0, data: doc, msg: '获取车位信息成功'})
+	})
+})
+
 module.exports = Router
