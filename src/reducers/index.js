@@ -11,6 +11,7 @@ import cost from './cost'
 import charge from './charge'
 import garage from './garage'
 import repair from './repair'
+import complaint from './complaint'
 
 export default combineReducers({
 	auth,
@@ -25,4 +26,5 @@ export default combineReducers({
 	charge,
 	garage,
 	repair,
+	complaint,
 })

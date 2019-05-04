@@ -11,6 +11,7 @@ import HouseInfo from './user/owner/HouseInfo'
 import GarageInfo from './user/owner/GarageInfo'
 import ChargeInfo from './user/charge/ChargeInfo'
 import RepairInfo from './user/repair/RepairInfo'
+import ComplaintInfo from './user/complaint/ComplaintInfo'
 
 import Information from './admin/owner/Information'
 import HouseManage from './admin/house/HouseManage'
@@ -19,6 +20,7 @@ import EquallySharedCost from './admin/cost/EquallySharedCost'
 import ChargeManage from './admin/charge/ChargeManage'
 import GarageManage from './admin/garage/GarageManage'
 import RepairManage from './admin/repair/RepairManage'
+import ComplaintManage from './admin/complaint/ComplaintManage'
 
 /*const WysiwygBundle = Loadable({ // 按需加载富文本配置
     loader: () => import('./ui/Wysiwyg'),
@@ -34,6 +36,7 @@ export default {
     GarageInfo,
     ChargeInfo,
     RepairInfo,
+    ComplaintInfo,
     
     Information,
     HouseManage,
@@ -42,4 +45,5 @@ export default {
     ChargeManage,
     GarageManage,
     RepairManage,
+    ComplaintManage,
 }

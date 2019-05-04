@@ -5,7 +5,6 @@ export default {
         	key: '/admin/owner', title: '业主管理', icon: 'mobile',
         	subs: [
                 { key: '/admin/owner/infomation', title: '业主信息', component: 'Information'},
-                { key: '/admin/owner/complaint', title: '业主投诉', component: 'AdminHome'},
             ],
     	},
         {
@@ -33,7 +32,18 @@ export default {
                 { key: '/admin/repair/repairmanage', title: '维修信息', component: 'RepairManage'},
             ]
         },
-        { key: '/admin/garage', title: '车位管理', icon: 'mobile', component: 'GarageManage' }
+        {
+            key: '/admin/garage', title: '车位管理', icon: 'mobile',
+            subs: [
+                { key: '/admin/garage/garagemanage', title: '车位信息', component: 'GarageManage'},
+            ]
+        },
+        {
+            key: '/admin/complaint', title: '投诉管理', icon: 'mobile',
+            subs: [
+                { key: '/admin/complaint/complaintmanage', title: '投诉信息', component: 'ComplaintManage'},
+            ]
+        },
     ],
     user: [ // 菜单相关路由
         { key: '/user/home', title: '首页', icon: 'mobile', component: 'UserHome' },
@@ -48,6 +58,6 @@ export default {
     	{ key: '/user/repair', title: '维修', icon: 'mobile', component: 'RepairInfo' },
     	{ key: '/user/charge', title: '费用', icon: 'mobile', component: 'ChargeInfo' },
     	// { key: '/user/garage', title: '车位', icon: 'mobile', component: 'UserHome' },
-    	{ key: '/user/complaint', title: '投诉反馈', icon: 'mobile', component: 'UserHome' },
+    	{ key: '/user/complaint', title: '投诉反馈', icon: 'mobile', component: 'ComplaintInfo' },
     ]
 }

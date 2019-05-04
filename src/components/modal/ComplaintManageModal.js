@@ -3,7 +3,7 @@ import moment from 'moment'
 import { Form, Input, Button, Checkbox, Modal, Radio, Select, DatePicker } from 'antd';
 const Option = Select.Option;
 
-class RepairManageModal extends React.Component {
+class ComplaintManageModal extends React.Component {
 	communitySelect = (value) => {
 		this.props.getBuildingName(value)
 	}
@@ -141,7 +141,7 @@ class RepairManageModal extends React.Component {
 		          		<Input placeholder="联系电话不能为空" />
 		          	)}
 		        </Form.Item>
-		        <Form.Item {...formItemLayout} label="申请时间">
+		        <Form.Item {...formItemLayout} label="投诉时间">
 		          	{getFieldDecorator('create_time', {
 		          		initialValue: defaultData?moment(defaultData.create_time, 'YYYY-MM-DD'):moment('2015-09-13', 'YYYY-MM-DD'),
 		            	rules: [{
@@ -152,20 +152,9 @@ class RepairManageModal extends React.Component {
 		            	<DatePicker style={{ width: 236 }} />
 		          	)}
 		        </Form.Item>
-		        <Form.Item {...formItemLayout} label="维修内容">
-		          	{getFieldDecorator('repair_content', {
-		          		initialValue: defaultData?defaultData.repair_content:'',
-		            	rules: [{
-		              		required: false,
-		              		message: '维修内容不能为空',
-		            	}],
-		          	})(
-		          		<Input placeholder="维修内容不能为空" />
-		          	)}
-		        </Form.Item>
-		        <Form.Item {...formItemLayout} label="维修状态">
-		          	{getFieldDecorator('repair_status', {
-		          		initialValue: defaultData?defaultData.repair_status:'待审批',
+		        <Form.Item {...formItemLayout} label="投诉类别">
+		          	{getFieldDecorator('complaint_category', {
+		          		initialValue: defaultData?defaultData.complaint_category:'',
 		            	rules: [{
 		              		required: false,
 		              		message: 'Please input your nickname',
@@ -174,10 +163,42 @@ class RepairManageModal extends React.Component {
 		            	<Select
 						    showSearch
 						    style={{ width: 236 }}
-						    placeholder="选择维修状态"
+						    placeholder="选择投诉类别"
 					  	>
-						    <Option value="待审批">待审批</Option>
-						    <Option value="审批通过">审批通过</Option>
+						    <Option value="物业问题">物业问题</Option>
+						    <Option value="收费问题">收费问题</Option>
+						    <Option value="卫生问题">卫生问题</Option>
+						    <Option value="安全问题">安全问题</Option>
+				  		</Select>
+		          	)}
+		        </Form.Item>
+		        <Form.Item {...formItemLayout} label="投诉内容">
+		          	{getFieldDecorator('complaint_content', {
+		          		initialValue: defaultData?defaultData.complaint_content:'',
+		            	rules: [{
+		              		required: false,
+		              		message: '投诉内容不能为空',
+		            	}],
+		          	})(
+		          		<Input placeholder="投诉内容不能为空" />
+		          	)}
+		        </Form.Item>
+		        <Form.Item {...formItemLayout} label="投诉状态">
+		          	{getFieldDecorator('complaint_status', {
+		          		initialValue: defaultData?defaultData.complaint_status:'待受理',
+		            	rules: [{
+		              		required: false,
+		              		message: 'Please input your nickname',
+		            	}],
+		          	})(
+		            	<Select
+						    showSearch
+						    style={{ width: 236 }}
+						    placeholder="选择投诉状态"
+					  	>
+						    <Option value="待受理">待受理</Option>
+						    <Option value="受理中">受理中</Option>
+						    <Option value="受理完毕">受理完毕</Option>
 				  		</Select>
 		          	)}
 		        </Form.Item>
@@ -186,4 +207,4 @@ class RepairManageModal extends React.Component {
 	}
 }
 
-export default RepairManageModal
+export default ComplaintManageModal

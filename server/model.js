@@ -301,6 +301,44 @@ const models = {
 		repair_status: {'type': String, 'require': true},
 		// 维修内容
 		repair_content: {'type': String, 'require': true},
+	},
+	// 投诉反馈
+	complaint: {
+		// 小区id
+		community_id: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'community'
+		},
+		// 楼栋id
+		building_id: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'building'
+		},
+		// 单元id
+		unit_id: {
+	        type: mongoose.Schema.Types.ObjectId,
+	        ref: 'unit'
+	    },
+		// 房间id
+		room_id: {
+			type: mongoose.Schema.Types.ObjectId,
+	        ref: 'room'
+		},
+		// 业主id
+		user_id: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'user'
+		},
+		// 联系电话
+		telephone: {'type': String, 'require': true},
+		// 申请时间
+		create_time: {'type': String, 'require': true},
+		// 投诉类别
+		complaint_category: {'type': String, 'require': true},
+		// 投诉状态
+		complaint_status: {'type': String, 'require': true},
+		// 投诉内容
+		complaint_content: {'type': String, 'require': true},
 	}
 }
 

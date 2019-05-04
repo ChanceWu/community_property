@@ -1,8 +1,8 @@
 import React from 'react'
 import { message } from 'antd'
 import { connect } from 'react-redux'
-import { addRepair, getRepairByUser, updateRepair, deleteRepair } from '../../../actions/repair'
-import RepairInfoTable from '../../../components/table/RepairInfoTable'
+import { addComplaint, getComplaintByUser, updateComplaint, deleteComplaint } from '../../../actions/complaint'
+import ComplaintInfoTable from '../../../components/table/ComplaintInfoTable'
 import { getCommunityName } from '../../../actions/community'
 import { getBuildingName } from '../../../actions/building'
 import { getUnitName } from '../../../actions/unit'
@@ -10,16 +10,16 @@ import { getRoomName } from '../../../actions/room'
 
 @connect(
 	state=>({
-		repair: state.repair,
+		complaint: state.complaint,
 		community: state.community,
 		building: state.building,
 		unit: state.unit,
 		room: state.room,
 	}), {
-		getRepairByUser,
-		addRepair,
-		updateRepair,
-		deleteRepair,
+		getComplaintByUser,
+		addComplaint,
+		updateComplaint,
+		deleteComplaint,
 
 		getCommunityName,
 		getBuildingName,
@@ -27,42 +27,42 @@ import { getRoomName } from '../../../actions/room'
 		getRoomName,
 	}
 )
-class RepairInfo extends React.Component {
+class ComplaintInfo extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			user_id: JSON.parse(localStorage.getItem('user'))._id,
 			user_name: JSON.parse(localStorage.getItem('user')).name,
-			repairList: '',
+			complaintList: '',
 		}
 	}
 	componentDidMount() {
-		this.getRepairByUser()
+		this.getComplaintByUser()
 		this.getCommunityName()
 	}
-	getRepairByUser = () => {
-		this.props.getRepairByUser(this.state.user_id).then(()=>{
+	getComplaintByUser = () => {
+		this.props.getComplaintByUser(this.state.user_id).then(()=>{
 			this.setState({
-				repairList: this.props.repair.repair
+				complaintList: this.props.complaint.complaint
 			})
 		})
 	}
-	addRepair = (values) => {
-		this.props.addRepair(values).then(()=>{
-			message.success(this.props.repair.msg)
-			this.getRepairByUser()
+	addComplaint = (values) => {
+		this.props.addComplaint(values).then(()=>{
+			message.success(this.props.complaint.msg)
+			this.getComplaintByUser()
 		})
 	}
-	updateRepair = (values) => {
-		this.props.updateRepair(values).then(()=>{
-			message.success(this.props.repair.msg)
-			this.getRepairByUser()
+	updateComplaint = (values) => {
+		this.props.updateComplaint(values).then(()=>{
+			message.success(this.props.complaint.msg)
+			this.getComplaintByUser()
 		})
 	}
-	deleteRepair = (id) => {
-		this.props.deleteRepair(id).then(()=>{
-			message.success(this.props.repair.msg)
-			this.getRepairByUser()
+	deleteComplaint = (id) => {
+		this.props.deleteComplaint(id).then(()=>{
+			message.success(this.props.complaint.msg)
+			this.getComplaintByUser()
 		})
 	}
 	getCommunityName = () => {
@@ -80,13 +80,13 @@ class RepairInfo extends React.Component {
 	render() {
 		return (
 			<div className="management">
-				<RepairInfoTable
+				<ComplaintInfoTable
 					user_id={this.state.user_id}
 					user_name={this.state.user_name}
-					repairList={this.state.repairList}
-					addRepair={this.addRepair}
-					updateRepair={this.updateRepair}
-					deleteRepair={this.deleteRepair}
+					complaintList={this.state.complaintList}
+					addComplaint={this.addComplaint}
+					updateComplaint={this.updateComplaint}
+					deleteComplaint={this.deleteComplaint}
 
 					communityName={this.props.community.communityName||''}
 					buildingName={this.props.building.buildingName||''}
@@ -101,4 +101,4 @@ class RepairInfo extends React.Component {
 	}
 }
 
-export default RepairInfo
+export default ComplaintInfo
