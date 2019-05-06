@@ -7,6 +7,7 @@ const {
 	DEL_GARAGE_SUCCESS,
 	UPDATE_GARAGE_SUCCESS,
 	GET_GARAGEBYUSER_SUCCESS,
+	GET_GARAGENUM_SUCCESS,
 
 	ERROR_MSG,
 } = actions;
@@ -84,6 +85,22 @@ export function getGarageByUser(user_name) {
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_GARAGEBYUSER_SUCCESS,
+					data: res.data.data,
+					msg: res.data.msg
+				});
+			} else {
+				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
+
+export function getGarageNum(user_name='') {
+	return async(dispatch)=>{
+		await axios.get('/garage/getGarageNum', {params: {user_name}}).then(res=>{
+			if (res.status==200&&res.data.code===0) {
+				dispatch({
+					type: GET_GARAGENUM_SUCCESS,
 					data: res.data.data,
 					msg: res.data.msg
 				});

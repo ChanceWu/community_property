@@ -91,4 +91,24 @@ Router.get('/getRoomName', function(req, res) {
 	})
 })
 
+Router.get('/getRoomNum', function(req, res) {
+	const { user_name } = req.query
+	if (user_name) {
+		Room.count({user_name}, function(err, doc) {
+			if (err) {
+				return res.json({code: 1, msg: '获取房屋总数失败'})
+			}
+			return res.json({code: 0, data: doc, msg: '获取房屋总数成功'})
+		})
+	} else {
+		Room.count({}, function(err, doc) {
+			if (err) {
+				return res.json({code: 1, msg: '获取房屋总数失败'})
+			}
+			return res.json({code: 0, data: doc, msg: '获取房屋总数成功'})
+		})
+	}
+	
+})
+
 module.exports = Router

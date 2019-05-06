@@ -1,3 +1,6 @@
+启动后台 nodemon server.js
+启动前端 npm start
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

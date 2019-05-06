@@ -7,6 +7,7 @@ const {
 	ADD_FAMILYMEMBER_SUCCESS,
 	DEL_FAMILYMEMBER_SUCCESS,
 	UPDATE_FAMILYMEMBER_SUCCESS,
+	GET_FAMILYMEMBERNUM_SUCCESS,
 } = actions;
 
 const initState = {
@@ -35,7 +36,6 @@ export default (state={}, action) => {
 				msg: action.msg
 			}
 		case ADD_FAMILYMEMBER_SUCCESS:
-			console.log(action)
 			return {
 				...state,
 				members: action.data,
@@ -50,6 +50,12 @@ export default (state={}, action) => {
 			return {
 				...state,
 				members: action.data,
+				msg: action.msg
+			}
+		case GET_FAMILYMEMBERNUM_SUCCESS:
+			return {
+				...state,
+				membernum: action.data,
 				msg: action.msg
 			}
 		default:

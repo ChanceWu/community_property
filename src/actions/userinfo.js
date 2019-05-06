@@ -9,6 +9,7 @@ const {
 	ADD_FAMILYMEMBER_SUCCESS,
 	DEL_FAMILYMEMBER_SUCCESS,
 	UPDATE_FAMILYMEMBER_SUCCESS,
+	GET_FAMILYMEMBERNUM_SUCCESS,
 
 	ERROR_MSG,
 } = actions;
@@ -105,6 +106,22 @@ export function updateFamilyMember(values) {
 			if (res.status===200&&res.data.code===0) {
 				dispatch({
 					type: UPDATE_FAMILYMEMBER_SUCCESS,
+					data: res.data.data,
+					msg: res.data.msg
+				})
+			} else {
+				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
+
+export function getFamilyMemberNum(userid) {
+	return async(dispatch)=>{
+		await axios.get(`/user_familymember/getFamilyMemberNum?user_id=${userid}`).then(res=>{
+			if (res.status===200&&res.data.code===0) {
+				dispatch({
+					type: GET_FAMILYMEMBERNUM_SUCCESS,
 					data: res.data.data,
 					msg: res.data.msg
 				})

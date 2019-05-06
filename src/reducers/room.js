@@ -8,6 +8,7 @@ const {
 	GET_ONEROOM_SUCCESS,
 	GET_ROOMBYUSESR_SUCCESS,
 	GET_ROOMNAME_SUCCESS,
+	GET_ROOMNUM_SUCCESS,
 } = actions;
 
 export default (state={}, action) => {
@@ -48,6 +49,12 @@ export default (state={}, action) => {
 			return {
 				...state,
 				roomName: action.data,
+				msg: action.msg
+			}
+		case GET_ROOMNUM_SUCCESS:
+			return {
+				...state,
+				roomnum: action.data,
 				msg: action.msg
 			}
 		default:

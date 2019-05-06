@@ -3,9 +3,7 @@
  */
 // import Loadable from 'react-loadable';
 // import Loading from './widget/Loading';
-import AdminHome from '../components/adminHome/AdminHome';
-import UserHome from '../components/userHome/UserHome';
-
+import UserHome from './user/home/UserHome';
 import PersonInfo from './user/owner/PersonInfo'
 import HouseInfo from './user/owner/HouseInfo'
 import GarageInfo from './user/owner/GarageInfo'
@@ -13,6 +11,7 @@ import ChargeInfo from './user/charge/ChargeInfo'
 import RepairInfo from './user/repair/RepairInfo'
 import ComplaintInfo from './user/complaint/ComplaintInfo'
 
+import AdminHome from './admin/home/AdminHome';
 import Information from './admin/owner/Information'
 import HouseManage from './admin/house/HouseManage'
 import ConventionalCost from './admin/cost/ConventionalCost'

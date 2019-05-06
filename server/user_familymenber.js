@@ -70,7 +70,15 @@ Router.post('/updateFamilyMember', function(req, res) {
 	})
 })
 
-
+Router.get('/getFamilyMemberNum', function(req, res) {
+	const { user_id } = req.query
+	UserFamilyMember.count({user_id}, function(err, doc) {
+		if (err) {
+			return res.json({code: 1, msg: '获取家属总数失败'})
+		}
+		return res.json({code: 0, data: doc, msg: '获取家属总数成功'})
+	})
+})
 
 
 module.exports = Router

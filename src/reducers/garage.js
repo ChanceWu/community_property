@@ -6,6 +6,7 @@ const {
 	DEL_GARAGE_SUCCESS,
 	UPDATE_GARAGE_SUCCESS,
 	GET_GARAGEBYUSER_SUCCESS,
+	GET_GARAGENUM_SUCCESS,
 } = actions;
 
 export default (state={}, action) => {
@@ -35,6 +36,12 @@ export default (state={}, action) => {
 			return {
 				...state,
 				garage: action.data,
+				msg: action.msg
+			}
+		case GET_GARAGENUM_SUCCESS:
+			return {
+				...state,
+				garagenum: action.data,
 				msg: action.msg
 			}
 		default:

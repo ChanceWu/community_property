@@ -9,6 +9,7 @@ const {
 	GET_ONEROOM_SUCCESS,
 	GET_ROOMBYUSESR_SUCCESS,
 	GET_ROOMNAME_SUCCESS,
+	GET_ROOMNUM_SUCCESS,
 
 	ERROR_MSG,
 } = actions;
@@ -117,6 +118,20 @@ export function getRoomName(unit_id) {
 			if (res.status===200&&res.data.code===0) {
 				dispatch({
 					type: GET_ROOMNAME_SUCCESS,
+					data: res.data.data,
+					msg: res.data.msg,
+				})
+			}
+		})
+	}
+}
+
+export function getRoomNum(user_name='') {
+	return async(dispatch)=>{
+		await axios.get('/room/getRoomNum', {params: {user_name}}).then(res=>{
+			if (res.status===200&&res.data.code===0) {
+				dispatch({
+					type: GET_ROOMNUM_SUCCESS,
 					data: res.data.data,
 					msg: res.data.msg,
 				})

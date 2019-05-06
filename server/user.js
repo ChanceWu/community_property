@@ -183,6 +183,24 @@ Router.get('/getOwnerName', function(req, res) {
 	})
 })
 
+Router.get('/getOwnerNum', function(req, res) {
+	User.count({type: 'user'}, function(err, doc) {
+		if (err) {
+			return res.json({code: 1, msg: '获取业主总数失败'})
+		}
+		return res.json({code: 0, data: doc, msg: '获取业主总数成功'})
+	})
+})
+
+Router.get('/getAdminNum', function(req, res) {
+	User.count({type: 'admin'}, function(err, doc) {
+		if (err) {
+			return res.json({code: 1, msg: '获取管理员总数失败'})
+		}
+		return res.json({code: 0, data: doc, msg: '获取管理员总数成功'})
+	})
+})
+
 /* 2019.4.17 暂时隐藏
 Router.get('/getmsglist', function(req, res) {
 	const user = req.cookies.userid

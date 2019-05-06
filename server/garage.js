@@ -55,4 +55,24 @@ Router.get('/getGarageByUser', function(req, res) {
 	})
 })
 
+Router.get('/getGarageNum', function(req, res) {
+	const { user_name } = req.query
+	if (user_name) {
+		Garage.count({user_name}, function(err, doc) {
+			if (err) {
+				return res.json({code: 1, msg: '获取车位总数失败'})
+			}
+			return res.json({code: 0, data: doc, msg: '获取车位总数成功'})
+		})
+	} else {
+		Garage.count({}, function(err, doc) {
+			if (err) {
+				return res.json({code: 1, msg: '获取车位总数失败'})
+			}
+			return res.json({code: 0, data: doc, msg: '获取车位总数成功'})
+		})
+	}
+	
+})
+
 module.exports = Router
