@@ -1,6 +1,6 @@
 import React from 'react'
 import moment from 'moment'
-import { Table, Button, Form, Tag, Divider } from 'antd';
+import { Table, Button, Form, Tag, Divider, message } from 'antd';
 import {withRouter} from 'react-router-dom'
 
 @withRouter
@@ -37,37 +37,33 @@ class ChargeInfoTable extends React.Component {
   		})
   	}*/
   	handlePay = (record) => {
-  		const data = {
-  			_id: record.key,
-  			cost_id: record.cost_id,
-  			community_id: record.community_id,
-  			building_id: record.building_id,
-  			unit_id: record.unit_id,
-  			room_id: record.room_id,
-  			start_time: record.start_time,
-  			end_time: record.end_time,
-  			charge_unit: record.charge_unit,
-  			is_pay: true,
-  		}
   		console.log(record)
-  		console.log(data)
-  		this.props.updateCharge(data)
+  		if (record.is_pay==="已缴") {
+  			message.warning(`${record.charge_name}该费用已经完成支付了！`)
+  		} else {
+  			this.props.getPayUrl({
+  				subject: record.charge_name,
+  				body: `${record.company} ${record.community_name}-${record.building_name}-${record.unit_name}-${record.room_name}`,
+  				amount: `${record.receive_charge}.00`,
+  			})
+	  		this.props.updateCharge({
+	  			_id: record.key,
+	  			cost_id: record.cost_id,
+	  			community_id: record.community_id,
+	  			building_id: record.building_id,
+	  			unit_id: record.unit_id,
+	  			room_id: record.room_id,
+	  			start_time: record.start_time,
+	  			end_time: record.end_time,
+	  			charge_unit: record.charge_unit,
+	  			is_pay: true,
+	  		})
+  		}
   	}
   	render() {
   		const columns = [
-		  	{
-		    	title: '费用名称',
-		    	width: 100,
-		    	dataIndex: 'charge_name',
-		    	key: 'charge_name',
-		    	fixed: 'left',
-		    	render: (text, record) => (
-		    		<a onClick={()=>{this.props.history.push(`/admin/house/building/${record.key}`)}}>{text}</a>
-		    	)
-		  	},
-		  	{
-		  		title: '业主', width: 100, dataIndex: 'user_name', key: 'user_name', fixed: 'left'
-		  	},
+		  	{ title: '费用名称', width: 100, dataIndex: 'charge_name', key: 'charge_name', fixed: 'left' },
+		  	{ title: '业主', width: 100, dataIndex: 'user_name', key: 'user_name', fixed: 'left' },
 		  	{ title: '物业公司', width: 100, dataIndex: 'company', key: 'company' },
 		  	{ title: '小区', dataIndex: 'community_name', key: 'community_name' },
 		  	{ title: '楼栋', dataIndex: 'building_name', key: 'building_name' },

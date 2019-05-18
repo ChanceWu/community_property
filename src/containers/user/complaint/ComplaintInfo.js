@@ -1,5 +1,5 @@
 import React from 'react'
-import { message } from 'antd'
+import { message, Breadcrumb, Icon } from 'antd'
 import { connect } from 'react-redux'
 import { addComplaint, getComplaintByUser, updateComplaint, deleteComplaint } from '../../../actions/complaint'
 import ComplaintInfoTable from '../../../components/table/ComplaintInfoTable'
@@ -79,23 +79,33 @@ class ComplaintInfo extends React.Component {
 	}
 	render() {
 		return (
-			<div className="management">
-				<ComplaintInfoTable
-					user_id={this.state.user_id}
-					user_name={this.state.user_name}
-					complaintList={this.state.complaintList}
-					addComplaint={this.addComplaint}
-					updateComplaint={this.updateComplaint}
-					deleteComplaint={this.deleteComplaint}
+			<div>
+				<Breadcrumb>
+				    <Breadcrumb.Item href="/user/home">
+				      <Icon type="home" />
+				    </Breadcrumb.Item>
+				    <Breadcrumb.Item href="">
+				      <span>投诉反馈</span>
+				    </Breadcrumb.Item>
+			  	</Breadcrumb>
+				<div className="management">
+					<ComplaintInfoTable
+						user_id={this.state.user_id}
+						user_name={this.state.user_name}
+						complaintList={this.state.complaintList}
+						addComplaint={this.addComplaint}
+						updateComplaint={this.updateComplaint}
+						deleteComplaint={this.deleteComplaint}
 
-					communityName={this.props.community.communityName||''}
-					buildingName={this.props.building.buildingName||''}
-					unitName={this.props.unit.unitName||''}
-					roomName={this.props.room.roomName||''}
-					getBuildingName={this.getBuildingName}
-					getUnitName={this.getUnitName}
-					getRoomName={this.getRoomName}
-				/>
+						communityName={this.props.community.communityName||''}
+						buildingName={this.props.building.buildingName||''}
+						unitName={this.props.unit.unitName||''}
+						roomName={this.props.room.roomName||''}
+						getBuildingName={this.getBuildingName}
+						getUnitName={this.getUnitName}
+						getRoomName={this.getRoomName}
+					/>
+				</div>
 			</div>
 		)
 	}

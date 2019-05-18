@@ -79,4 +79,6 @@ export default keyMirror({
 	DEL_COMPLAINT_SUCCESS: null,
 	UPDATE_COMPLAINT_SUCCESS: null,
 	GET_COMPLAINTBYUSER_SUCCESS: null,
+
+	GET_PAYURL_SUCCESS: null,
 });

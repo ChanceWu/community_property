@@ -1,5 +1,5 @@
 import React from 'react'
-import { message, Collapse, Input, Button, Radio, Icon } from 'antd'
+import { message, Collapse, Input, Button, Radio, Icon, Breadcrumb } from 'antd'
 // import InfoList from '../../../components/table/InfoList'
 import { connect } from 'react-redux'
 import { authSuccess } from '../../../actions/auth'
@@ -114,29 +114,41 @@ class PersonInfo extends React.Component {
 		);
 		/*const { userinfo } = this.props*/
 		return (
-			<div style={{ marginTop: 24, padding: 24, background: '#fff', minHeight: 360 }}>
-				<Collapse defaultActiveKey={['1','2']}>
-				    <Panel header="基本信息" key="1" extra={genExtra()}>
-				      	<PersonInfoForm
-				      		data={this.state.data}
-				      		personInfoFormChange={this.personInfoFormChange}
-				      		updateInfo={this.updateInfo}
-				      	/>
-				    </Panel>
-				    <Panel header="家庭成员列表" key="2" extra={genExtra()}>
-				      	<FamilyMemberTable
-				      		members={this.state.members}
-				      		addFamilyMember={this.addFamilyMember}
-				      		deleteFamilyMember={this.deleteFamilyMember}
-				      		updateFamilyMember={this.updateFamilyMember}
-				      	/>
-				    </Panel>
-				    {/*<Panel header="This is panel header 3" key="3" extra={genExtra()}>
-				      	<div>3</div>
-				    </Panel>*/}
-			  	</Collapse>
+			<div>
+				<Breadcrumb>
+				    <Breadcrumb.Item href="/user/home">
+				      <Icon type="home" />
+				    </Breadcrumb.Item>
+				    <Breadcrumb.Item>
+				      <span>信息管理</span>
+				    </Breadcrumb.Item>
+				    <Breadcrumb.Item href="/user/owner/personinfo">
+				      <span>个人信息</span>
+				    </Breadcrumb.Item>
+			  	</Breadcrumb>
+				<div className="management">
+					<Collapse defaultActiveKey={['1','2']}>
+					    <Panel header="基本信息" key="1" extra={genExtra()}>
+					      	<PersonInfoForm
+					      		data={this.state.data}
+					      		personInfoFormChange={this.personInfoFormChange}
+					      		updateInfo={this.updateInfo}
+					      	/>
+					    </Panel>
+					    <Panel header="家庭成员列表" key="2" extra={genExtra()}>
+					      	<FamilyMemberTable
+					      		members={this.state.members}
+					      		addFamilyMember={this.addFamilyMember}
+					      		deleteFamilyMember={this.deleteFamilyMember}
+					      		updateFamilyMember={this.updateFamilyMember}
+					      	/>
+					    </Panel>
+					    {/*<Panel header="This is panel header 3" key="3" extra={genExtra()}>
+					      	<div>3</div>
+					    </Panel>*/}
+				  	</Collapse>
+				</div>
 			</div>
-			
 		)
 	}
 }

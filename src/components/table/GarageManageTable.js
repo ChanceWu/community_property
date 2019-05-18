@@ -1,7 +1,8 @@
 import React from 'react'
-import { Table, Button, Form, Tag, Divider } from 'antd';
+import { Table, Button, Form, Tag, Divider, Input } from 'antd';
 import GarageManageModal from '../modal/GarageManageModal'
 import {withRouter} from 'react-router-dom'
+import SearchButton from '../button/SearchButton'
 
 @withRouter
 class GarageManageTable extends React.Component {
@@ -125,6 +126,8 @@ class GarageManageTable extends React.Component {
 	    return (
 	    	<div>
 	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
+	    		<SearchButton />
+		        
 	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 1300 }} />
 
 	    		<GarageManageModal

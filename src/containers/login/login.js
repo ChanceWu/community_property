@@ -70,8 +70,8 @@ class Login extends React.Component {
                                 登录
                             </Button>
                             <p style={{display: 'flex', justifyContent: 'space-between'}}>
-                                <span onClick={this.register} >或 现在就去注册!</span>
-                                <span ><Icon type="github" />(第三方登录)</span>
+                                <span onClick={this.register} >现在就去注册!</span>
+                                {/*<span ><Icon type="github" />(第三方登录)</span>*/}
                             </p>
                         </FormItem>
                     </Form>
