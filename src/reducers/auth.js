@@ -30,6 +30,7 @@ export default (state=localStorage.getItem('user')?JSON.parse(localStorage.getIt
 			return {
 				...state,
 				redirectTo: getRedirectPath(action.payload),
+				msg: action.msg,
 				...action.payload
 			}
 		case ERROR_MSG:

@@ -1,6 +1,6 @@
 import React from 'react'
 // import { List, InputItem, WingBlank, WhiteSpace, Button } from 'antd'
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 // import Logo from '../../components/logo/logo'
@@ -26,7 +26,13 @@ class Login extends React.Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
-                this.props.login(values);
+                this.props.login(values).then(()=>{
+                    if (this.props.msg==='登陆成功') {
+                        message.success(this.props.msg)
+                    } else {
+                        message.error(this.props.msg)
+                    }
+                });
             }
         });
 	}
@@ -40,7 +46,7 @@ class Login extends React.Component {
                 <div className="login-form" >
                     <div className="login-logo">
                         <span>登 录</span>
-                        {this.props.msg?<p className="error_msg">{this.props.msg}</p>:null}
+                        {/*this.props.msg?<p className="error_msg">{this.props.msg}</p>:null*/}
                         {/*<PwaInstaller />*/}
                     </div>
                     <Form onSubmit={this.handleLogin} style={{maxWidth: '300px'}}>

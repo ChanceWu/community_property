@@ -5,6 +5,7 @@ import EchartsProjects from '../../../components/chart/EchartsProjects';
 import EchartsPie from '../../../components/chart/EchartsPie'
 import b1 from '../../../style/imgs/b1.jpg';
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { getOwnerNum, getAdminNum } from '../../../actions/admininfo'
 import { getGarageNum } from '../../../actions/garage'
 import { getRoomNum } from '../../../actions/room'
@@ -21,6 +22,7 @@ import { getRoomNum } from '../../../actions/room'
 		getRoomNum,
 	}
 )
+@withRouter
 class AdminHome extends React.Component {
 	componentDidMount() {
 		this.getOwnerNum()
@@ -47,7 +49,12 @@ class AdminHome extends React.Component {
                     <Col className="gutter-row" md={4}>
                         <div className="gutter-box">
                             <Card bordered={false}>
-                                <div className="clear y-center">
+                                <div
+                                    className="clear y-center"
+                                    onClick={()=>{
+                                        this.props.history.push('/admin/owner/infomation')
+                                    }}
+                                >
                                     <div className="pull-left mr-m">
                                         <Icon type="user" className="text-2x text-danger" />
                                     </div>
@@ -60,7 +67,12 @@ class AdminHome extends React.Component {
                         </div>
                         <div className="gutter-box">
                             <Card bordered={false}>
-                                <div className="clear y-center">
+                                <div
+                                    className="clear y-center"
+                                    onClick={()=>{
+                                        this.props.history.push('/admin/garage/garagemanage')
+                                    }}
+                                >
                                     <div className="pull-left mr-m">
                                         <Icon type="car" className="text-2x" />
                                     </div>
@@ -75,7 +87,12 @@ class AdminHome extends React.Component {
                     <Col className="gutter-row" md={4}>
                         <div className="gutter-box">
                             <Card bordered={false}>
-                                <div className="clear y-center">
+                                <div
+                                    className="clear y-center"
+                                    onClick={()=>{
+                                        this.props.history.push('/admin/house/infomation')
+                                    }}
+                                >
                                     <div className="pull-left mr-m">
                                         <Icon type="home" className="text-2x text-info" />
                                     </div>

@@ -103,7 +103,7 @@ Router.post('/login', function(req, res) {
 			return res.json({code: 1, msg: '用户名或密码错误'})
 		}
 		res.cookie('userid', doc._id);
-		return res.json({code: 0, data: doc})
+		return res.json({code: 0, data: doc, msg: '登陆成功'})
 	})
 })
 Router.post('/register', function(req, res) {
@@ -119,7 +119,7 @@ Router.post('/register', function(req, res) {
 			}
 			const {name, type, _id} = d;
 			res.cookie('userid', _id);
-			return res.json({code: 0, data: {type, _id, user: name}})
+			return res.json({code: 0, data: {type, _id, user: name, msg: '注册成功'}})
 		})
 		// User.create({user, type, pwd:md5Pwd(pwd)}, function(e, d) {
 		// 	if (e) {
