@@ -1,5 +1,5 @@
 import React from 'react'
-import { message } from 'antd'
+import { message, Breadcrumb, Icon } from 'antd'
 import { connect } from 'react-redux'
 import GarageManageTable from '../../../components/table/GarageManageTable'
 import { getGarageList, addGarage, updateGarage, deleteGarage } from '../../../actions/garage'
@@ -76,15 +76,28 @@ class GarageManage extends React.Component {
 	}
 	render() {
 		return (
-			<div className="management">
-				<GarageManageTable
-					garageList={this.state.garageList}
-					communityName={this.state.communityName}
-					ownerName={this.state.ownerName}
-					addGarage={this.addGarage}
-					updateGarage={this.updateGarage}
-					deleteGarage={this.deleteGarage}
-				/>
+			<div>
+				<Breadcrumb>
+				    <Breadcrumb.Item href="/admin/home">
+					      <Icon type="home" />
+					    </Breadcrumb.Item>
+					    <Breadcrumb.Item>
+					      <span>车位管理</span>
+					    </Breadcrumb.Item>
+					    <Breadcrumb.Item href="/admin/garage/garagemanage">
+					      <span>车位信息</span>
+					    </Breadcrumb.Item>
+			  	</Breadcrumb>
+				<div className="management">
+					<GarageManageTable
+						garageList={this.state.garageList}
+						communityName={this.state.communityName}
+						ownerName={this.state.ownerName}
+						addGarage={this.addGarage}
+						updateGarage={this.updateGarage}
+						deleteGarage={this.deleteGarage}
+					/>
+				</div>
 			</div>
 		)
 	}

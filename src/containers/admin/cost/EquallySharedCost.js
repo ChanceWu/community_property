@@ -1,5 +1,5 @@
 import React from 'react'
-import { message } from 'antd'
+import { message, Breadcrumb, Icon } from 'antd'
 import { connect } from 'react-redux'
 import ConventionalCostTable from '../../../components/table/ConventionalCostTable'
 import { getCostList, addCost, updateCost, deleteCost } from '../../../actions/cost'
@@ -51,13 +51,26 @@ class EquallySharedCost extends React.Component {
 	}
 	render() {
 		return (
-			<div className="management">
-				<ConventionalCostTable
-					costList={this.state.costList}
-					addCost={this.addCost}
-					updateCost={this.updateCost}
-					deleteCost={this.deleteCost}
-				/>
+			<div>
+				<Breadcrumb>
+				    <Breadcrumb.Item href="/admin/home">
+					      <Icon type="home" />
+					    </Breadcrumb.Item>
+					    <Breadcrumb.Item>
+					      <span>费用管理</span>
+					    </Breadcrumb.Item>
+					    <Breadcrumb.Item href="/admin/expense/equallyshared">
+					      <span>公摊费用信息</span>
+					    </Breadcrumb.Item>
+			  	</Breadcrumb>
+				<div className="management">
+					<ConventionalCostTable
+						costList={this.state.costList}
+						addCost={this.addCost}
+						updateCost={this.updateCost}
+						deleteCost={this.deleteCost}
+					/>
+				</div>
 			</div>
 		)
 	}

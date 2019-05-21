@@ -1,5 +1,5 @@
 import React from 'react'
-import { message } from 'antd'
+import { message, Breadcrumb, Icon } from 'antd'
 import { connect } from 'react-redux'
 import RepairManageTable from '../../../components/table/RepairManageTable'
 import { getRepairList, addRepair, updateRepair, deleteRepair } from '../../../actions/repair'
@@ -85,22 +85,35 @@ class RepairManage extends React.Component {
 	}
 	render() {
 		return (
-			<div className="management">
-				<RepairManageTable
-					repairList={this.state.repairList}
-					addRepair={this.addRepair}
-					updateRepair={this.updateRepair}
-					deleteRepair={this.deleteRepair}
+			<div>
+				<Breadcrumb>
+				    <Breadcrumb.Item href="/admin/home">
+					      <Icon type="home" />
+					    </Breadcrumb.Item>
+					    <Breadcrumb.Item>
+					      <span>维修管理</span>
+					    </Breadcrumb.Item>
+					    <Breadcrumb.Item href="/admin/repair/repairmanage">
+					      <span>维修信息</span>
+					    </Breadcrumb.Item>
+			  	</Breadcrumb>
+				<div className="management">
+					<RepairManageTable
+						repairList={this.state.repairList}
+						addRepair={this.addRepair}
+						updateRepair={this.updateRepair}
+						deleteRepair={this.deleteRepair}
 
-					ownerName={this.props.admininfo.ownername||''}
-					communityName={this.props.community.communityName||''}
-					buildingName={this.props.building.buildingName||''}
-					unitName={this.props.unit.unitName||''}
-					roomName={this.props.room.roomName||''}
-					getBuildingName={this.getBuildingName}
-					getUnitName={this.getUnitName}
-					getRoomName={this.getRoomName}
-				/>
+						ownerName={this.props.admininfo.ownername||''}
+						communityName={this.props.community.communityName||''}
+						buildingName={this.props.building.buildingName||''}
+						unitName={this.props.unit.unitName||''}
+						roomName={this.props.room.roomName||''}
+						getBuildingName={this.getBuildingName}
+						getUnitName={this.getUnitName}
+						getRoomName={this.getRoomName}
+					/>
+				</div>
 			</div>
 		)
 	}

@@ -339,6 +339,27 @@ const models = {
 		complaint_status: {'type': String, 'require': true},
 		// 投诉内容
 		complaint_content: {'type': String, 'require': true},
+	},
+	// 公告
+	announcement: {
+		// 公告分类
+		category: {'type': String, 'require': true},
+		// 开始时间
+		start_time: {'type': String, 'require': true},
+		// 结束时间
+		end_time: {'type': String, 'require': true},
+		// 公告主题
+		topic: {'type': String, 'require': true},
+		// 公告内容
+		content: {'type': String, 'require': true},
+		// 允许查看用户
+		user_scope: {'type': String, 'require': true},
+		// 管理员
+		admin_name: {'type': String, 'require': true},
+		// 公告状态
+		status: {'type': String, 'require': true},
+		// 录入时间
+		entry_time: {'type': String, 'require': true},
 	}
 }
 

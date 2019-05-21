@@ -13,6 +13,7 @@ import garage from './garage'
 import repair from './repair'
 import complaint from './complaint'
 import pay from './pay'
+import announcement from './announcement'
 
 export default combineReducers({
 	auth,
@@ -29,4 +30,5 @@ export default combineReducers({
 	repair,
 	complaint,
 	pay,
+	announcement,
 })

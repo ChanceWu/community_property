@@ -1,5 +1,5 @@
 import React from 'react'
-import { message } from 'antd'
+import { message, Breadcrumb, Icon } from 'antd'
 import { connect } from 'react-redux'
 import ChargeManageTable from '../../../components/table/ChargeManageTable'
 import { getChargeList, addCharge, updateCharge, deleteCharge } from '../../../actions/charge'
@@ -85,22 +85,35 @@ class ChargeManage extends React.Component {
 	}
 	render() {
 		return (
-			<div className="management">
-				<ChargeManageTable
-					chargeList={this.state.chargeList}
-					addCharge={this.addCharge}
-					updateCharge={this.updateCharge}
-					deleteCharge={this.deleteCharge}
+			<div>
+				<Breadcrumb>
+				    <Breadcrumb.Item href="/admin/home">
+					      <Icon type="home" />
+					    </Breadcrumb.Item>
+					    <Breadcrumb.Item>
+					      <span>收费管理</span>
+					    </Breadcrumb.Item>
+					    <Breadcrumb.Item href="/admin/charge/chargemanage">
+					      <span>收费信息</span>
+					    </Breadcrumb.Item>
+			  	</Breadcrumb>
+				<div className="management">
+					<ChargeManageTable
+						chargeList={this.state.chargeList}
+						addCharge={this.addCharge}
+						updateCharge={this.updateCharge}
+						deleteCharge={this.deleteCharge}
 
-					costName={this.props.cost.costName||''}
-					communityName={this.props.community.communityName||''}
-					buildingName={this.props.building.buildingName||''}
-					unitName={this.props.unit.unitName||''}
-					roomName={this.props.room.roomName||''}
-					getBuildingName={this.getBuildingName}
-					getUnitName={this.getUnitName}
-					getRoomName={this.getRoomName}
-				/>
+						costName={this.props.cost.costName||''}
+						communityName={this.props.community.communityName||''}
+						buildingName={this.props.building.buildingName||''}
+						unitName={this.props.unit.unitName||''}
+						roomName={this.props.room.roomName||''}
+						getBuildingName={this.getBuildingName}
+						getUnitName={this.getUnitName}
+						getRoomName={this.getRoomName}
+					/>
+				</div>
 			</div>
 		)
 	}

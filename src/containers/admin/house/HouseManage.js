@@ -1,5 +1,5 @@
 import React from 'react'
-import { message } from 'antd'
+import { message, Breadcrumb, Icon } from 'antd'
 import CommunityTable from '../../../components/table/CommunityTable'
 import { connect } from 'react-redux'
 import {
@@ -56,15 +56,27 @@ class HouseManage extends React.Component {
 	}
 	render() {
 		return (
-			<div className="management">
-				<CommunityTable
-					community={this.state.data}
-					addCommunity={this.addCommunity}
-					updateCommunity={this.updateCommunity}
-					deleteCommunity={this.deleteCommunity}
-				/>
+			<div>
+				<Breadcrumb>
+				    <Breadcrumb.Item href="/admin/home">
+					      <Icon type="home" />
+					    </Breadcrumb.Item>
+					    <Breadcrumb.Item>
+					      <span>楼盘管理</span>
+					    </Breadcrumb.Item>
+					    <Breadcrumb.Item href="/admin/house/infomation">
+					      <span>楼盘信息</span>
+					    </Breadcrumb.Item>
+			  	</Breadcrumb>
+				<div className="management">
+					<CommunityTable
+						community={this.state.data}
+						addCommunity={this.addCommunity}
+						updateCommunity={this.updateCommunity}
+						deleteCommunity={this.deleteCommunity}
+					/>
+				</div>
 			</div>
-			
 		)
 	}
 }

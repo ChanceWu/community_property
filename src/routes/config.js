@@ -44,6 +44,12 @@ export default {
                 { key: '/admin/complaint/complaintmanage', title: '投诉信息', component: 'ComplaintManage'},
             ]
         },
+        {
+            key: '/admin/announcement', title: '公告管理', icon: 'bell',
+            subs: [
+                { key: '/admin/announcement/announcementmanage', title: '公告信息', component: 'AnnouncementManage'},
+            ]
+        },
     ],
     user: [ // 菜单相关路由
         { key: '/user/home', title: '首页', icon: 'environment', component: 'UserHome' },

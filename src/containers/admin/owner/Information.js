@@ -1,5 +1,5 @@
 import React from 'react'
-import { message } from 'antd'
+import { message, Breadcrumb, Icon } from 'antd'
 import InfoList from '../../../components/table/InfoList'
 import { connect } from 'react-redux'
 import { getOwnerInfoList, deleteOwner } from '../../../actions/admininfo'
@@ -21,10 +21,22 @@ class Information extends React.Component {
 	}
 	render() {
 		return (
-			<div style={{ marginTop: 24, padding: 24, background: '#fff', minHeight: 360 }}>
-				<InfoList data={this.props.data} deleteOwner={this.deleteOwner} />
+			<div>
+				<Breadcrumb>
+				    <Breadcrumb.Item href="/admin/home">
+					      <Icon type="home" />
+					    </Breadcrumb.Item>
+					    <Breadcrumb.Item>
+					      <span>业主管理</span>
+					    </Breadcrumb.Item>
+					    <Breadcrumb.Item href="/admin/owner/infomation">
+					      <span>业主信息</span>
+					    </Breadcrumb.Item>
+			  	</Breadcrumb>
+				<div className="management">
+					<InfoList data={this.props.data} deleteOwner={this.deleteOwner} />
+				</div>
 			</div>
-			
 		)
 	}
 }

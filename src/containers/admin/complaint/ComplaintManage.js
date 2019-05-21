@@ -1,5 +1,5 @@
 import React from 'react'
-import { message } from 'antd'
+import { message, Breadcrumb, Icon } from 'antd'
 import { connect } from 'react-redux'
 import ComplaintManageTable from '../../../components/table/ComplaintManageTable'
 import { getComplaintList, addComplaint, updateComplaint, deleteComplaint } from '../../../actions/complaint'
@@ -85,22 +85,35 @@ class ComplaintManage extends React.Component {
 	}
 	render() {
 		return (
-			<div className="management">
-				<ComplaintManageTable
-					complaintList={this.state.complaintList}
-					addComplaint={this.addComplaint}
-					updateComplaint={this.updateComplaint}
-					deleteComplaint={this.deleteComplaint}
+			<div>
+				<Breadcrumb>
+				    <Breadcrumb.Item href="/admin/home">
+					      <Icon type="home" />
+					    </Breadcrumb.Item>
+					    <Breadcrumb.Item>
+					      <span>投诉管理</span>
+					    </Breadcrumb.Item>
+					    <Breadcrumb.Item href="/admin/repair/repairmanage">
+					      <span>投诉信息</span>
+					    </Breadcrumb.Item>
+			  	</Breadcrumb>
+				<div className="management">
+					<ComplaintManageTable
+						complaintList={this.state.complaintList}
+						addComplaint={this.addComplaint}
+						updateComplaint={this.updateComplaint}
+						deleteComplaint={this.deleteComplaint}
 
-					ownerName={this.props.admininfo.ownername||''}
-					communityName={this.props.community.communityName||''}
-					buildingName={this.props.building.buildingName||''}
-					unitName={this.props.unit.unitName||''}
-					roomName={this.props.room.roomName||''}
-					getBuildingName={this.getBuildingName}
-					getUnitName={this.getUnitName}
-					getRoomName={this.getRoomName}
-				/>
+						ownerName={this.props.admininfo.ownername||''}
+						communityName={this.props.community.communityName||''}
+						buildingName={this.props.building.buildingName||''}
+						unitName={this.props.unit.unitName||''}
+						roomName={this.props.room.roomName||''}
+						getBuildingName={this.getBuildingName}
+						getUnitName={this.getUnitName}
+						getRoomName={this.getRoomName}
+					/>
+				</div>
 			</div>
 		)
 	}
