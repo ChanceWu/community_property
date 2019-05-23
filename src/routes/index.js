@@ -9,6 +9,7 @@ import UnitTable from '../components/table/UnitTable';
 import RoomTable from '../components/table/RoomTable';
 import RoomInfoForm from '../components/form/RoomInfoForm'
 import AnnouncementDetailForm from '../components/form/AnnouncementDetailForm'
+import AnnouncementShowForm from '../components/form/AnnouncementShowForm'
 
 @connect(
     state=>state
@@ -50,6 +51,7 @@ class Routes extends React.Component {
                 <Route exact path='/admin/house/room/:id' component={RoomTable} />
                 <Route exact path='/admin/house/roominfoform/:id' component={RoomInfoForm} />
                 <Route exact path='/admin/announcement/detail/:id' component={AnnouncementDetailForm} />
+                <Route exact path='/user/announcement/detail/:id' component={AnnouncementShowForm} />
                 <Route render={() => <Redirect to="/404" />} />
             </Switch>
         )

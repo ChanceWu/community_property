@@ -360,6 +360,21 @@ const models = {
 		status: {'type': String, 'require': true},
 		// 录入时间
 		entry_time: {'type': String, 'require': true},
+	},
+	// 公告是否已读
+	announcement_read: {
+		// 公告id
+		announcement_id: {
+			'type':  mongoose.Schema.Types.ObjectId,
+			ref: 'announcement'
+		},
+		// 用户id
+		user_id: {
+			'type':  mongoose.Schema.Types.ObjectId,
+			ref: 'user'
+		},
+		// 是否已读
+		read: {'type': Boolean, 'require': true},
 	}
 }
 

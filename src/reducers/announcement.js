@@ -6,6 +6,10 @@ const {
 	UPDATE_ANNOUNCEMENT_SUCCESS,
 	GET_ANNOUNCEMENTBYUSER_SUCCESS,
 	GET_ONEANNOUNCEMENT_SUCCESS,
+	GET_ANNOUNCEMENTLISTBYSTATUS_SUCCESS,
+
+	GET_ANNOUNCEMENTREADLIST_SUCCESS,
+	GET_READANNOUNCEMENT_SUCCESS,
 } = actions;
 
 export default (state={}, action) => {
@@ -20,6 +24,12 @@ export default (state={}, action) => {
 			return {
 				...state,
 				oneannouncement: action.data,
+				msg: action.msg
+			}
+		case GET_ANNOUNCEMENTLISTBYSTATUS_SUCCESS:
+			return {
+				...state,
+				announcement: action.data,
 				msg: action.msg
 			}
 		case ADD_ANNOUNCEMENT_SUCCESS:
@@ -42,6 +52,17 @@ export default (state={}, action) => {
 				...state,
 				announcement: action.data,
 				msg: action.msg
+			}
+		case GET_ANNOUNCEMENTREADLIST_SUCCESS:
+			return {
+				...state,
+				unread: action.data.filter(v=>(!v.read)).length,
+				msg: action.msg
+			}
+		case GET_READANNOUNCEMENT_SUCCESS:
+			return {
+				...state,
+				unread: state.unread-action.num,
 			}
 		default:
 			return state

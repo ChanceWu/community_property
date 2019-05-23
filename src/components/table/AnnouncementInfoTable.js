@@ -1,11 +1,11 @@
 import React from 'react'
-import { Table, Button, Form, Tag, Divider, message } from 'antd';
+import { Table, Button, Form, Tag, Divider } from 'antd';
 import moment from 'moment'
 // import AnnouncementManageModal from '../modal/AnnouncementManageModal'
 import {withRouter} from 'react-router-dom'
 
 @withRouter
-class AnnouncementManageTable extends React.Component {
+class AnnouncementInfoTable extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -14,20 +14,6 @@ class AnnouncementManageTable extends React.Component {
 			defaultData: '',
 		}
 	}
-
-	showAddModal = () => {
-	    this.props.history.push(`/admin/announcement/detail/new`)
-  	}
-
-  	changeStatus = (record, status) => {
-  		if (record.status==='已发布'&&status==='已发布') {
-  			message.warning('该公告已经发布！')
-  		} else {
-  			const { key, ...data } = record
-	  		const values = {...data, status: status, _id: key}
-	  		this.props.changeStatus(values)
-  		}
-  	}
 
   	render() {
   		const columns = [
@@ -38,7 +24,7 @@ class AnnouncementManageTable extends React.Component {
 		  		key: 'topic',
 		  		fixed: 'left',
 		  		render: (text, record) => (
-		  			<a onClick={()=>{this.props.history.push(`/admin/announcement/detail/${record.key}`)}}>{text}</a>
+		  			<a onClick={()=>{this.props.history.push(`/user/announcement/detail/${record.key}`)}}>{text}</a>
 		  		),
 		  	},
 		  	{ title: '公告分类', dataIndex: 'category', key: 'category' },
@@ -48,21 +34,6 @@ class AnnouncementManageTable extends React.Component {
 		  	{ title: '管理员', dataIndex: 'admin_name', key: 'admin_name' },
 		  	{ title: '公告状态', dataIndex: 'status', key: 'status' },
 		  	{ title: '录入时间', dataIndex: 'entry_time', key: 'entry_time' },
-		  	{
-			    title: '操作',
-			    key: 'operation',
-			    fixed: 'right',
-			    width: 100,
-			    render: (text, record) => (
-			    	<span>
-				    	<Tag color="blue" onClick={()=>{this.changeStatus(record, '已发布')}}>发布</Tag>
-				      	<Divider type="vertical" />
-				      	<Tag color="yellow" onClick={()=>{this.changeStatus(record, '停用')}}>停用</Tag>
-				      	<Divider type="vertical" />
-				      	<Tag color="red" onClick={()=>{this.props.deleteAnnouncement(record.key)}}>删除</Tag>
-				    </span>
-			    ),
-		  	},
 		];
 	    console.log(this.props)
 	    const data = [];
@@ -86,7 +57,6 @@ class AnnouncementManageTable extends React.Component {
 	    const { getFieldDecorator } = this.props.form;
 	    return (
 	    	<div>
-	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
 	    		<Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />
 
 	    	</div>
@@ -94,4 +64,4 @@ class AnnouncementManageTable extends React.Component {
   	}
 }
 
-export default Form.create()(AnnouncementManageTable)
+export default Form.create()(AnnouncementInfoTable)

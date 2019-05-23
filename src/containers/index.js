@@ -10,6 +10,7 @@ import GarageInfo from './user/owner/GarageInfo'
 import ChargeInfo from './user/charge/ChargeInfo'
 import RepairInfo from './user/repair/RepairInfo'
 import ComplaintInfo from './user/complaint/ComplaintInfo'
+import AnnouncementInfo from './user/announcement/AnnouncementInfo'
 
 import AdminHome from './admin/home/AdminHome';
 import Information from './admin/owner/Information'
@@ -37,6 +38,7 @@ export default {
     ChargeInfo,
     RepairInfo,
     ComplaintInfo,
+    AnnouncementInfo,
     
     Information,
     HouseManage,

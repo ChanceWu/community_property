@@ -64,5 +64,6 @@ export default {
     	{ key: '/user/repair', title: '维修', icon: 'tool', component: 'RepairInfo' },
     	{ key: '/user/charge', title: '费用', icon: 'pay-circle', component: 'ChargeInfo' },
     	{ key: '/user/complaint', title: '投诉反馈', icon: 'message', component: 'ComplaintInfo' },
+        { key: '/user/announcement', title: '公告', icon: 'bell', component: 'AnnouncementInfo' },
     ]
 }

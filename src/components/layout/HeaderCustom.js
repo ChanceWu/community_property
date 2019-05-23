@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import avater from '../../style/imgs/b1.jpg';
 import SiderCustom from './SiderCustom';
 import { Menu, Icon, Layout, Badge, Popover } from 'antd';
-import { withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import browserCookie from 'browser-cookies'
 import { logout } from '../../actions/auth'
+import { getAnnouncementReadList } from '../../actions/announcement'
 import './layout.less'
 
 const { Header } = Layout;
@@ -16,17 +16,33 @@ const MenuItemGroup = Menu.ItemGroup;
 
 
 @connect(
-	state=>state.auth,
-	{logout}
+	state=>({
+        auth: state.auth,
+        announcement: state.announcement,
+    }), {
+        logout,
+        getAnnouncementReadList,
+    }
 )
 class HeaderCustom extends Component {
     state = {
         user: '',
         visible: false,
+        user_id: JSON.parse(localStorage.getItem('user'))._id,
+        unread: 0,
     };
     componentDidMount() {
-
+        this.props.getAnnouncementReadList(this.state.user_id).then(()=>{
+            this.setState({unread: this.props.announcement.unread})
+        })
     };
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.announcement.unread!==this.props.announcement.unread) {
+            this.setState({unread: nextProps.announcement.unread})
+        }
+    }
+
     /*screenFull = () => {
         if (screenfull.enabled) {
             screenfull.request();
@@ -44,7 +60,8 @@ class HeaderCustom extends Component {
 		this.props.logout()
     };
     render() {
-        const { redirectTo } = this.props;
+        const { unread } = this.state
+        const { redirectTo } = this.props.auth;
         console.log(this.props)
         return (
             <Header className="custom-theme header" >
@@ -62,14 +79,14 @@ class HeaderCustom extends Component {
                     {/*<Menu.Item key="full" onClick={this.screenFull} >
                         <Icon type="arrows-alt" onClick={this.screenFull} />
                     </Menu.Item>*/}
-                    <Menu.Item key="1">
-                        <Badge count={25} overflowCount={10} style={{marginLeft: 10}}>
+                    <Menu.Item key="1" onClick={()=>{this.props.history.push('/user/announcement')}}>
+                        <Badge count={unread} overflowCount={10} style={{marginLeft: 10}}>
                             <Icon type="notification" />
                         </Badge>
                     </Menu.Item>
                     <SubMenu title={<span className="avatar"><img src={avater} alt="头像" /><i className="on bottom b-white" /></span>}>
                         <MenuItemGroup title="用户中心">
-                            <Menu.Item key="setting:1">你好 - {this.props.name}</Menu.Item>
+                            <Menu.Item key="setting:1">你好 - {this.props.auth.name}</Menu.Item>
                             <Menu.Item key="setting:2">个人信息</Menu.Item>
                             <Menu.Item key="logout"><span onClick={this.logout}>退出登录</span></Menu.Item>
                         </MenuItemGroup>
