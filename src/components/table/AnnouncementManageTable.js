@@ -64,7 +64,6 @@ class AnnouncementManageTable extends React.Component {
 			    ),
 		  	},
 		];
-	    console.log(this.props)
 	    const data = [];
 	    if (this.props.announcementList) {
 	      this.props.announcementList.forEach(v=>{

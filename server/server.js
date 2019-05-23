@@ -16,7 +16,9 @@ const Complaint = require('./complaint')
 const Pay = require('./pay')
 const Announcement = require('./announcement')
 const model = require('./model')
-// const Chat = model.getModel('chat')
+const User = model.getModel('user')
+const announcement = model.getModel('announcement')
+const Announcement_read = model.getModel('announcement_read')
 
 
 // 新建app
@@ -26,12 +28,38 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server)
 io.on('connection', function(socket) {
 	// console.log('user login')
-	socket.on('sendmsg', function(data) {
-		console.log(data)
-		// io.emit('recvmsg', data)
+	socket.on('sendAnnouncement', function(data) {
+		const { _id, status } = data
+		// io.emit('recvmsg', data) 
 		// const {from, to, msg} = data
+		announcement.findByIdAndUpdate(_id, data, function(err, doc) {
+			if (err) {
+				return res.json({code: 1, msg: '修改公告信息失败'})
+			}
+			if (status==='已发布') {
+				User.find({type: 'user'}).then((doc) => {
+					let promises = doc.map((v, i)=>{
+						return Announcement_read.create({user_id: v._id, announcement_id: _id, read: false})
+					})
+					return Promise.all(promises)
+				})
+				.then((result)=>{
+					return new Promise((resolve, reject)=>{
+						resolve(result)
+					})
+				})
+				.then((result)=>{
+					return new Promise(()=>{
+						return io.emit('recvAnnouncement', {code: 0, msg: '公告发布成功', data: result})
+					})
+				})
+				.catch((err)=>{
+					return io.emit('recvAnnouncement', {code: 1, msg: '公告发布失败'})
+				})
+			}
+		})
 		// const chatid = [from, to].sort().join('_')
-		/*Chat.create({chatid, from, to, content: msg}, function(err, doc) {
+		/*Announcement_read.create({chatid, from, to, content: msg}, function(err, doc) {
 			io.emit('recvmsg', Object.assign({}, doc._doc))
 		})*/
 	})
@@ -58,7 +86,7 @@ app.use('/announcement', Announcement)
 server.listen(9090, function() {
 	console.log('Node app start at port 9090')
 })*/
-app.listen(9090, function() {
+server.listen(9090, function() {
 	console.log('Node app start at port 9090')
 })
 

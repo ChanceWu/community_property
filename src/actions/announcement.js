@@ -1,7 +1,7 @@
 import axios from 'axios';
 import actions from '../constants/actions';
 import io from 'socket.io-client'
-// const socket = io('ws://localhost:9093')
+const socket = io('ws://192.168.31.120:9090')
 
 const {
 	GET_ANNOUNCEMENTLIST_SUCCESS,
@@ -14,6 +14,7 @@ const {
 
 	GET_ANNOUNCEMENTREADLIST_SUCCESS,
 	GET_READANNOUNCEMENT_SUCCESS,
+	GET_RECVANNOUNCEMENT_SUCCESS,
 
 	ERROR_MSG,
 } = actions;
@@ -165,3 +166,23 @@ export function readAnnouncement(user_id) {
 	}
 }
 
+export function sendAnnouncement(data) {
+	return (dispatch)=>{
+		socket.emit('sendAnnouncement', data)
+	}
+}
+
+export function recvAnnouncement() {
+	return async(dispatch)=>{
+		await socket.on('recvAnnouncement', function(data) {
+			console.log(data)
+			if (data.code===0) {
+				dispatch({
+					type: GET_RECVANNOUNCEMENT_SUCCESS,
+					num: 1,
+					data: data.data,
+				})
+			}
+		})
+	}
+}

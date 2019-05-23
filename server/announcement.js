@@ -77,7 +77,6 @@ Router.post('/updateAnnouncement', function(req, res) {
 		}
 		if (status==='已发布') {
 			User.find({type: 'user'}).then((doc) => {
-				data1 = doc
 				let promises = doc.map((v, i)=>{
 					return Announcement_read.create({user_id: v._id, announcement_id: _id, read: false})
 				})

@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 // import screenfull from 'screenfull';
 import avater from '../../style/imgs/b1.jpg';
 import SiderCustom from './SiderCustom';
-import { Menu, Icon, Layout, Badge, Popover } from 'antd';
+import { Menu, Icon, Layout, Badge, Popover, message } from 'antd';
 import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import browserCookie from 'browser-cookies'
 import { logout } from '../../actions/auth'
-import { getAnnouncementReadList } from '../../actions/announcement'
+import { getAnnouncementReadList, recvAnnouncement } from '../../actions/announcement'
 import './layout.less'
 
 const { Header } = Layout;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
-
+@withRouter
 @connect(
 	state=>({
         auth: state.auth,
@@ -22,6 +22,7 @@ const MenuItemGroup = Menu.ItemGroup;
     }), {
         logout,
         getAnnouncementReadList,
+        recvAnnouncement,
     }
 )
 class HeaderCustom extends Component {
@@ -29,16 +30,19 @@ class HeaderCustom extends Component {
         user: '',
         visible: false,
         user_id: JSON.parse(localStorage.getItem('user'))._id,
+        user_type: JSON.parse(localStorage.getItem('user')).type,
         unread: 0,
     };
     componentDidMount() {
         this.props.getAnnouncementReadList(this.state.user_id).then(()=>{
+            this.props.recvAnnouncement()
             this.setState({unread: this.props.announcement.unread})
         })
     };
 
-    componentWillReceiveProps(nextProps) {
+    componentWillUpdate(nextProps, nextState) {
         if(nextProps.announcement.unread!==this.props.announcement.unread) {
+            console.log(nextProps.announcement.unread)
             this.setState({unread: nextProps.announcement.unread})
         }
     }
@@ -60,9 +64,8 @@ class HeaderCustom extends Component {
 		this.props.logout()
     };
     render() {
-        const { unread } = this.state
+        const { unread, user_type } = this.state
         const { redirectTo } = this.props.auth;
-        console.log(this.props)
         return (
             <Header className="custom-theme header" >
             	{redirectTo&&redirectTo==='/login'?<Redirect to={redirectTo}/>:null}
@@ -79,11 +82,21 @@ class HeaderCustom extends Component {
                     {/*<Menu.Item key="full" onClick={this.screenFull} >
                         <Icon type="arrows-alt" onClick={this.screenFull} />
                     </Menu.Item>*/}
-                    <Menu.Item key="1" onClick={()=>{this.props.history.push('/user/announcement')}}>
-                        <Badge count={unread} overflowCount={10} style={{marginLeft: 10}}>
-                            <Icon type="notification" />
-                        </Badge>
-                    </Menu.Item>
+                    {
+                        user_type==='admin'?(
+                            <Menu.Item key="1">
+                                <Badge count={0} overflowCount={10} style={{marginLeft: 10}}>
+                                    <Icon type="notification" />
+                                </Badge>
+                            </Menu.Item>
+                        ):(
+                            <Menu.Item key="1" onClick={()=>{this.props.history.push('/user/announcement')}}>
+                                <Badge count={unread} overflowCount={10} style={{marginLeft: 10}}>
+                                    <Icon type="notification" />
+                                </Badge>
+                            </Menu.Item>
+                        )
+                    }
                     <SubMenu title={<span className="avatar"><img src={avater} alt="头像" /><i className="on bottom b-white" /></span>}>
                         <MenuItemGroup title="用户中心">
                             <Menu.Item key="setting:1">你好 - {this.props.auth.name}</Menu.Item>
@@ -101,4 +114,4 @@ class HeaderCustom extends Component {
     }
 }
 
-export default withRouter(HeaderCustom);
+export default HeaderCustom

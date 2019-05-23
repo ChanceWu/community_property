@@ -18,9 +18,6 @@ class App extends React.Component {
         collapsed: false,
         title: 'App'
     };
-    componentDidMount() {
-        console.log(this.props)
-    }
     toggle = () => {
         this.setState({
             collapsed: !this.state.collapsed,
@@ -29,7 +26,6 @@ class App extends React.Component {
     render() {
         const { title } = this.state;
         const { redirectTo } = this.props.auth;
-        console.log(this.props)
         return (
             <DocumentTitle title={title}>
                 {redirectTo&&redirectTo==='/login'?<Redirect to={redirectTo}/>:(

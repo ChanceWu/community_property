@@ -18,7 +18,6 @@ const initState = {
 }
 
 export default (state=localStorage.getItem('user')?JSON.parse(localStorage.getItem('user')):initState, action) => {
-	console.log(state)
 	switch(action.type) {
 		case LOAD_DATA_SUCCESS:
 			return {
