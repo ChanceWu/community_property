@@ -25,10 +25,19 @@ const _filter = {'pwd': 0, '__v': 0}
 
 Router.get('/list', function(req, res) {
 
-	const {type, _id} = req.query
+	const {type, _id, value} = req.query
 	if (type) {
 		let data1 = [], data2 = [], result = []
-		User.find({type}).then((doc) => {
+		User.find({
+			type,
+			$or: [
+				{'name': {'$regex': value, $options: '$i'}},
+				{'telephone': {'$regex': value, $options: '$i'}},
+				{'idnumber': {'$regex': value, $options: '$i'}},
+				{'nativeplace': {'$regex': value, $options: '$i'}}
+			]
+		})
+		.then((doc) => {
 			data1 = doc
 			let promises = doc.map((v, i)=>{
 				return Room.find({user_name: v.name})
@@ -117,16 +126,10 @@ Router.post('/register', function(req, res) {
 			if (e) {
 				return res.json({code: 1, msg: '后端出错了'})
 			}
-			const {name, type, _id} = d;
-			res.cookie('userid', _id);
-			return res.json({code: 0, data: {type, _id, user: name, msg: '注册成功'}})
+			const {pwd, __v, ...data} = d._doc;
+			res.cookie('userid', data._id);
+			return res.json({code: 0, data: {...data}, msg: '注册成功'})
 		})
-		// User.create({user, type, pwd:md5Pwd(pwd)}, function(e, d) {
-		// 	if (e) {
-		// 		return res.json({code: 1, msg: '后端出错了'})
-		// 	}
-		// 	return res.json({code: 0})
-		// })
 	})
 })
 
@@ -146,7 +149,6 @@ Router.get('/info', function(req, res) {
 })
 
 Router.post('/updatePersonInfo', function(req, res) {
-	console.log(req);
 	const userid = req.body._id
 	const body = req.body;
 	User.findByIdAndUpdate(userid, body, function(err, doc) {
@@ -169,6 +171,24 @@ Router.post('/deleteOwner', function(req, res) {
 				return res.json({code: 1, msg: '删除业主信息失败'})
 			}
 			return res.json({code: 0, msg: '删除业主信息成功'})
+		})
+	})
+})
+
+Router.post('/addOwner', function(req, res) {
+	const {user, pwd, ...data} = req.body;
+	User.findOne({name: user}, function(err, doc) {
+		if (doc) {
+			return res.json({code: 1, msg: '用户名重复'})
+		}
+		const userModel = new User({name: user, pwd: md5Pwd(pwd), ...data});
+		userModel.save(function(e, d) {
+			if (e) {
+				return res.json({code: 1, msg: '后端出错了'})
+			}
+			const {pwd, __v, ...data} = d._doc;
+			res.cookie('userid', data._id);
+			return res.json({code: 0, msg: '注册成功'})
 		})
 	})
 })
@@ -198,6 +218,35 @@ Router.get('/getAdminNum', function(req, res) {
 			return res.json({code: 1, msg: '获取管理员总数失败'})
 		}
 		return res.json({code: 0, data: doc, msg: '获取管理员总数成功'})
+	})
+})
+
+Router.get('/getAdminList', function(req, res) {
+	const { value } = req.query
+	User.find({
+		type: 'admin',
+		$or: [
+			{'name': {'$regex': value, $options: '$i'}},
+			{'telephone': {'$regex': value, $options: '$i'}},
+			{'idnumber': {'$regex': value, $options: '$i'}},
+			{'nativeplace': {'$regex': value, $options: '$i'}}
+		]
+	})
+	.exec(function(err, doc) {
+		if (err) {
+			return res.json({code: 1, msg: '获取物业管理员信息失败'})
+		}
+		return res.json({code: 0, data: doc, msg: '获取物业管理员信息成功'})
+	})
+})
+
+Router.post('/deleteAdmin', function(req, res) {
+	const {_id} = req.body
+	User.remove({_id}, function(e, d) {
+		if (e) {
+			return res.json({code: 1, msg: '删除物业管理员信息失败'})
+		}
+		return res.json({code: 0, msg: '删除物业管理员信息成功'})
 	})
 })
 

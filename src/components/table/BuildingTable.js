@@ -4,6 +4,7 @@ import { Table, Button, Form, Tag, Divider, message } from 'antd';
 import { connect } from 'react-redux'
 import { getBuildingList, addBuilding, updateBuilding, deleteBuilding } from '../../actions/building'
 import BuildingModal from '../modal/BuildingModal'
+import SearchButton from '../button/SearchButton'
 
 @connect(
 	state=>state.building,
@@ -105,6 +106,15 @@ class BuildingTable extends React.Component {
 	      	visible: false,
 	    });
   	}
+
+  	handleSearch = (value) => {
+		this.props.getBuildingList(this.state.community_id, value).then(()=>{
+			this.setState({
+				data: this.props.building
+			})
+		})
+	}
+
   	render() {
   		const columns = [
 		  	{
@@ -171,6 +181,7 @@ class BuildingTable extends React.Component {
 	    	<div className="management">
 	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
 	    		<Button className="management_button" onClick={()=>{this.props.history.goBack()}}>返回</Button>
+	    		<SearchButton handleSearch={this.handleSearch} />
 	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 1300 }} />
 
 	    		<BuildingModal

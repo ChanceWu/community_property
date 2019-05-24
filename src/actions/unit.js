@@ -17,9 +17,9 @@ function errorMsg(msg) {
 }
 
 // 单元信息
-export function getUnitList(id) {
+export function getUnitList(id, value = '') {
 	return async(dispatch)=>{
-		await axios.get('/unit/getUnitList', {params: {building_id: id}}).then(res=>{
+		await axios.get('/unit/getUnitList', {params: {building_id: id, value}}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_UNITLIST_SUCCESS,

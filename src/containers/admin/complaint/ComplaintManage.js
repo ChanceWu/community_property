@@ -83,6 +83,13 @@ class ComplaintManage extends React.Component {
 	getRoomName = (unit_id) => {
 		this.props.getRoomName(unit_id)
 	}
+	handleSearch = (value) => {
+		this.props.getComplaintList(value).then(()=>{
+			this.setState({
+				complaintList: this.props.complaint.complaint
+			})
+		})
+	}
 	render() {
 		return (
 			<div>
@@ -103,6 +110,7 @@ class ComplaintManage extends React.Component {
 						addComplaint={this.addComplaint}
 						updateComplaint={this.updateComplaint}
 						deleteComplaint={this.deleteComplaint}
+						handleSearch={this.handleSearch}
 
 						ownerName={this.props.admininfo.ownername||''}
 						communityName={this.props.community.communityName||''}

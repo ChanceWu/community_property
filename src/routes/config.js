@@ -50,6 +50,12 @@ export default {
                 { key: '/admin/announcement/announcementmanage', title: '公告信息', component: 'AnnouncementManage'},
             ]
         },
+        {
+            key: '/admin/admin', title: '物业人员管理', icon: 'team',
+            subs: [
+                { key: '/admin/admin/infomation', title: '物业人员信息', component: 'AdminMember'},
+            ],
+        },
     ],
     user: [ // 菜单相关路由
         { key: '/user/home', title: '首页', icon: 'environment', component: 'UserHome' },

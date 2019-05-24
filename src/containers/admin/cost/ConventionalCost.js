@@ -49,6 +49,13 @@ class ConventionalCost extends React.Component {
 			this.getCostList()
 		})
 	}
+	handleSearch = (value) => {
+		this.props.getCostList('conventional', value).then(()=>{
+			this.setState({
+				costList: this.props.cost
+			})
+		})
+	}
 	render() {
 		return (
 			<div>
@@ -69,6 +76,7 @@ class ConventionalCost extends React.Component {
 						addCost={this.addCost}
 						updateCost={this.updateCost}
 						deleteCost={this.deleteCost}
+						handleSearch={this.handleSearch}
 					/>
 				</div>
 			</div>

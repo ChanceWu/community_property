@@ -126,7 +126,7 @@ class GarageManageTable extends React.Component {
 	    return (
 	    	<div>
 	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
-	    		<SearchButton />
+	    		<SearchButton handleSearch={this.props.handleSearch} />
 		        
 	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 1300 }} />
 

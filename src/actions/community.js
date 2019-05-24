@@ -17,9 +17,9 @@ function errorMsg(msg) {
 }
 
 // 小区信息
-export function getCommunityList() {
+export function getCommunityList(value = '') {
 	return async(dispatch)=>{
-		await axios.get('/community/getCommunityList').then(res=>{
+		await axios.get('/community/getCommunityList', {params: {value}}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_COMMUNITYLIST_SUCCESS,

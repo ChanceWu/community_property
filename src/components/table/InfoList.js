@@ -1,7 +1,36 @@
 import React from 'react'
-import { Table, Tag } from 'antd';
+import { Table, Tag, Button, Form } from 'antd';
+import UserManageModal from '../modal/UserManageModal'
+import SearchButton from '../button/SearchButton'
 
 class InfoList extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      visible: false,
+    }
+  }
+  showAddModal = () => {
+    this.setState({
+      visible: true,
+    });
+  }
+  handleAddOk = (e) => {
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        this.props.addOwner(values)
+        this.setState({
+          visible: false,
+        });
+      }
+    });
+  }
+  handleCancel = (e) => {
+    console.log(e);
+    this.setState({
+        visible: false,
+    });
+  }
   render() {
     const columns = [
       {
@@ -54,15 +83,24 @@ class InfoList extends React.Component {
       })
     }
     
-    const rowSelection = {
-      onChange: (selectedRowKeys, selectedRows) => {
-        console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-      }
-    };
+    const { getFieldDecorator } = this.props.form;
     return (
-      <Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 800 }} />
+      <div>
+        <Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
+        <SearchButton handleSearch={this.props.handleSearch} />
+        <Table columns={columns} dataSource={data} scroll={{ x: 800 }} />
+
+        <UserManageModal
+          title='新增'
+          visible={this.state.visible}
+          handleOk={this.handleAddOk}
+          handleCancel={this.handleCancel}
+          getFieldDecorator={getFieldDecorator}
+          isAdmin={false}
+        />
+      </div>
     )
   }
 }
 
-export default InfoList
+export default Form.create()(InfoList)

@@ -2,6 +2,7 @@ import React from 'react'
 import { Table, Button, Form, Tag, Divider } from 'antd';
 import ConventionalCostModal from '../modal/ConventionalCostModal'
 import {withRouter} from 'react-router-dom'
+import SearchButton from '../button/SearchButton'
 
 @withRouter
 class ConventionalCostTable extends React.Component {
@@ -117,6 +118,7 @@ class ConventionalCostTable extends React.Component {
 	    return (
 	    	<div>
 	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
+	    		<SearchButton handleSearch={this.props.handleSearch} />
 	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 1300 }} />
 
 	    		<ConventionalCostModal

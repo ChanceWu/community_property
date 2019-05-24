@@ -54,6 +54,13 @@ class HouseManage extends React.Component {
 			this.getCommunityList()
 		})
 	}
+	handleSearch = (value) => {
+		this.props.getCommunityList(value).then(()=>{
+			this.setState({
+				data: this.props.community
+			})
+		})
+	}
 	render() {
 		return (
 			<div>
@@ -74,6 +81,7 @@ class HouseManage extends React.Component {
 						addCommunity={this.addCommunity}
 						updateCommunity={this.updateCommunity}
 						deleteCommunity={this.deleteCommunity}
+						handleSearch={this.handleSearch}
 					/>
 				</div>
 			</div>

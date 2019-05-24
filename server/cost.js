@@ -7,8 +7,17 @@ const Cost = model.getModel('cost')
 // Cost.remove({}, function(e,d){})
 
 Router.get('/getCostList', function(req, res) {
-	const { charge_type } = req.query
-	Cost.find({charge_type}, function(err, doc) {
+	const { charge_type, value } = req.query
+	Cost.find({
+		charge_type,
+		$or: [
+			{'charge_num': {'$regex': value, $options: '$i'}},
+			{'charge_name': {'$regex': value, $options: '$i'}},
+			{'company': {'$regex': value, $options: '$i'}},
+			{'charge_way': {'$regex': value, $options: '$i'}}
+		]
+	})
+	.exec(function(err, doc) {
 		if (err) {
 			return res.json({code: 1, msg: '获取费用信息失败'})
 		}

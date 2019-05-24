@@ -85,6 +85,13 @@ class AnnouncementManage extends React.Component {
 	sendAnnouncement = (values) => {
 		this.props.sendAnnouncement(values)
 	}
+	handleSearch = (value) => {
+		this.props.getAnnouncementList(value).then(()=>{
+			this.setState({
+				announcementList: this.props.announcement
+			})
+		})
+	}
 	render() {
 		return (
 			<div>
@@ -106,6 +113,7 @@ class AnnouncementManage extends React.Component {
 						updateAnnouncement={this.updateAnnouncement}
 						changeStatus={this.changeStatus}
 						deleteAnnouncement={this.deleteAnnouncement}
+						handleSearch={this.handleSearch}
 					/>
 				</div>
 			</div>

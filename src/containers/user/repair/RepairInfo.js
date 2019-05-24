@@ -77,6 +77,13 @@ class RepairInfo extends React.Component {
 	getRoomName = (unit_id) => {
 		this.props.getRoomName(unit_id)
 	}
+	handleSearch = (value) => {
+		this.props.getRepairByUser(this.state.user_id, value).then(()=>{
+			this.setState({
+				repairList: this.props.repair.repair
+			})
+		})
+	}
 	render() {
 		return (
 			<div>
@@ -96,6 +103,7 @@ class RepairInfo extends React.Component {
 						addRepair={this.addRepair}
 						updateRepair={this.updateRepair}
 						deleteRepair={this.deleteRepair}
+						handleSearch={this.handleSearch}
 
 						communityName={this.props.community.communityName||''}
 						buildingName={this.props.building.buildingName||''}

@@ -7,8 +7,18 @@ const Room = model.getModel('room')
 // Room.remove({}, function(e,d){})
 
 Router.get('/getRoomList', function(req, res) {
-	const { unit_id } = req.query
-	Room.find({unit_id}, function(err, doc) {
+	const { unit_id, value } = req.query
+	Room.find({
+		unit_id,
+		$or: [
+			{'room_name': {'$regex': value, $options: '$i'}},
+			{'door_model': {'$regex': value, $options: '$i'}},
+			{'room_floor': {'$regex': value, $options: '$i'}},
+			{'user_name': {'$regex': value, $options: '$i'}},
+			{'room_status': {'$regex': value, $options: '$i'}}
+		]
+	})
+	.exec(function(err, doc) {
 		if (err) {
 			return res.json({code: 1, msg: '获取房屋信息失败'})
 		}

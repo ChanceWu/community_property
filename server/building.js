@@ -7,8 +7,17 @@ const Building = model.getModel('building')
 // Building.remove({}, function(e,d){})
 
 Router.get('/getBuildingList', function(req, res) {
-	const { community_id } = req.query
-	Building.find({community_id}, function(err, doc) {
+	const { community_id, value } = req.query
+	Building.find({
+		community_id,
+		$or: [
+			{'building_name': {'$regex': value, $options: '$i'}},
+			{'building_function': {'$regex': value, $options: '$i'}},
+			{'structure_category': {'$regex': value, $options: '$i'}},
+			{'decorate_standard': {'$regex': value, $options: '$i'}}
+		]
+	})
+	.exec(function(err, doc) {
 		if (err) {
 			return res.json({code: 1, msg: '获取楼栋信息失败'})
 		}

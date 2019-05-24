@@ -7,8 +7,15 @@ const Complaint = model.getModel('complaint')
 // Charge.remove({}, function(e,d){})
 
 Router.get('/getComplaintList', function(req, res) {
-	// const { charge_type } = req.query
-	Complaint.find({})
+	const { value } = req.query
+	Complaint.find({
+		$or: [
+			{'telephone': {'$regex': value, $options: '$i'}},
+			{'complaint_category': {'$regex': value, $options: '$i'}},
+			{'complaint_status': {'$regex': value, $options: '$i'}},
+			{'complaint_content': {'$regex': value, $options: '$i'}}
+		]
+	})
 	.populate([
 		{path: 'user_id', select: {name: 1}},
 		{path: 'community_id', select: {community_name: 1}},
@@ -55,8 +62,16 @@ Router.post('/updateComplaint', function(req, res) {
 })
 
 Router.get('/getComplaintByUser', function(req, res) {
-	const { user_id } = req.query
-	Complaint.find({user_id})
+	const { user_id, value } = req.query
+	Complaint.find({
+		user_id,
+		$or: [
+			{'telephone': {'$regex': value, $options: '$i'}},
+			{'complaint_category': {'$regex': value, $options: '$i'}},
+			{'complaint_status': {'$regex': value, $options: '$i'}},
+			{'complaint_content': {'$regex': value, $options: '$i'}}
+		]
+	})
 	.populate([
 		{path: 'user_id', select: {name: 1}},
 		{path: 'community_id', select: {community_name: 1}},

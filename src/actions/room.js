@@ -20,9 +20,9 @@ function errorMsg(msg) {
 }
 
 // 房屋信息
-export function getRoomList(id) {
+export function getRoomList(id, value='') {
 	return async(dispatch)=>{
-		await axios.get('/room/getRoomList', {params: {unit_id: id}}).then(res=>{
+		await axios.get('/room/getRoomList', {params: {unit_id: id, value}}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_ROOMLIST_SUCCESS,

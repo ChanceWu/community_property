@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table, Button, Form, Tag, Divider, message } from 'antd';
 import moment from 'moment'
-// import AnnouncementManageModal from '../modal/AnnouncementManageModal'
+import SearchButton from '../button/SearchButton'
 import {withRouter} from 'react-router-dom'
 
 @withRouter
@@ -86,6 +86,7 @@ class AnnouncementManageTable extends React.Component {
 	    return (
 	    	<div>
 	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
+	    		<SearchButton handleSearch={this.props.handleSearch} />
 	    		<Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />
 
 	    	</div>

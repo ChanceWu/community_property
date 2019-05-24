@@ -17,9 +17,9 @@ function errorMsg(msg) {
 }
 
 // 维修信息
-export function getRepairList() {
+export function getRepairList(value='') {
 	return async(dispatch)=>{
-		await axios.get('/repair/getRepairList').then(res=>{
+		await axios.get('/repair/getRepairList', {params: {value}}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_REPAIRLIST_SUCCESS,
@@ -78,9 +78,9 @@ export function deleteRepair(id) {
 	}
 }
 
-export function getRepairByUser(user_id) {
+export function getRepairByUser(user_id, value='') {
 	return async(dispatch)=>{
-		await axios.get('/repair/getRepairByUser', {params: {user_id}}).then(res=>{
+		await axios.get('/repair/getRepairByUser', {params: {user_id, value}}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_REPAIRBYUSER_SUCCESS,

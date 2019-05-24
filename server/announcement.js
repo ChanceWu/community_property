@@ -9,8 +9,17 @@ const Announcement_read = model.getModel('announcement_read')
 // Charge.remove({}, function(e,d){})
 
 Router.get('/getAnnouncementList', function(req, res) {
-	// const { charge_type } = req.query
-	Announcement.find({}, function(err, doc) {
+	const { value } = req.query
+	Announcement.find({
+		$or: [
+			{'topic': {'$regex': value, $options: '$i'}},
+			{'category': {'$regex': value, $options: '$i'}},
+			{'admin_name': {'$regex': value, $options: '$i'}},
+			{'status': {'$regex': value, $options: '$i'}},
+			{'content': {'$regex': value, $options: '$i'}}
+		]
+	})
+	.exec(function(err, doc) {
 		if (err) {
 			return res.json({code: 1, msg: '获取公告信息失败'})
 		}
@@ -40,8 +49,18 @@ Router.get('/getOneAnnouncement', function(req, res) {
 })
 
 Router.get('/getAnnouncementListByStatus', function(req, res) {
-	const { status } = req.query
-	Announcement.find({status: status}, function(err, doc) {
+	const { status, value } = req.query
+	Announcement.find({
+		status,
+		$or: [
+			{'topic': {'$regex': value, $options: '$i'}},
+			{'category': {'$regex': value, $options: '$i'}},
+			{'admin_name': {'$regex': value, $options: '$i'}},
+			{'status': {'$regex': value, $options: '$i'}},
+			{'content': {'$regex': value, $options: '$i'}}
+		]
+	})
+	.exec(function(err, doc) {
 		if (err) {
 			return res.json({code: 1, msg: '获取公告信息失败'})
 		}

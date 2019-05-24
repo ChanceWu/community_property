@@ -7,8 +7,13 @@ const Repair = model.getModel('repair')
 // Charge.remove({}, function(e,d){})
 
 Router.get('/getRepairList', function(req, res) {
-	// const { charge_type } = req.query
-	Repair.find({})
+	const { value } = req.query
+	Repair.find({
+		$or: [
+			{'repair_content': {'$regex': value, $options: '$i'}},
+			{'repair_status': {'$regex': value, $options: '$i'}}
+		]
+	})
 	.populate([
 		{path: 'user_id', select: {name: 1}},
 		{path: 'community_id', select: {community_name: 1}},
@@ -55,8 +60,15 @@ Router.post('/updateRepair', function(req, res) {
 })
 
 Router.get('/getRepairByUser', function(req, res) {
-	const { user_id } = req.query
-	Repair.find({user_id})
+	const { user_id, value } = req.query
+	Repair.find({
+		user_id,
+		$or: [
+			{'telephone': {'$regex': value, $options: '$i'}},
+			{'repair_status': {'$regex': value, $options: '$i'}},
+			{'repair_content': {'$regex': value, $options: '$i'}}
+		]
+	})
 	.populate([
 		{path: 'user_id', select: {name: 1}},
 		{path: 'community_id', select: {community_name: 1}},

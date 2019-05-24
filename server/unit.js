@@ -7,8 +7,14 @@ const Unit = model.getModel('unit')
 // Unit.remove({}, function(e,d){})
 
 Router.get('/getUnitList', function(req, res) {
-	const { building_id } = req.query
-	Unit.find({building_id}, function(err, doc) {
+	const { building_id, value } = req.query
+	Unit.find({
+		building_id,
+		$or: [
+			{'unit_name': {'$regex': value, $options: '$i'}}
+		]
+	})
+	.exec(function(err, doc) {
 		if (err) {
 			return res.json({code: 1, msg: '获取单元信息失败'})
 		}

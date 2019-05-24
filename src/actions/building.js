@@ -17,9 +17,9 @@ function errorMsg(msg) {
 }
 
 // 楼栋信息
-export function getBuildingList(id) {
+export function getBuildingList(id, value = '') {
 	return async(dispatch)=>{
-		await axios.get('/building/getBuildingList', {params: {community_id: id}}).then(res=>{
+		await axios.get('/building/getBuildingList', {params: {community_id: id, value}}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_BUILDINGLIST_SUCCESS,

@@ -5,7 +5,9 @@ const {
 	LOAD_DATA_SUCCESS,
 	AUTH_SUCCESS,
 	ERROR_MSG,
-	LOGOUT_SUCCESS
+	LOGOUT_SUCCESS,
+
+	ADD_OWNER_SUCCESS,
 } = actions;
 
 export function authSuccess(obj, msg) {
@@ -48,7 +50,27 @@ export function register(values) {
 	return async(dispatch)=>{
 		await axios.post('/user/register', {...data}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
+				localStorage.setItem('user', JSON.stringify(res.data.data));
 				dispatch(authSuccess(res.data.data, res.data.msg))
+			} else {
+				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
+
+export function addOwner(values) {
+	const {repeatpwd, ...data} = values
+	if (data.pwd !== repeatpwd) {
+		return errorMsg('密码和确认密码不同！')
+	}
+	return async(dispatch)=>{
+		await axios.post('/user/addOwner', {...data}).then(res=>{
+			if (res.status==200&&res.data.code===0) {
+				dispatch({
+					type: ADD_OWNER_SUCCESS,
+					msg: res.data.msg,
+				})
 			} else {
 				dispatch(errorMsg(res.data.msg))
 			}

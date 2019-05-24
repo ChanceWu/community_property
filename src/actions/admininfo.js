@@ -7,6 +7,7 @@ const {
 	GET_OWNERNAME_SUCCESS,
 	GET_OWNERNUM_SUCCESS,
 	GET_ADMINNUM_SUCCESS,
+	GET_ADMINNUMLIST_SUCCESS,
 	ERROR_MSG,
 } = actions;
 
@@ -14,9 +15,9 @@ function errorMsg(msg) {
 	return {msg, type: ERROR_MSG}
 }
 
-export function getOwnerInfoList() {
+export function getOwnerInfoList(value = '') {
 	return async(dispatch)=>{
-		await axios.get('/user/list?type=user').then(res=>{
+		await axios.get('/user/list', {params: {type: 'user', value}}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_OWNERINFO_SUCCESS,
@@ -83,6 +84,37 @@ export function getAdminNum() {
 					data: res.data.data,
 					msg: res.data.msg,
 				});
+			} else {
+				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
+
+export function getAdminList(value='') {
+	return async(dispatch)=>{
+		await axios.get('/user/getAdminList', {params: {value}}).then(res=>{
+			if (res.status==200&&res.data.code===0) {
+				dispatch({
+					type: GET_ADMINNUMLIST_SUCCESS,
+					data: res.data.data,
+					msg: res.data.msg,
+				});
+			} else {
+				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
+
+export function deleteAdmin(_id) {
+	return async(dispatch)=>{
+		await axios.post('/user/deleteAdmin', {_id}).then(res=>{
+			if (res.status===200&&res.data.code===0) {
+				dispatch({
+					type: DEL_OWNER_SUCCESS,
+					msg: res.data.msg
+				})
 			} else {
 				dispatch(errorMsg(res.data.msg))
 			}

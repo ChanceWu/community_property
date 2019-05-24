@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table, Button, Form, Tag, Divider } from 'antd';
 import moment from 'moment'
-// import AnnouncementManageModal from '../modal/AnnouncementManageModal'
+import SearchButton from '../button/SearchButton'
 import {withRouter} from 'react-router-dom'
 
 @withRouter
@@ -57,6 +57,7 @@ class AnnouncementInfoTable extends React.Component {
 	    const { getFieldDecorator } = this.props.form;
 	    return (
 	    	<div>
+	    		<SearchButton handleSearch={this.props.handleSearch} />
 	    		<Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />
 
 	    	</div>

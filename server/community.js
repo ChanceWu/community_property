@@ -6,7 +6,16 @@ const model = require('./model')
 const Community = model.getModel('community')
 
 Router.get('/getCommunityList', function(req, res) {
-	Community.find({}, function(err, doc) {
+	const { value } = req.query
+	Community.find({
+		$or: [
+			{'community_name': {'$regex': value, $options: '$i'}},
+			{'company': {'$regex': value, $options: '$i'}},
+			{'admin_id': {'$regex': value, $options: '$i'}},
+			{'community_address': {'$regex': value, $options: '$i'}}
+		]
+	})
+	.exec(function(err, doc) {
 		if (err) {
 			return res.json({code: 1, msg: '获取小区信息失败'})
 		}

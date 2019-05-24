@@ -22,7 +22,7 @@ import GarageManage from './admin/garage/GarageManage'
 import RepairManage from './admin/repair/RepairManage'
 import ComplaintManage from './admin/complaint/ComplaintManage'
 import AnnouncementManage from './admin/announcement/AnnouncementManage'
-
+import AdminMember from './admin/admin/AdminMember'
 /*const WysiwygBundle = Loadable({ // 按需加载富文本配置
     loader: () => import('./ui/Wysiwyg'),
     loading: Loading,
@@ -49,4 +49,5 @@ export default {
     RepairManage,
     ComplaintManage,
     AnnouncementManage,
+    AdminMember,
 }

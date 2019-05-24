@@ -6,6 +6,7 @@ const {
 	GET_OWNERNAME_SUCCESS,
 	GET_OWNERNUM_SUCCESS,
 	GET_ADMINNUM_SUCCESS,
+	GET_ADMINNUMLIST_SUCCESS,
 } = actions;
 
 export default (state={}, action) => {
@@ -36,6 +37,12 @@ export default (state={}, action) => {
 			return {
 				...state,
 				adminnum: action.data,
+				msg: action.msg
+			}
+		case GET_ADMINNUMLIST_SUCCESS:
+			return {
+				...state,
+				adminlist: action.data,
 				msg: action.msg
 			}
 		default:

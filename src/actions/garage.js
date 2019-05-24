@@ -18,9 +18,9 @@ function errorMsg(msg) {
 }
 
 // 楼栋信息
-export function getGarageList() {
+export function getGarageList(value = '') {
 	return async(dispatch)=>{
-		await axios.get('/garage/getGarageList').then(res=>{
+		await axios.get('/garage/getGarageList', {params: {value}}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_GARAGELIST_SUCCESS,

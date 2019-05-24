@@ -3,6 +3,7 @@ import { Table, Button, Form, Tag, Divider, message } from 'antd';
 import { connect } from 'react-redux'
 import { getRoomList, addRoom, updateRoom, deleteRoom } from '../../actions/room'
 import RoomModal from '../modal/RoomModal'
+import SearchButton from '../button/SearchButton'
 
 @connect(
 	state=>state.room,
@@ -103,6 +104,13 @@ class RoomTable extends React.Component {
 	      	visible: false,
 	    });
   	}
+  	handleSearch = (value) => {
+		this.props.getRoomList(this.state.unit_id, value).then(()=>{
+			this.setState({
+				data: this.props.room
+			})
+		})
+	}
   	render() {
   		const columns = [
 		  	{
@@ -163,6 +171,7 @@ class RoomTable extends React.Component {
 	    	<div className="management">
 	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
 	    		<Button className="management_button" onClick={()=>{this.props.history.goBack()}}>返回</Button>
+	    		<SearchButton handleSearch={this.handleSearch} />
 	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 800 }} />
 
 	    		<RoomModal

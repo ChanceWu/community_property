@@ -17,9 +17,9 @@ function errorMsg(msg) {
 }
 
 // 费用信息
-export function getChargeList() {
+export function getChargeList(value='') {
 	return async(dispatch)=>{
-		await axios.get('/charge/getChargeList').then(res=>{
+		await axios.get('/charge/getChargeList', {params: {value}}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_CHARGELIST_SUCCESS,
@@ -78,9 +78,9 @@ export function deleteCharge(id) {
 	}
 }
 
-export function getChargeByUser(user_name) {
+export function getChargeByUser(user_name, value='') {
 	return async(dispatch)=>{
-		await axios.get(`/charge/getChargeByUser?user_name=${user_name}`).then(res=>{
+		await axios.get('/charge/getChargeByUser', {params: {user_name, value}}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_CHARGEBYUSER_SUCCESS,

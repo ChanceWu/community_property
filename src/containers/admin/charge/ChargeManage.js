@@ -83,6 +83,13 @@ class ChargeManage extends React.Component {
 	getRoomName = (unit_id) => {
 		this.props.getRoomName(unit_id)
 	}
+	handleSearch = (value) => {
+		this.props.getChargeList(value).then(()=>{
+			this.setState({
+				chargeList: this.props.charge.charge
+			})
+		})
+	}
 	render() {
 		return (
 			<div>
@@ -103,6 +110,7 @@ class ChargeManage extends React.Component {
 						addCharge={this.addCharge}
 						updateCharge={this.updateCharge}
 						deleteCharge={this.deleteCharge}
+						handleSearch={this.handleSearch}
 
 						costName={this.props.cost.costName||''}
 						communityName={this.props.community.communityName||''}

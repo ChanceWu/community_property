@@ -3,6 +3,7 @@ import moment from 'moment'
 import { Table, Button, Form, Tag, Divider } from 'antd';
 import ComplaintInfoModal from '../modal/ComplaintInfoModal'
 import {withRouter} from 'react-router-dom'
+import SearchButton from '../button/SearchButton'
 
 @withRouter
 class ComplaintInfoTable extends React.Component {
@@ -109,16 +110,12 @@ class ComplaintInfoTable extends React.Component {
 	      })
 	    }
 	    
-	    const rowSelection = {
-	      onChange: (selectedRowKeys, selectedRows) => {
-	        console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-	      }
-	    };
 	    const { getFieldDecorator } = this.props.form;
 	    return (
 	    	<div>
 	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
-	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 1100 }} />
+	    		<SearchButton handleSearch={this.props.handleSearch} />
+	    		<Table columns={columns} dataSource={data} scroll={{ x: 1100 }} />
 
 	    		<ComplaintInfoModal
 					title={this.state.isAdd?'新增':'修改'}

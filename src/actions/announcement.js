@@ -25,9 +25,9 @@ function errorMsg(msg) {
 }
 
 // 公告信息
-export function getAnnouncementList() {
+export function getAnnouncementList(value='') {
 	return async(dispatch)=>{
-		await axios.get('/announcement/getAnnouncementList').then(res=>{
+		await axios.get('/announcement/getAnnouncementList', {params: {value}}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_ANNOUNCEMENTLIST_SUCCESS,
@@ -57,9 +57,9 @@ export function getOneAnnouncement(id) {
 	}
 }
 
-export function getAnnouncementListByStatus(status) {
+export function getAnnouncementListByStatus(status, value='') {
 	return async(dispatch)=>{
-		await axios.get('/announcement/getAnnouncementListByStatus', {params: {status: status}}).then(res=>{
+		await axios.get('/announcement/getAnnouncementListByStatus', {params: {status, value}}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_ANNOUNCEMENTLISTBYSTATUS_SUCCESS,

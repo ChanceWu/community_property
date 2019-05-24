@@ -17,9 +17,9 @@ function errorMsg(msg) {
 }
 
 // 投诉信息
-export function getComplaintList() {
+export function getComplaintList(value='') {
 	return async(dispatch)=>{
-		await axios.get('/complaint/getComplaintList').then(res=>{
+		await axios.get('/complaint/getComplaintList', {params: {value}}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_COMPLAINTLIST_SUCCESS,
@@ -78,9 +78,9 @@ export function deleteComplaint(id) {
 	}
 }
 
-export function getComplaintByUser(user_id) {
+export function getComplaintByUser(user_id, value='') {
 	return async(dispatch)=>{
-		await axios.get('/complaint/getComplaintByUser', {params: {user_id}}).then(res=>{
+		await axios.get('/complaint/getComplaintByUser', {params: {user_id, value}}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_COMPLAINTBYUSER_SUCCESS,

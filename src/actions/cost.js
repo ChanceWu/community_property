@@ -17,9 +17,9 @@ function errorMsg(msg) {
 }
 
 // 费用信息
-export function getCostList(charge_type) {
+export function getCostList(charge_type, value='') {
 	return async(dispatch)=>{
-		await axios.get('/cost/getCostList', { params: {charge_type} }).then(res=>{
+		await axios.get('/cost/getCostList', { params: {charge_type, value} }).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_COSTLIST_SUCCESS,

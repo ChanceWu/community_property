@@ -35,6 +35,13 @@ class AnnouncementInfo extends React.Component {
 			})
 		})
 	}
+	handleSearch = (value) => {
+		this.props.getAnnouncementListByStatus('已发布', value).then(()=>{
+			this.setState({
+				announcementList: this.props.announcement
+			})
+		})
+	}
 	render() {
 		return (
 			<div>
@@ -49,6 +56,7 @@ class AnnouncementInfo extends React.Component {
 				<div className="management">
 					<AnnouncementInfoTable
 						announcementList={this.state.announcementList}
+						handleSearch={this.handleSearch}
 					/>
 				</div>
 			</div>

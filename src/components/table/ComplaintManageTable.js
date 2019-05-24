@@ -4,6 +4,7 @@ import moment from 'moment'
 import { Table, Button, Form, Tag, Divider } from 'antd';
 import ComplaintManageModal from '../modal/ComplaintManageModal'
 import {withRouter} from 'react-router-dom'
+import SearchButton from '../button/SearchButton'
 
 @withRouter
 class ComplaintManageTable extends React.Component {
@@ -122,6 +123,7 @@ class ComplaintManageTable extends React.Component {
 	    return (
 	    	<div>
 	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
+	    		<SearchButton handleSearch={this.props.handleSearch} />
 	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 1300 }} />
 
 	    		<ComplaintManageModal

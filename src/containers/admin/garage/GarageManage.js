@@ -74,6 +74,13 @@ class GarageManage extends React.Component {
 			})
 		})
 	}
+	handleSearch = (value) => {
+		this.props.getGarageList(value).then(()=>{
+			this.setState({
+				garageList: this.props.garage.garage
+			})
+		})
+	}
 	render() {
 		return (
 			<div>
@@ -96,6 +103,7 @@ class GarageManage extends React.Component {
 						addGarage={this.addGarage}
 						updateGarage={this.updateGarage}
 						deleteGarage={this.deleteGarage}
+						handleSearch={this.handleSearch}
 					/>
 				</div>
 			</div>

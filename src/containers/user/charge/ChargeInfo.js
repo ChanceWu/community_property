@@ -48,6 +48,13 @@ class ChargeInfo extends React.Component {
 			// this.props.history.push(this.props.pay.pay)
 		})
 	}
+	handleSearch = (value) => {
+		this.props.getChargeByUser(this.state.user_name, value).then(()=>{
+			this.setState({
+				chargeList: this.props.charge.charge
+			})
+		})
+	}
 	render() {
 		return (
 			<div>
@@ -64,6 +71,7 @@ class ChargeInfo extends React.Component {
 						chargeList={this.state.chargeList}
 						updateCharge={this.updateCharge}
 						getPayUrl={this.getPayUrl}
+						handleSearch={this.handleSearch}
 					/>
 				</div>
 			</div>

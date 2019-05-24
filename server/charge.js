@@ -8,8 +8,12 @@ const Room = model.getModel('room')
 // Charge.remove({}, function(e,d){})
 
 Router.get('/getChargeList', function(req, res) {
-	// const { charge_type } = req.query
-	Charge.find({})
+	const { value } = req.query
+	Charge.find({
+		$or: [
+			{'charge_unit': {'$regex': value, $options: '$i'}}
+		]
+	})
 	.populate([
 		{path: 'cost_id'},
 		{path: 'community_id', select: {community_name: 1}},
@@ -26,8 +30,13 @@ Router.get('/getChargeList', function(req, res) {
 })
 
 Router.get('/getChargeByUser', function(req, res) {
-	const { user_name } = req.query
-	Room.find({user_name}, '_id')
+	const { user_name, value } = req.query
+	Room.find({
+		user_name,
+		$or: [
+			{'room_name': {'$regex': value, $options: '$i'}}
+		]
+	}, '_id')
 	.then((doc)=>{
 		let promises = doc.map(v=>{
 			return Charge.find({room_id: v._id})

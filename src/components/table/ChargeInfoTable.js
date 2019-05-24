@@ -2,6 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import { Table, Button, Form, Tag, Divider, message } from 'antd';
 import {withRouter} from 'react-router-dom'
+import SearchButton from '../button/SearchButton'
 
 @withRouter
 class ChargeInfoTable extends React.Component {
@@ -13,29 +14,6 @@ class ChargeInfoTable extends React.Component {
 			defaultData: '',
 		}
 	}
-  	/*handleAddOk = (e) => {
-	    this.props.form.validateFields((err, values) => {
-        	if (!err) {
-        		// const data = Object.assign({}, values, {is_pay: false})
-          		this.props.addCharge(values)
-          		this.setState({
-			      	visible: false,
-			    });
-        	}
-      	});
-  	}
-  	handleUpdateOk = (e) => {
-  		this.props.form.validateFields((err, values) => {
-  			// values中并没有_id值，因此需要在参数中添加参数
-  			const data = Object.assign({},values,{_id: this.state.defaultData.key})
-  			if (!err) {
-  				this.props.updateCharge(data)
-  				this.setState({
-  					visible: false,
-  				})
-  			}
-  		})
-  	}*/
   	handlePay = (record) => {
   		console.log(record)
   		if (record.is_pay==="已缴") {
@@ -121,14 +99,10 @@ class ChargeInfoTable extends React.Component {
 	      })
 	    }
 	    
-	    const rowSelection = {
-	      onChange: (selectedRowKeys, selectedRows) => {
-	        console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-	      }
-	    };
 	    return (
 	    	<div>
-	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 1300 }} />
+	    		<SearchButton handleSearch={this.props.handleSearch} />
+	    		<Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />
 	    	</div>
 	    )
   	}

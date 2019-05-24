@@ -77,6 +77,13 @@ class ComplaintInfo extends React.Component {
 	getRoomName = (unit_id) => {
 		this.props.getRoomName(unit_id)
 	}
+	handleSearch = (value) => {
+		this.props.getComplaintByUser(this.state.user_id, value).then(()=>{
+			this.setState({
+				complaintList: this.props.complaint.complaint
+			})
+		})
+	}
 	render() {
 		return (
 			<div>
@@ -96,6 +103,7 @@ class ComplaintInfo extends React.Component {
 						addComplaint={this.addComplaint}
 						updateComplaint={this.updateComplaint}
 						deleteComplaint={this.deleteComplaint}
+						handleSearch={this.handleSearch}
 
 						communityName={this.props.community.communityName||''}
 						buildingName={this.props.building.buildingName||''}

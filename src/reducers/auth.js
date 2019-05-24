@@ -4,7 +4,8 @@ const {
 	LOAD_DATA_SUCCESS,
 	AUTH_SUCCESS,
 	ERROR_MSG,
-	LOGOUT_SUCCESS
+	LOGOUT_SUCCESS,
+	ADD_OWNER_SUCCESS,
 } = actions;
 
 const initState = {
@@ -41,6 +42,11 @@ export default (state=localStorage.getItem('user')?JSON.parse(localStorage.getIt
 			return {
 				...initState,
 				redirectTo: '/login'
+			}
+		case ADD_OWNER_SUCCESS:
+			return {
+				...state,
+				msg: action.msg
 			}
 		default:
 			return state

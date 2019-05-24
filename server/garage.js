@@ -6,8 +6,25 @@ const model = require('./model')
 const Garage = model.getModel('garage')
 
 Router.get('/getGarageList', function(req, res) {
-	// const { community_id } = req.query
-	Garage.find({}, function(err, doc) {
+	const { value } = req.query
+	/*Garage.find({value}, function(err, doc) {
+		if (err) {
+			return res.json({code: 1, msg: '获取车位信息失败'})
+		}
+		return res.json({code: 0, data: doc, msg: '获取车位信息成功'})
+	})*/
+	Garage.find({
+		$or: [
+			{'garage_num': {'$regex': value, $options: '$i'}},
+			{'user_name': {'$regex': value, $options: '$i'}},
+			{'community_name': {'$regex': value, $options: '$i'}},
+			{'garage_state': {'$regex': value, $options: '$i'}},
+			{'garage_category': {'$regex': value, $options: '$i'}},
+			{'manage_category': {'$regex': value, $options: '$i'}},
+			{'garage_type': {'$regex': value, $options: '$i'}}
+		]
+	})
+	.exec(function(err, doc) {
 		if (err) {
 			return res.json({code: 1, msg: '获取车位信息失败'})
 		}

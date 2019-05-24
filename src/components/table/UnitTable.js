@@ -3,6 +3,7 @@ import { Table, Button, Form, Tag, Divider, message } from 'antd';
 import { connect } from 'react-redux'
 import { getUnitList, addUnit, updateUnit, deleteUnit } from '../../actions/unit'
 import UnitModal from '../modal/UnitModal'
+import SearchButton from '../button/SearchButton'
 
 @connect(
 	state=>state.unit,
@@ -102,6 +103,14 @@ class UnitTable extends React.Component {
 	      	visible: false,
 	    });
   	}
+
+  	handleSearch = (value) => {
+		this.props.getUnitList(this.state.building_id, value).then(()=>{
+			this.setState({
+				data: this.props.unit
+			})
+		})
+	}
   	render() {
   		const columns = [
 		  	{
@@ -156,6 +165,7 @@ class UnitTable extends React.Component {
 	    	<div className="management">
 	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
 	    		<Button className="management_button" onClick={()=>{this.props.history.goBack()}}>返回</Button>
+	    		<SearchButton handleSearch={this.handleSearch} />
 	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 800 }} />
 
 	    		<UnitModal
