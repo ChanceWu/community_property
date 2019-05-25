@@ -117,18 +117,13 @@ class GarageManageTable extends React.Component {
 	      })
 	    }
 	    
-	    const rowSelection = {
-	      onChange: (selectedRowKeys, selectedRows) => {
-	        console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-	      }
-	    };
 	    const { getFieldDecorator } = this.props.form;
 	    return (
 	    	<div>
 	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
 	    		<SearchButton handleSearch={this.props.handleSearch} />
 		        
-	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 1300 }} />
+	    		<Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />
 
 	    		<GarageManageModal
 					title={this.state.isAdd?'新增':'修改'}

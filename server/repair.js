@@ -86,15 +86,28 @@ Router.get('/getRepairByUser', function(req, res) {
 
 Router.get('/getRepairContent', function(req, res) {
 	const { user_id } = req.query
-	Repair.find({user_id})
-	.limit(3)
-	.select('_id repair_content')
-	.exec(function(err, doc) {
-		if (err) {
-			return res.json({code: 1, msg: '获取维修信息失败'})
-		}
-		return res.json({code: 0, data: doc, msg: '获取维修信息成功'})
-	})
+	if (user_id) {
+		Repair.find({user_id})
+		.limit(3)
+		.select('_id repair_content')
+		.exec(function(err, doc) {
+			if (err) {
+				return res.json({code: 1, msg: '获取维修信息失败'})
+			}
+			return res.json({code: 0, data: doc, msg: '获取维修信息成功'})
+		})
+	} else {
+		Repair.find({})
+		.limit(3)
+		.select('_id repair_content')
+		.exec(function(err, doc) {
+			if (err) {
+				return res.json({code: 1, msg: '获取维修信息失败'})
+			}
+			return res.json({code: 0, data: doc, msg: '获取维修信息成功'})
+		})
+	}
+	
 })
 
 module.exports = Router

@@ -115,7 +115,7 @@ class EchartsProjects extends React.Component{
         let xAxisData = [];
         let data = this.props.money;
         let xTooltip = this.props.chargeNameList;
-        for (let i = 0; i < 50; i++) {
+        for (let i = 1; i < 51; i++) {
             xAxisData.push(i);
             xTooltip.push(i)
             // data.push(Math.ceil((Math.cos(i / 5) * (i / 5) + i / 6) * 5) + 10);

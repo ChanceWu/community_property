@@ -95,7 +95,7 @@ export function getRepairByUser(user_id, value='') {
 	}
 }
 
-export function getRepairContent(user_id) {
+export function getRepairContent(user_id='') {
 	return async(dispatch)=>{
 		await axios.get(`/repair/getRepairContent?user_id=${user_id}`).then(res=>{
 			if (res.status==200&&res.data.code===0) {

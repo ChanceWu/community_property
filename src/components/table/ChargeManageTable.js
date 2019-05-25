@@ -28,7 +28,7 @@ class ChargeManageTable extends React.Component {
 	    this.setState({
 	      	visible: true,
 	      	isAdd: false,
-	      	defaultData: {...record},
+	      	defaultData: {...record, is_pay: record.is_pay==='已缴'?true:false},
 	    });
   	}
 
@@ -129,17 +129,12 @@ class ChargeManageTable extends React.Component {
 	      })
 	    }
 	    
-	    const rowSelection = {
-	      onChange: (selectedRowKeys, selectedRows) => {
-	        console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-	      }
-	    };
 	    const { getFieldDecorator } = this.props.form;
 	    return (
 	    	<div>
 	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
 	    		<SearchButton handleSearch={this.props.handleSearch} />
-	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 1300 }} />
+	    		<Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />
 
 	    		<ChargeManageModal
 					title={this.state.isAdd?'新增':'修改'}

@@ -95,7 +95,7 @@ export function getComplaintByUser(user_id, value='') {
 	}
 }
 
-export function getComplaintContent(user_id) {
+export function getComplaintContent(user_id='') {
 	return async(dispatch)=>{
 		await axios.get(`/complaint/getComplaintContent?user_id=${user_id}`).then(res=>{
 			if (res.status==200&&res.data.code===0) {

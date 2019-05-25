@@ -161,18 +161,13 @@ class RoomTable extends React.Component {
 	      })
 	    }
 	    
-	    const rowSelection = {
-	      onChange: (selectedRowKeys, selectedRows) => {
-	        console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-	      }
-	    };
 	    const { getFieldDecorator } = this.props.form;
 	    return (
 	    	<div className="management">
 	    		<Button className="management_button" type="primary" onClick={this.showAddModal}>新增</Button>
 	    		<Button className="management_button" onClick={()=>{this.props.history.goBack()}}>返回</Button>
 	    		<SearchButton handleSearch={this.handleSearch} />
-	    		<Table rowSelection={rowSelection} columns={columns} dataSource={data} scroll={{ x: 800 }} />
+	    		<Table columns={columns} dataSource={data} scroll={{ x: 800 }} />
 
 	    		<RoomModal
 					title={this.state.isAdd?'新增':'修改'}
