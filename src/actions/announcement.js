@@ -15,6 +15,8 @@ const {
 	GET_ANNOUNCEMENTREADLIST_SUCCESS,
 	GET_READANNOUNCEMENT_SUCCESS,
 	GET_RECVANNOUNCEMENT_SUCCESS,
+	GET_ANNOUNCEMENTNUM_SUCCESS,
+	GET_ANNOUNCEMENTTOPIC_SUCCESS,
 
 	ERROR_MSG,
 } = actions;
@@ -182,6 +184,38 @@ export function recvAnnouncement() {
 					num: 1,
 					data: data.data,
 				})
+			}
+		})
+	}
+}
+
+export function getAnnouncementNum() {
+	return async(dispatch)=>{
+		await axios.get('/announcement/getAnnouncementNum').then(res=>{
+			if (res.status==200&&res.data.code===0) {
+				dispatch({
+					type: GET_ANNOUNCEMENTNUM_SUCCESS,
+					data: res.data.data,
+					msg: res.data.msg,
+				});
+			} else {
+				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
+
+export function getAnnouncementTopic() {
+	return async(dispatch)=>{
+		await axios.get('/announcement/getAnnouncementTopic').then(res=>{
+			if (res.status==200&&res.data.code===0) {
+				dispatch({
+					type: GET_ANNOUNCEMENTTOPIC_SUCCESS,
+					data: res.data.data,
+					msg: res.data.msg,
+				});
+			} else {
+				dispatch(errorMsg(res.data.msg))
 			}
 		})
 	}

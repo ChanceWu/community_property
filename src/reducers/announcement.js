@@ -11,6 +11,8 @@ const {
 	GET_ANNOUNCEMENTREADLIST_SUCCESS,
 	GET_READANNOUNCEMENT_SUCCESS,
 	GET_RECVANNOUNCEMENT_SUCCESS,
+	GET_ANNOUNCEMENTNUM_SUCCESS,
+	GET_ANNOUNCEMENTTOPIC_SUCCESS,
 } = actions;
 
 export default (state={}, action) => {
@@ -70,6 +72,18 @@ export default (state={}, action) => {
 				...state,
 				data: action.data,
 				unread: state.unread+action.num,
+			}
+		case GET_ANNOUNCEMENTNUM_SUCCESS:
+			return {
+				...state,
+				announcementnum: action.data,
+				msg: action.msg
+			}
+		case GET_ANNOUNCEMENTTOPIC_SUCCESS:
+			return {
+				...state,
+				announcementtopic: action.data,
+				msg: action.msg
 			}
 		default:
 			return state

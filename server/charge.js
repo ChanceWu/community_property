@@ -90,4 +90,27 @@ Router.post('/updateCharge', function(req, res) {
 	})
 })
 
+Router.get('/getChargeMoney', function(req, res) {
+	const { user_name } = req.query
+	Room.find({user_name}, '_id')
+	.then((doc)=>{
+		let promises = doc.map(v=>{
+			return Charge.find({room_id: v._id})
+					.populate([
+						{path: 'cost_id', select: {unit_price: 1, charge_name: 1}}
+					])
+					.select('charge_unit')
+		})
+		return Promise.all(promises)
+	})
+	.then((info)=>{
+		return new Promise(()=>{
+			return res.json({code: 0, data: info, msg: '获取收费信息成功'})
+		})
+	})
+	.catch((err)=>{
+		return res.json({code: 1, msg: '获取收费信息失败'})
+	})
+})
+
 module.exports = Router

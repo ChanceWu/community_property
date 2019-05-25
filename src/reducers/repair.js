@@ -6,6 +6,7 @@ const {
 	DEL_REPAIR_SUCCESS,
 	UPDATE_REPAIR_SUCCESS,
 	GET_REPAIRBYUSER_SUCCESS,
+	GET_REPAIRCONTENT_SUCCESS,
 } = actions;
 
 export default (state={}, action) => {
@@ -35,6 +36,12 @@ export default (state={}, action) => {
 			return {
 				...state,
 				repair: action.data,
+				msg: action.msg
+			}
+		case GET_REPAIRCONTENT_SUCCESS:
+			return {
+				...state,
+				repaircontent: action.data,
 				msg: action.msg
 			}
 		default:

@@ -87,4 +87,17 @@ Router.get('/getComplaintByUser', function(req, res) {
 	})
 })
 
+Router.get('/getComplaintContent', function(req, res) {
+	const { user_id } = req.query
+	Complaint.find({user_id})
+	.limit(3)
+	.select('_id complaint_content')
+	.exec(function(err, doc) {
+		if (err) {
+			return res.json({code: 1, msg: '获取投诉信息失败'})
+		}
+		return res.json({code: 0, data: doc, msg: '获取投诉信息成功'})
+	})
+})
+
 module.exports = Router

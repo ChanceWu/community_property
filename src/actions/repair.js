@@ -7,6 +7,7 @@ const {
 	DEL_REPAIR_SUCCESS,
 	UPDATE_REPAIR_SUCCESS,
 	GET_REPAIRBYUSER_SUCCESS,
+	GET_REPAIRCONTENT_SUCCESS,
 
 	ERROR_MSG,
 } = actions;
@@ -86,6 +87,22 @@ export function getRepairByUser(user_id, value='') {
 					type: GET_REPAIRBYUSER_SUCCESS,
 					data: res.data.data,
 					msg: res.data.msg
+				});
+			} else {
+				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
+
+export function getRepairContent(user_id) {
+	return async(dispatch)=>{
+		await axios.get(`/repair/getRepairContent?user_id=${user_id}`).then(res=>{
+			if (res.status==200&&res.data.code===0) {
+				dispatch({
+					type: GET_REPAIRCONTENT_SUCCESS,
+					data: res.data.data,
+					msg: res.data.msg,
 				});
 			} else {
 				dispatch(errorMsg(res.data.msg))

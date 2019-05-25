@@ -5,6 +5,7 @@ const {
 	DEL_COMPLAINT_SUCCESS,
 	UPDATE_COMPLAINT_SUCCESS,
 	GET_COMPLAINTBYUSER_SUCCESS,
+	GET_COMPLAINTCONTENT_SUCCESS,
 } = actions;
 
 export default (state={}, action) => {
@@ -34,6 +35,12 @@ export default (state={}, action) => {
 			return {
 				...state,
 				complaint: action.data,
+				msg: action.msg
+			}
+		case GET_COMPLAINTCONTENT_SUCCESS:
+			return {
+				...state,
+				complaintcontent: action.data,
 				msg: action.msg
 			}
 		default:

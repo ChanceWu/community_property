@@ -153,4 +153,25 @@ Router.post('/readAnnouncement', function(req, res) {
 	)
 })
 
+Router.get('/getAnnouncementNum', function(req, res) {
+	Announcement.count({status: '已发布'}, function(err, doc) {
+		if (err) {
+			return res.json({code: 1, msg: '获取已发布公告信息总数失败'})
+		}
+		return res.json({code: 0, data: doc, msg: '获取已发布公告信息总数成功'})
+	})
+})
+
+Router.get('/getAnnouncementTopic', function(req, res) {
+	Announcement.find({status: '已发布'})
+	.limit(3)
+	.select('_id topic')
+	.exec(function(err, doc) {
+		if (err) {
+			return res.json({code: 1, msg: '获取已发布公告信息失败'})
+		}
+		return res.json({code: 0, data: doc, msg: '获取已发布公告信息成功'})
+	})
+})
+
 module.exports = Router

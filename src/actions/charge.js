@@ -7,6 +7,7 @@ const {
 	DEL_CHARGE_SUCCESS,
 	UPDATE_CHARGE_SUCCESS,
 	GET_CHARGEBYUSER_SUCCESS,
+	GET_CHARGEMONEY_SUCCESS,
 
 	ERROR_MSG,
 } = actions;
@@ -84,6 +85,22 @@ export function getChargeByUser(user_name, value='') {
 			if (res.status==200&&res.data.code===0) {
 				dispatch({
 					type: GET_CHARGEBYUSER_SUCCESS,
+					data: res.data.data,
+					msg: res.data.msg
+				});
+			} else {
+				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
+
+export function getChargeMoney(user_name) {
+	return async(dispatch)=>{
+		await axios.get('/charge/getChargeMoney', {params: {user_name}}).then(res=>{
+			if (res.status==200&&res.data.code===0) {
+				dispatch({
+					type: GET_CHARGEMONEY_SUCCESS,
 					data: res.data.data,
 					msg: res.data.msg
 				});
