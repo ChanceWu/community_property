@@ -3,6 +3,8 @@ import actions from '../constants/actions'
 const {
 	GET_PERSONINFO_SUCCESS,
 	UPDATE_PERSONINFO_SUCCESS,
+	UPDATE_PASSWORD_SUCCESS,
+	UPDATE_PASSWORD_FAILURE,
 	GET_FAMILYMEMBER_SUCCESS,
 	ADD_FAMILYMEMBER_SUCCESS,
 	DEL_FAMILYMEMBER_SUCCESS,
@@ -25,6 +27,16 @@ export default (state={}, action) => {
 				data: action.data
 			}
 		case UPDATE_PERSONINFO_SUCCESS:
+			return {
+				...state,
+				msg: action.msg
+			}
+		case UPDATE_PASSWORD_SUCCESS:
+			return {
+				...state,
+				msg: action.msg
+			}
+		case UPDATE_PASSWORD_FAILURE:
 			return {
 				...state,
 				msg: action.msg

@@ -4,6 +4,8 @@ import actions from '../constants/actions';
 const {
 	GET_PERSONINFO_SUCCESS,
 	UPDATE_PERSONINFO_SUCCESS,
+	UPDATE_PASSWORD_SUCCESS,
+	UPDATE_PASSWORD_FAILURE,
 
 	GET_FAMILYMEMBER_SUCCESS,
 	ADD_FAMILYMEMBER_SUCCESS,
@@ -45,6 +47,25 @@ export function updatePersonInfo(values) {
 				})
 			} else {
 				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
+
+// 重置密码
+export function updatePassword(values) {
+	return async(dispatch)=>{
+		await axios.post('/user/updatePassword', {...values}).then(res=>{
+			if (res.status===200&&res.data.code===0) {
+				dispatch({
+					type: UPDATE_PASSWORD_SUCCESS,
+					msg: res.data.msg
+				})
+			} else {
+				dispatch({
+					type: UPDATE_PASSWORD_FAILURE,
+					msg: res.data.msg
+				})
 			}
 		})
 	}

@@ -88,7 +88,7 @@ class BuildingModal extends React.Component {
 				  		</Select>
 		          	)}
 		        </Form.Item>
-		        <Form.Item {...formItemLayout} label="使用面积">
+		        <Form.Item {...formItemLayout} label="使用面积(m²)">
 		          	{getFieldDecorator('using_area', {
 		          		initialValue: defaultData?defaultData.using_area:'',
 		            	rules: [{
@@ -99,7 +99,7 @@ class BuildingModal extends React.Component {
 		            	<Input placeholder="请输入使用面积" />
 		          	)}
 		        </Form.Item>
-		        <Form.Item {...formItemLayout} label="建筑面积">
+		        <Form.Item {...formItemLayout} label="建筑面积(m²)">
 		          	{getFieldDecorator('construction_area', {
 		          		initialValue: defaultData?defaultData.construction_area:'',
 		            	rules: [{

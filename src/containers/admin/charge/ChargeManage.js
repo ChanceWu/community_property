@@ -2,7 +2,7 @@ import React from 'react'
 import { message, Breadcrumb, Icon } from 'antd'
 import { connect } from 'react-redux'
 import ChargeManageTable from '../../../components/table/ChargeManageTable'
-import { getChargeList, addCharge, updateCharge, deleteCharge } from '../../../actions/charge'
+import { getChargeList, addCharge, updateCharge, deleteCharge, addChargeBatchGeneration } from '../../../actions/charge'
 import { getCostName } from '../../../actions/cost'
 import { getCommunityName } from '../../../actions/community'
 import { getBuildingName } from '../../../actions/building'
@@ -20,6 +20,7 @@ import { getRoomName } from '../../../actions/room'
 	}), {
 		getChargeList,
 		addCharge,
+		addChargeBatchGeneration,
 		updateCharge,
 		deleteCharge,
 
@@ -52,6 +53,12 @@ class ChargeManage extends React.Component {
 	addCharge = (values) => {
 		// const data = Object.assign({}, values, {charge_type: 'conventional'})
 		this.props.addCharge(values).then(()=>{
+			message.success(this.props.charge.msg)
+			this.getChargeList()
+		})
+	}
+	addChargeBatchGeneration = (values) => {
+		this.props.addChargeBatchGeneration(values).then(()=>{
 			message.success(this.props.charge.msg)
 			this.getChargeList()
 		})
@@ -108,6 +115,7 @@ class ChargeManage extends React.Component {
 					<ChargeManageTable
 						chargeList={this.state.chargeList}
 						addCharge={this.addCharge}
+						addChargeBatchGeneration={this.addChargeBatchGeneration}
 						updateCharge={this.updateCharge}
 						deleteCharge={this.deleteCharge}
 						handleSearch={this.handleSearch}

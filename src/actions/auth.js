@@ -26,12 +26,12 @@ export function logout() {
 	return {type: LOGOUT_SUCCESS }
 }
 
-export function login({user, pwd}) {
+export function login({user, pwd, type}) {
 	if (!user||!pwd) {
 		return errorMsg('用户名和密码不能为空！')
 	}
 	return async(dispatch)=>{
-		await axios.post('/user/login', {user, pwd}).then(res=>{
+		await axios.post('/user/login', {user, pwd, type}).then(res=>{
 			if (res.status==200&&res.data.code===0) {
 				localStorage.setItem('user', JSON.stringify(res.data.data));
 				dispatch(authSuccess(res.data.data, res.data.msg));

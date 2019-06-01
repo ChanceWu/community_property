@@ -1,12 +1,13 @@
 import React from 'react'
 // import { List, InputItem, WingBlank, WhiteSpace, Button } from 'antd'
-import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, message, Radio } from 'antd';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 // import Logo from '../../components/logo/logo'
 import { login } from '../../actions/auth'
 // import authForm from '../../components/auth/authform'
 const FormItem = Form.Item;
+const RadioGroup = Radio.Group;
 
 @connect(
 	state=>state.auth,
@@ -25,7 +26,6 @@ class Login extends React.Component {
 		e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
                 this.props.login(values).then(()=>{
                     if (this.props.msg==='登陆成功') {
                         message.success(this.props.msg)
@@ -38,7 +38,6 @@ class Login extends React.Component {
 	}
 	render() {
 		const {redirectTo} = this.props
-        console.log(this.props)
 		const { getFieldDecorator } = this.props.form;
         return (
             <div className="login">
@@ -65,6 +64,16 @@ class Login extends React.Component {
                             )}
                         </FormItem>
                         <FormItem>
+                          {getFieldDecorator('type', {
+                            initialValue: "user",
+                          })(
+                            <RadioGroup>
+                              <Radio value="user">住户</Radio>
+                              <Radio value="admin">管理员</Radio>
+                            </RadioGroup>
+                          )}
+                        </FormItem>
+                        <FormItem>
                             {getFieldDecorator('remember', {
                                 valuePropName: 'checked',
                                 initialValue: true,
@@ -75,7 +84,7 @@ class Login extends React.Component {
                             <Button type="primary" htmlType="submit" className="login-form-button" style={{width: '100%'}}>
                                 登录
                             </Button>
-                            <p style={{display: 'flex', justifyContent: 'space-between'}}>
+                            <p style={{display: 'flex', justifyContent: 'space-between', cursor: 'pointer'}}>
                                 <span onClick={this.register} >现在就去注册!</span>
                                 {/*<span ><Icon type="github" />(第三方登录)</span>*/}
                             </p>

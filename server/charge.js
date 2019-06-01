@@ -21,6 +21,7 @@ Router.get('/getChargeList', function(req, res) {
 		{path: 'unit_id', select: {unit_name: 1}},
 		{path: 'room_id', select: {room_name: 1, user_name: 1}}
 	])
+	.sort({_id:-1})
 	.exec(function(err, doc) {
 		if (err) {
 			return res.json({code: 1, msg: '获取收费信息失败'})
@@ -67,6 +68,21 @@ Router.post('/addCharge', function(req, res) {
 			return res.json({code: 1, msg: '新增收费信息失败'})
 		}
 		return res.json({code: 0, msg: '新增收费信息成功'})
+	})
+})
+
+Router.post('/addChargeBatchGeneration', function(req, res) {
+	const { room, room_id, ...data } = req.body
+	let newRoom = [];
+	for (let i=0; i<room.length; i++) {
+		let oneroom = new Charge({room_id: room[i]._id, ...data})
+		newRoom.push(oneroom)
+	}
+	Charge.insertMany(newRoom,function(e, d) {
+		if (e) {
+			return res.json({code: 1, msg: '批量生成收费信息失败'})
+		}
+		return res.json({code: 0, msg: '批量生成收费信息成功'})
 	})
 })
 

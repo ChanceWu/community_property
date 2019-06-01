@@ -4,6 +4,7 @@ import actions from '../constants/actions';
 const {
 	GET_CHARGELIST_SUCCESS,
 	ADD_CHARGE_SUCCESS,
+	ADD_CHARGEBATCHGENERATION_SUCCESS,
 	DEL_CHARGE_SUCCESS,
 	UPDATE_CHARGE_SUCCESS,
 	GET_CHARGEBYUSER_SUCCESS,
@@ -40,6 +41,21 @@ export function addCharge(values) {
 			if (res.status===200&&res.data.code===0) {
 				dispatch({
 					type: ADD_CHARGE_SUCCESS,
+					msg: res.data.msg
+				})
+			} else {
+				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
+
+export function addChargeBatchGeneration(values) {
+	return async(dispatch)=>{
+		await axios.post('/charge/addChargeBatchGeneration', {...values}).then(res=>{
+			if (res.status===200&&res.data.code===0) {
+				dispatch({
+					type: ADD_CHARGEBATCHGENERATION_SUCCESS,
 					msg: res.data.msg
 				})
 			} else {

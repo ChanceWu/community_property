@@ -65,6 +65,7 @@ export default {
                 { key: '/user/owner/personinfo', title: '个人信息', component: 'PersonInfo' },
                 { key: '/user/owner/houseinfo', title: '住宅信息', component: 'HouseInfo' },
                 { key: '/user/owner/garageinfo', title: '车位信息', component: 'GarageInfo' },
+                { key: '/user/owner/passwordreset', title: '密码重置', component: 'PasswordReset' },
             ],
     	},
     	{ key: '/user/repair', title: '维修', icon: 'tool', component: 'RepairInfo' },

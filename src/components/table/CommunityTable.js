@@ -77,10 +77,10 @@ class CommunityTable extends React.Component {
 		  	{
 		    	title: '所属公司', width: 100, dataIndex: 'company', key: 'company', fixed: 'left',
 		  	},
-		  	{ title: '占地面积', dataIndex: 'cover_area', key: 'cover_area' },
-		  	{ title: '绿地面积', dataIndex: 'green_area', key: 'green_area' },
-		  	{ title: '建筑面积', dataIndex: 'construction_area', key: 'construction_area' },
-		  	{ title: '道路面积', dataIndex: 'road_area', key: 'road_area' },
+		  	{ title: '占地面积(m²)', dataIndex: 'cover_area', key: 'cover_area' },
+		  	{ title: '绿地面积(m²)', dataIndex: 'green_area', key: 'green_area' },
+		  	{ title: '建筑面积(m²)', dataIndex: 'construction_area', key: 'construction_area' },
+		  	{ title: '道路面积(m²)', dataIndex: 'road_area', key: 'road_area' },
 		  	{ title: '负责人', dataIndex: 'admin_id', key: 'admin_id' },
 		  	{ title: '小区地址', dataIndex: 'community_address', key: 'community_address' },
 		  	{

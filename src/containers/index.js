@@ -7,6 +7,7 @@ import UserHome from './user/home/UserHome';
 import PersonInfo from './user/owner/PersonInfo'
 import HouseInfo from './user/owner/HouseInfo'
 import GarageInfo from './user/owner/GarageInfo'
+import PasswordReset from './user/owner/PasswordReset'
 import ChargeInfo from './user/charge/ChargeInfo'
 import RepairInfo from './user/repair/RepairInfo'
 import ComplaintInfo from './user/complaint/ComplaintInfo'
@@ -35,6 +36,7 @@ export default {
     PersonInfo,
     HouseInfo,
     GarageInfo,
+    PasswordReset,
     ChargeInfo,
     RepairInfo,
     ComplaintInfo,

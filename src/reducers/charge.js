@@ -7,6 +7,7 @@ const {
 	UPDATE_CHARGE_SUCCESS,
 	GET_CHARGEBYUSER_SUCCESS,
 	GET_CHARGEMONEY_SUCCESS,
+	ADD_CHARGEBATCHGENERATION_SUCCESS,
 } = actions;
 
 export default (state={}, action) => {
@@ -18,6 +19,11 @@ export default (state={}, action) => {
 				msg: action.msg
 			}
 		case ADD_CHARGE_SUCCESS:
+			return {
+				...state,
+				msg: action.msg
+			}
+		case ADD_CHARGEBATCHGENERATION_SUCCESS:
 			return {
 				...state,
 				msg: action.msg

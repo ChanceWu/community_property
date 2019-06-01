@@ -28,11 +28,11 @@ class GarageInfoTable extends React.Component {
 		  dataIndex: 'garage_type',
 		  key: 'garage_type',
 		}, {
-		  title: '预售价格',
+		  title: '预售价格(元)',
 		  dataIndex: 'booking_price',
 		  key: 'booking_price',
 		}, {
-		  title: '预租价格',
+		  title: '预租价格(元/月)',
 		  dataIndex: 'rent_price',
 		  key: 'rent_price',
 		}, {
@@ -40,7 +40,7 @@ class GarageInfoTable extends React.Component {
 		  dataIndex: 'garage_location',
 		  key: 'garage_location',
 		}, {
-		  title: '车位面积',
+		  title: '车位面积(m²)',
 		  dataIndex: 'garage_area',
 		  key: 'garage_area',
 		}, {

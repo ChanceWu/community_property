@@ -68,7 +68,7 @@ class ConventionalCostModal extends React.Component {
 		            	<Input placeholder="请输入收费方式" />
 		          	)}
 		        </Form.Item>
-		        <Form.Item {...formItemLayout} label="单位价格">
+		        <Form.Item {...formItemLayout} label="单位价格(元)">
 		          	{getFieldDecorator('unit_price', {
 		          		initialValue: defaultData?defaultData.unit_price:'',
 		            	rules: [{
@@ -81,7 +81,7 @@ class ConventionalCostModal extends React.Component {
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="收费周期(月)">
 		          	{getFieldDecorator('charge_cycle', {
-		          		initialValue: defaultData?defaultData.charge_cycle:'',
+		          		initialValue: defaultData?defaultData.charge_cycle:'1',
 		            	rules: [{
 		              		required: false,
 		              		message: 'Please input your nickname',
@@ -92,7 +92,7 @@ class ConventionalCostModal extends React.Component {
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="滞纳金比率‰">
 		          	{getFieldDecorator('charge_late', {
-		          		initialValue: defaultData?defaultData.charge_late:'',
+		          		initialValue: defaultData?defaultData.charge_late:'5.00',
 		            	rules: [{
 		              		required: false,
 		              		message: 'Please input your nickname',
@@ -103,7 +103,7 @@ class ConventionalCostModal extends React.Component {
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="超过天数">
 		          	{getFieldDecorator('over_day', {
-		          		initialValue: defaultData?defaultData.over_day:'',
+		          		initialValue: defaultData?defaultData.over_day:'7',
 		            	rules: [{
 		              		required: false,
 		              		message: 'Please input your nickname',

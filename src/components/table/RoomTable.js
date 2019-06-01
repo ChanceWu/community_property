@@ -127,8 +127,8 @@ class RoomTable extends React.Component {
 		  	},
 		  	{ title: '户型', dataIndex: 'door_model', key: 'door_model' },
 		  	{ title: '楼层', dataIndex: 'room_floor', key: 'room_floor' },
-		  	{ title: '建筑面积', dataIndex: 'constructor_area', key: 'constructor_area' },
-		  	{ title: '使用面积', dataIndex: 'using_area', key: 'using_area' },
+		  	{ title: '建筑面积(m²)', dataIndex: 'constructor_area', key: 'constructor_area' },
+		  	{ title: '使用面积(m²)', dataIndex: 'using_area', key: 'using_area' },
 		  	{
 		  		title: '房间状态', dataIndex: 'room_status', key: 'room_status'
 		  	},

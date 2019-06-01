@@ -33,7 +33,7 @@ class GarageManageModal extends React.Component {
 		          		initialValue: defaultData?defaultData.user_name:'',
 		            	rules: [{
 		              		required: false,
-		              		message: '所属房产不能为空',
+		              		message: '所属业主不能为空',
 		            	}],
 		          	})(
 		          		<Select
@@ -41,6 +41,7 @@ class GarageManageModal extends React.Component {
 						    style={{ width: 236 }}
 						    placeholder="选择所属业主"
 					  	>
+					  		<Option key='1' value=''>&nbsp;</Option>
 						    {
 						    	this.props.ownerName&&
 						    	this.props.ownerName.map(v=><Option key={v._id} value={v.name}>{v.name}</Option>)
@@ -48,18 +49,18 @@ class GarageManageModal extends React.Component {
 				  		</Select>
 		          	)}
 		        </Form.Item>
-		        <Form.Item {...formItemLayout} label="所属房产">
+		        <Form.Item {...formItemLayout} label="所属小区">
 		          	{getFieldDecorator('community_name', {
 		          		initialValue: defaultData?defaultData.community_name:'',
 		            	rules: [{
 		              		required: true,
-		              		message: '所属房产不能为空',
+		              		message: '所属小区不能为空',
 		            	}],
 		          	})(
 		          		<Select
 						    showSearch
 						    style={{ width: 236 }}
-						    placeholder="选择所属房产"
+						    placeholder="选择所属小区"
 					  	>
 						    {
 						    	this.props.communityName&&
@@ -70,7 +71,7 @@ class GarageManageModal extends React.Component {
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="车位类别">
 		          	{getFieldDecorator('garage_category', {
-		          		initialValue: defaultData?defaultData.garage_category:'',
+		          		initialValue: defaultData?defaultData.garage_category:'地下',
 		            	rules: [{
 		              		required: false,
 		            	}],
@@ -87,7 +88,7 @@ class GarageManageModal extends React.Component {
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="管理类别">
 		          	{getFieldDecorator('manage_category', {
-		          		initialValue: defaultData?defaultData.manage_category:'',
+		          		initialValue: defaultData?defaultData.manage_category:'物业自用',
 		            	rules: [{
 		              		required: false,
 		              		message: 'Please input your nickname',
@@ -108,7 +109,7 @@ class GarageManageModal extends React.Component {
 		        </Form.Item>
 		        <Form.Item {...formItemLayout} label="车位类型">
 		          	{getFieldDecorator('garage_type', {
-		          		initialValue: defaultData?defaultData.garage_type:'',
+		          		initialValue: defaultData?defaultData.garage_type:'标准车位',
 		            	rules: [{
 		              		required: false,
 		              		message: 'Please input your nickname',
@@ -126,7 +127,7 @@ class GarageManageModal extends React.Component {
 				  		</Select>
 		          	)}
 		        </Form.Item>
-		        <Form.Item {...formItemLayout} label="预售价格">
+		        <Form.Item {...formItemLayout} label="预售价格(元)">
 		          	{getFieldDecorator('booking_price', {
 		          		initialValue: defaultData?defaultData.booking_price:'',
 		            	rules: [{
@@ -137,7 +138,7 @@ class GarageManageModal extends React.Component {
 		            	<Input placeholder="请输入预售价格" />
 		          	)}
 		        </Form.Item>
-		        <Form.Item {...formItemLayout} label="预租价格">
+		        <Form.Item {...formItemLayout} label="预租价格(元)">
 		          	{getFieldDecorator('rent_price', {
 		          		initialValue: defaultData?defaultData.rent_price:'',
 		            	rules: [{
@@ -159,7 +160,7 @@ class GarageManageModal extends React.Component {
 		            	<Input placeholder="请输入车位位置" />
 		          	)}
 		        </Form.Item>
-		        <Form.Item {...formItemLayout} label="车位面积">
+		        <Form.Item {...formItemLayout} label="车位面积(m²)">
 		          	{getFieldDecorator('garage_area', {
 		          		initialValue: defaultData?defaultData.garage_area:'',
 		            	rules: [{

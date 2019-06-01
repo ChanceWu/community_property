@@ -27,7 +27,7 @@ Router.get('/list', function(req, res) {
 
 Router.post('/addFamilyMember', function(req, res) {
 	// const {user_id, ...data} = req.body;\
-	console.log(req.body)
+	// console.log(req.body)
 	const userModel = new UserFamilyMember(req.body);
 	userModel.save(function(err, doc) {
 		if (err) {

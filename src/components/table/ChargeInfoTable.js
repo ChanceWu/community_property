@@ -40,18 +40,18 @@ class ChargeInfoTable extends React.Component {
   	}
   	render() {
   		const columns = [
-		  	{ title: '费用名称', width: 100, dataIndex: 'charge_name', key: 'charge_name', fixed: 'left' },
-		  	{ title: '业主', width: 100, dataIndex: 'user_name', key: 'user_name', fixed: 'left' },
-		  	{ title: '物业公司', width: 100, dataIndex: 'company', key: 'company' },
+		  	{ title: '费用名称', width: 150, dataIndex: 'charge_name', key: 'charge_name', fixed: 'left' },
+		  	{ title: '业主', dataIndex: 'user_name', key: 'user_name', fixed: 'left' },
+		  	{ title: '物业公司', dataIndex: 'company', key: 'company' },
 		  	{ title: '小区', dataIndex: 'community_name', key: 'community_name' },
 		  	{ title: '楼栋', dataIndex: 'building_name', key: 'building_name' },
 		  	{ title: '单元', dataIndex: 'unit_name', key: 'unit_name' },
 		  	{ title: '房间', dataIndex: 'room_name', key: 'room_name' },
 		  	{ title: '起始时间', dataIndex: 'start_time', key: 'start_time' },
 		  	{ title: '截止时间', dataIndex: 'end_time', key: 'end_time' },
-		  	{ title: '单价', dataIndex: 'unit_price', key: 'unit_price' },
-		  	{ title: '计费单位', dataIndex: 'charge_unit', key: 'charge_unit' },
-		  	{ title: '应缴费用', dataIndex: 'receive_charge', key: 'receive_charge' },
+		  	{ title: '单价(元)', dataIndex: 'unit_price', key: 'unit_price' },
+		  	{ title: '计费单位(元)', dataIndex: 'charge_unit', key: 'charge_unit' },
+		  	{ title: '应缴费用(元)', dataIndex: 'receive_charge', key: 'receive_charge' },
 		  	{
 		  		title: '是否缴费', dataIndex: 'is_pay', key: 'is_pay', fixed: 'right'
 		  	},
@@ -102,7 +102,7 @@ class ChargeInfoTable extends React.Component {
 	    return (
 	    	<div>
 	    		<SearchButton handleSearch={this.props.handleSearch} />
-	    		<Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />
+	    		<Table columns={columns} dataSource={data} scroll={{ x: 1250 }} />
 	    	</div>
 	    )
   	}

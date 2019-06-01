@@ -3,7 +3,7 @@ import moment from 'moment'
 import { Form, Input, Button, Checkbox, Modal, Radio, Select, DatePicker } from 'antd';
 const Option = Select.Option;
 
-class ChargeManageModal extends React.Component {
+class ChargeBatchGenerationModal extends React.Component {
 	communitySelect = (value) => {
 		this.props.getBuildingName(value)
 	}
@@ -110,7 +110,7 @@ class ChargeManageModal extends React.Component {
 				  		</Select>
 		          	)}
 		        </Form.Item>
-		        <Form.Item {...formItemLayout} label="房间">
+		        {/*<Form.Item {...formItemLayout} label="房间">
 		          	{getFieldDecorator('room_id', {
 		          		initialValue: defaultData?defaultData.room_id:'',
 		            	rules: [{
@@ -129,7 +129,7 @@ class ChargeManageModal extends React.Component {
 						    }
 				  		</Select>
 		          	)}
-		        </Form.Item>
+		        </Form.Item>*/}
 		        <Form.Item {...formItemLayout} label="起始时间">
 		          	{getFieldDecorator('start_time', {
 		          		initialValue: defaultData?moment(defaultData.start_time, 'YYYY-MM-DD'):moment('2015-09-13', 'YYYY-MM-DD'),
@@ -184,4 +184,4 @@ class ChargeManageModal extends React.Component {
 	}
 }
 
-export default ChargeManageModal
+export default ChargeBatchGenerationModal

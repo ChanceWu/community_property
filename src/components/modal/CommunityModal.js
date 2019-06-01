@@ -47,7 +47,7 @@ class CommunityModal extends React.Component {
 				  		</Select>
 		          	)}
 		        </Form.Item>
-		        <Form.Item {...formItemLayout} label="占地面积">
+		        <Form.Item {...formItemLayout} label="占地面积(m²)">
 		          	{getFieldDecorator('cover_area', {
 		          		initialValue: defaultData?defaultData.cover_area:'',
 		            	rules: [{
@@ -57,7 +57,7 @@ class CommunityModal extends React.Component {
 		            	<Input placeholder="请输入占地面积" />
 		          	)}
 		        </Form.Item>
-		        <Form.Item {...formItemLayout} label="绿地面积">
+		        <Form.Item {...formItemLayout} label="绿地面积(m²)">
 		          	{getFieldDecorator('green_area', {
 		          		initialValue: defaultData?defaultData.green_area:'',
 		            	rules: [{
@@ -68,7 +68,7 @@ class CommunityModal extends React.Component {
 		            	<Input placeholder="请输入绿地面积" />
 		          	)}
 		        </Form.Item>
-		        <Form.Item {...formItemLayout} label="建筑面积">
+		        <Form.Item {...formItemLayout} label="建筑面积(m²)">
 		          	{getFieldDecorator('construction_area', {
 		          		initialValue: defaultData?defaultData.construction_area:'',
 		            	rules: [{
@@ -79,7 +79,7 @@ class CommunityModal extends React.Component {
 		            	<Input placeholder="请输入建筑面积" />
 		          	)}
 		        </Form.Item>
-		        <Form.Item {...formItemLayout} label="道路面积">
+		        <Form.Item {...formItemLayout} label="道路面积(m²)">
 		          	{getFieldDecorator('road_area', {
 		          		initialValue: defaultData?defaultData.road_area:'',
 		            	rules: [{

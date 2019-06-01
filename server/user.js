@@ -106,8 +106,8 @@ Router.get('/list', function(req, res) {
 	
 })
 Router.post('/login', function(req, res) {
-	const {user, pwd} = req.body;
-	User.findOne({name: user, pwd: md5Pwd(pwd)}, _filter, function(err, doc) {
+	const {user, pwd, type} = req.body;
+	User.findOne({name: user, pwd: md5Pwd(pwd), type: type}, _filter, function(err, doc) {
 		if (!doc) {
 			return res.json({code: 1, msg: '用户名或密码错误'})
 		}
@@ -117,7 +117,7 @@ Router.post('/login', function(req, res) {
 })
 Router.post('/register', function(req, res) {
 	const {user, pwd, ...data} = req.body;
-	User.findOne({name: user}, function(err, doc) {
+	User.findOne({name: user, type: data.type}, function(err, doc) {
 		if (doc) {
 			return res.json({code: 1, msg: '用户名重复'})
 		}
@@ -160,6 +160,20 @@ Router.post('/updatePersonInfo', function(req, res) {
 	})
 })
 
+Router.post('/updatePassword', function(req, res) {
+	const {oldpwd, newpwd, pwd, ...data} = req.body
+	const body = req.body;
+	if (md5Pwd(oldpwd) !== pwd) {
+		return res.json({code: 1, msg: '旧密码错误！'})
+	}
+	User.findByIdAndUpdate(data._id, {pwd: md5Pwd(newpwd), ...data}, function(err, doc) {
+		if (err) {
+			return res.json({code: 1, msg: '后端出错了'})
+		}
+		return res.json({code: 0, msg: '重置密码成功'})
+	})
+})
+
 Router.post('/deleteOwner', function(req, res) {
 	const {_id} = req.body
 	UserFamilyMember.remove({user_id:_id}, function(err, doc) {
@@ -177,7 +191,7 @@ Router.post('/deleteOwner', function(req, res) {
 
 Router.post('/addOwner', function(req, res) {
 	const {user, pwd, ...data} = req.body;
-	User.findOne({name: user}, function(err, doc) {
+	User.findOne({name: user, type: data.type}, function(err, doc) {
 		if (doc) {
 			return res.json({code: 1, msg: '用户名重复'})
 		}

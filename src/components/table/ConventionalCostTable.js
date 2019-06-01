@@ -72,7 +72,7 @@ class ConventionalCostTable extends React.Component {
 		  	{ title: '费用名称', width: 100, dataIndex: 'charge_name', key: 'charge_name' },
 		  	{ title: '物业公司', dataIndex: 'company', key: 'company' },
 		  	{ title: '收费方式', dataIndex: 'charge_way', key: 'charge_way' },
-		  	{ title: '单位价格', dataIndex: 'unit_price', key: 'unit_price' },
+		  	{ title: '单位价格(元)', dataIndex: 'unit_price', key: 'unit_price' },
 		  	{ title: '收费周期(月)', dataIndex: 'charge_cycle', key: 'charge_cycle' },
 		  	{ title: '滞纳金比率‰', dataIndex: 'charge_late', key: 'charge_late' },
 		  	{ title: '超过天数', dataIndex: 'over_day', key: 'over_day' },
