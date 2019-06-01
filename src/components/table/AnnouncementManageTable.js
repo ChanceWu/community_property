@@ -76,7 +76,7 @@ class AnnouncementManageTable extends React.Component {
 	          end_time: moment(v.end_time).format('YYYY-MM-DD')||'',
 	          admin_name: v.admin_name||'',
 	          status: v.status||'',
-	          entry_time: v.entry_time||'',
+	          entry_time: moment(v.entry_time).format('YYYY-MM-DD')||'',
 	          content: v.content||'',
 	        })
 	      })

@@ -104,7 +104,7 @@ class ChargeManageTable extends React.Component {
 		  	{ title: '起始时间', width: 150, dataIndex: 'start_time', key: 'start_time' },
 		  	{ title: '截止时间', width: 150, dataIndex: 'end_time', key: 'end_time' },
 		  	{ title: '单价(元)', dataIndex: 'unit_price', key: 'unit_price' },
-		  	{ title: '计费单位(元)', dataIndex: 'charge_unit', key: 'charge_unit' },
+		  	{ title: '计费单位', dataIndex: 'charge_unit', key: 'charge_unit' },
 		  	{ title: '应缴费用(元)', dataIndex: 'receive_charge', key: 'receive_charge' },
 		  	{
 		  		title: '是否缴费', dataIndex: 'is_pay', key: 'is_pay', fixed: 'right'

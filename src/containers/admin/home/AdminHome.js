@@ -199,7 +199,12 @@ class AdminHome extends React.Component {
                         <Col className="gutter-row" md={6}>
                             <div className="gutter-box">
                                 <Card bordered={false}>
-                                    <div className="clear y-center">
+                                    <div
+                                        className="clear y-center"
+                                        onClick={()=>{
+                                            this.props.history.push('/admin/admin/infomation')
+                                        }}
+                                    >
                                         <div className="pull-left mr-m">
                                             <Icon type="setting" className="text-2x text-success" />
                                         </div>
