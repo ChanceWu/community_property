@@ -45,7 +45,7 @@
     "key-mirror": "^1.0.1",
     "mini-css-extract-plugin": "0.5.0",
     "moment": "^2.24.0",
-    "mongoose": "^5.5.2",
+    "mongoose": "^5.7.5",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "pnp-webpack-plugin": "1.2.1",
     "postcss-flexbugs-fixes": "4.1.0",
